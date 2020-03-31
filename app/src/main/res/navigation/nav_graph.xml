@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.jgendeavors.rossquotes.DashboardFragment"
+        android:label="DashboardFragment" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_recentMessagesFragment"
+            app:destination="@id/recentMessagesFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.jgendeavors.rossquotes.ContactsFragment"
+        android:label="ContactsFragment" >
+        <action
+            android:id="@+id/action_contactsFragment_to_contactDetailsFragment"
+            app:destination="@id/contactDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/contactDetailsFragment"
+        android:name="com.jgendeavors.rossquotes.ContactDetailsFragment"
+        android:label="ContactDetailsFragment" />
+
+    <fragment
+        android:id="@+id/recentMessagesFragment"
+        android:name="com.jgendeavors.rossquotes.RecentMessagesFragment"
+        android:label="RecentMessagesFragment" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.jgendeavors.rossquotes.SettingsFragment"
+        android:label="SettingsFragment" />
+    
+</navigation>
