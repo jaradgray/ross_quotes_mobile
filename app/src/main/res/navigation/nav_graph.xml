@@ -41,5 +41,5 @@
         android:id="@+id/settingsFragment"
         android:name="com.jgendeavors.rossquotes.SettingsFragment"
         android:label="SettingsFragment" />
-    
+
 </navigation>
