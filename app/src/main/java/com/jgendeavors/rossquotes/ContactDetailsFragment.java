@@ -40,5 +40,7 @@ public class ContactDetailsFragment extends Fragment {
                 // TODO handle clicks on Message items
             }
         });
+
+        // TODO observe a ViewModel's LiveData and update adapter's data when it changes
     }
 }
