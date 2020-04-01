@@ -65,6 +65,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
      */
     public void setMessages(List<Message> messages) {
         mMessages = messages;
+        notifyDataSetChanged();
     }
 
 
