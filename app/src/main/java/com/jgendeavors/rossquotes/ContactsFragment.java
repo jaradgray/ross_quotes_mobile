@@ -51,22 +51,21 @@ public class ContactsFragment extends Fragment {
             }
         });
 
-//        // TODO observe ContactsFragmentViewModel's LiveData and update adapter's data when the list of contacts changes
-//        // Request a ViewModel from the Android system
-//        ContactsFragmentViewModel viewModel = ViewModelProviders.of(this).get(ContactsFragmentViewModel.class);
-//
-//        // Observe the ViewModel's LiveData
-//        viewModel.getContacts().observe(getViewLifecycleOwner(), new Observer<List<Contact>>() {
-//            /**
-//             * Called each time the data in the LiveData object we're observing changes.
-//             * @param contacts
-//             */
-//            @Override
-//            public void onChanged(List<Contact> contacts) {
-//                // update RecyclerView UI
-//                adapter.setContacts(contacts);
-//            }
-//        });
+        // Request a ViewModel from the Android system
+        ContactsFragmentViewModel viewModel = ViewModelProviders.of(this).get(ContactsFragmentViewModel.class);
+
+        // Observe the ViewModel's LiveData
+        viewModel.getContacts().observe(getViewLifecycleOwner(), new Observer<List<Contact>>() {
+            /**
+             * Called each time the data in the LiveData object we're observing changes.
+             * @param contacts
+             */
+            @Override
+            public void onChanged(List<Contact> contacts) {
+                // update RecyclerView UI
+                adapter.setContacts(contacts);
+            }
+        });
     }
 
 
