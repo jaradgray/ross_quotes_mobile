@@ -29,5 +29,7 @@ public class ContactRepository {
 
     // API methods
 
+    public LiveData<Contact> getContact(int id) { return mContactDao.getContact(id); }
+
     public LiveData<List<Contact>> getAlphabetizedContacts() { return mAlphabetizedContacts; }
 }

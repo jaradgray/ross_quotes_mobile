@@ -1,9 +1,12 @@
 package com.jgendeavors.rossquotes;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -38,8 +41,12 @@ public class ContactDetailsFragment extends Fragment {
 
         // put any usages of findViewById() here
 
-        // Initialize RecyclerView
+        // Get references to widgets
+        ImageView ivProfile = view.findViewById(R.id.fragment_contact_details_iv_profile);
+        final TextView tvName = view.findViewById(R.id.fragment_contact_details_tv_name);
         RecyclerView recyclerView = view.findViewById(R.id.fragment_contact_details_rv_quotes);
+
+        // Initialize RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
@@ -54,11 +61,26 @@ public class ContactDetailsFragment extends Fragment {
             }
         });
 
+        // Get the id of the Contact from args
+        int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
+
         // Request a ViewModel from the Android system
         ContactDetailsFragmentViewModel viewModel = ViewModelProviders.of(this).get(ContactDetailsFragmentViewModel.class);
 
         // Observe the ViewModel's LiveData
-        int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID); // get the id of the Contact from args
+
+        // contact
+        viewModel.getContact(contactId).observe(getViewLifecycleOwner(), new Observer<Contact>() {
+            @Override
+            public void onChanged(Contact contact) {
+                // TODO update profile pic
+
+                // update name
+                tvName.setText(contact.getName());
+            }
+        });
+
+        // contact's messages
         viewModel.getMessagesForContact(contactId).observe(getViewLifecycleOwner(), new Observer<List<Message>>() {
             @Override
             public void onChanged(List<Message> messages) {

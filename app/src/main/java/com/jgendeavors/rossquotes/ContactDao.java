@@ -21,6 +21,9 @@ public interface ContactDao {
     @Insert
     List<Long> insert(List<Contact> contacts);
 
+    @Query("SELECT * FROM contact_table WHERE id = :id")
+    LiveData<Contact> getContact(int id);
+
     @Query("SELECT * FROM contact_table ORDER BY name ASC")
     LiveData<List<Contact>> getAlphabetizedContacts();
 }
