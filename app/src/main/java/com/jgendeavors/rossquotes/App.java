@@ -23,6 +23,9 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
+        // TODO delete this; just for testing
+        deleteDatabase(QuotesRoomDatabase.DB_NAME);
+
         createNotificationChannels();
     }
 
