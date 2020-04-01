@@ -19,7 +19,7 @@ import androidx.room.Query;
 @Dao
 public interface ContactDao {
     @Insert
-    void insert(Contact contact);
+    List<Long> insert(List<Contact> contacts);
 
     @Query("SELECT * FROM contact_table ORDER BY name ASC")
     LiveData<List<Contact>> getAlphabetizedContacts();
