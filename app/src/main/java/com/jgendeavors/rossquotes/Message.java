@@ -13,12 +13,16 @@ public class Message {
     @ColumnInfo(name = "id")
     private int mId;
 
+    @ColumnInfo(name = "contact_id")
+    private int mContactId;
+
     @ColumnInfo(name = "text")
     private String mText;
 
 
     // Constructor
-    public Message(String text) {
+    public Message(int contactId, String text) {
+        mContactId = contactId;
         mText = text;
     }
 
@@ -29,5 +33,6 @@ public class Message {
 
     // Getters
     public int getId() { return mId; }
+    public int getContactId() { return mContactId; }
     public String getText() { return mText; }
 }
