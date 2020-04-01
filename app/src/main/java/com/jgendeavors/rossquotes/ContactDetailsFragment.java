@@ -5,9 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,6 +54,17 @@ public class ContactDetailsFragment extends Fragment {
             }
         });
 
-        // TODO observe a ViewModel's LiveData and update adapter's data when it changes
+        // Request a ViewModel from the Android system
+        ContactDetailsFragmentViewModel viewModel = ViewModelProviders.of(this).get(ContactDetailsFragmentViewModel.class);
+
+        // Observe the ViewModel's LiveData
+        int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID); // get the id of the Contact from args
+        viewModel.getMessagesForContact(contactId).observe(getViewLifecycleOwner(), new Observer<List<Message>>() {
+            @Override
+            public void onChanged(List<Message> messages) {
+                // update adapter's data
+                adapter.setMessages(messages);
+            }
+        });
     }
 }
