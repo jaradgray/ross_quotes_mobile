@@ -19,7 +19,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
      * Interface for item clicks
      */
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(Contact contact);
     }
     private OnItemClickListener mOnItemClickListener;
     public void setOnItemClickListener(OnItemClickListener listener) { mOnItemClickListener = listener; }
@@ -49,7 +49,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                     if (mOnItemClickListener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            mOnItemClickListener.onItemClick(position);
+                            mOnItemClickListener.onItemClick(mContacts.get(position));
                         }
                     }
                 }

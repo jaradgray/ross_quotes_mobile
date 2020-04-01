@@ -43,7 +43,7 @@ public class ContactsFragment extends Fragment {
         // Handle clicks on RecyclerView items by implementing ContactAdapter.OnItemClickListener interface
         adapter.setOnItemClickListener(new ContactAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
+            public void onItemClick(Contact contact) {
                 // TODO handle click on Contact item correctly
                 //  for now, just navigate to ContactDetailsFragment
                 final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
