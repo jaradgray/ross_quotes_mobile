@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * The ContactDetailsFragment displays an existing Contact's details.
+ */
 public class ContactDetailsFragment extends Fragment {
     @Nullable
     @Override
