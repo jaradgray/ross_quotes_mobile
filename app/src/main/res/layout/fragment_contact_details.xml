@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/fragment_contact_details_iv_profile"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/fragment_contact_details_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tv_name"
+        android:layout_toEndOf="@+id/fragment_contact_details_iv_profile"/>
+
+    <TextView
+        android:id="@+id/fragment_contact_details_tv_quotes_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Quotes"
+        android:layout_below="@id/fragment_contact_details_iv_profile"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_contact_details_rv_quotes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fragment_contact_details_tv_quotes_header"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:listitem="@layout/item_message"/>
+
+</RelativeLayout>
