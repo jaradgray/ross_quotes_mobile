@@ -15,6 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
  * The ContactDetailsFragment displays an existing Contact's details.
  */
 public class ContactDetailsFragment extends Fragment {
+    // Constants
+    public static final String ARG_KEY_CONTACT_ID = "ARG_KEY_CONTACT_ID";
+
+
+    // Lifecycle overrides
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

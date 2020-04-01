@@ -44,10 +44,16 @@ public class ContactsFragment extends Fragment {
         adapter.setOnItemClickListener(new ContactAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Contact contact) {
-                // TODO handle click on Contact item correctly
-                //  for now, just navigate to ContactDetailsFragment
+                // Navigate to ContactDetailsFragment
+                // Note: we pass data to the destination with a simple Bundle instead of with SafeArgs because it's simpler.
+                // See documentation here: https://developer.android.com/guide/navigation/navigation-pass-data#bundle
+
+                // build the Bundle that will hold the clicked Contact's id
+                Bundle bundle = new Bundle();
+                bundle.putInt(ContactDetailsFragment.ARG_KEY_CONTACT_ID, contact.getId());
+                // navigate
                 final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-                navController.navigate(R.id.action_contactsFragment_to_contactDetailsFragment);
+                navController.navigate(R.id.action_contactsFragment_to_contactDetailsFragment, bundle);
             }
         });
 
