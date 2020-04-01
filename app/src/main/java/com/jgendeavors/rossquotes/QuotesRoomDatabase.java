@@ -2,6 +2,7 @@ package com.jgendeavors.rossquotes;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,18 +60,36 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
                     // Contacts
                     ContactDao contactDao = INSTANCE.contactDao();
 
-                    contactDao.insert(new Contact("Bob Ross"));
-                    contactDao.insert(new Contact("Rick Steves"));
+                    List<Contact> contacts = new ArrayList<>();
+                    contacts.add(new Contact("Bob Ross"));
+                    contacts.add(new Contact("Rick Steves"));
+
+                    // insert Contacts into db and keep a reference to their Ids
+                    List<Long> contactIds = contactDao.insert(contacts);
 
                     // Messages
                     MessageDao messageDao = INSTANCE.messageDao();
 
-                    // TODO add the real Messages
                     List<Message> messages = new ArrayList<>();
+                    int contactId;
 
-                    messages.add(new Message("Hello there!"));
-                    messages.add(new Message("Lovely day we're having!"));
-                    messages.add(new Message("Top o' the mornin' to ya!"));
+                    // Bob Ross Messages
+                    // TODO add the real ones
+                    contactId = contactIds.get(0).intValue();
+                    messages.add(new Message(contactId, "Happy little wolves!"));
+                    messages.add(new Message(contactId, "Lovely day we're having!"));
+                    messages.add(new Message(contactId, "Top o' the mornin' to ya!"));
+
+                    // Rick Steves Messages
+                    // TODO add the real ones
+                    contactId = contactIds.get(1).intValue();
+                    messages.add(new Message(contactId, "Heep on shufflin'!"));
+                    messages.add(new Message(contactId, "I have drunk many Scotches."));
+                    messages.add(new Message(contactId, "Only us, only tonight."));
+                    messages.add(new Message(contactId, "Welcome!"));
+
+                    // insert Messages into db
+                    messageDao.insert(messages);
                 }
             });
         }
