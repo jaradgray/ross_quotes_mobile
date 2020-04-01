@@ -13,23 +13,21 @@ import androidx.lifecycle.LiveData;
  *
  * The Repository provides our ViewModel with a clean API for accessing our app's data
  */
-public class ContactRepository {
+public class MessageRepository {
     // Instance variables
-    private ContactDao mContactDao;
-    private LiveData<List<Contact>> mAlphabetizedContacts;
+    private MessageDao mMessageDao;
 
 
     // Constructor
-    public ContactRepository(Application application) {
+    public MessageRepository(Application application) {
         QuotesRoomDatabase database = QuotesRoomDatabase.getInstance(application);
-        mContactDao = database.contactDao();
-        mAlphabetizedContacts = mContactDao.getAlphabetizedContacts(); // Room automatically executes database operations that return LiveData on a background thread
+        mMessageDao = database.messageDao();
     }
 
 
     // API methods
 
-    public LiveData<Contact> getContact(int id) { return mContactDao.getContact(id); }
-
-    public LiveData<List<Contact>> getAlphabetizedContacts() { return mAlphabetizedContacts; }
+    public LiveData<List<Message>> getMessagesForContact(int contactId) {
+        return mMessageDao.getMessagesForContact(contactId); // Room automatically executes database operations that return LiveData on a background thread
+    }
 }
