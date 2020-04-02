@@ -16,10 +16,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
 public class EditMessageFragment extends Fragment {
     // Constants
     public static final String ARG_KEY_MESSAGE_ID = "ARG_KEY_MESSAGE_ID";
+
+
+    // Instance variables
+    private EditMessageFragmentViewModel mViewModel;
+    private EditText mEtMessage;
 
 
     // Overrides
@@ -41,24 +47,24 @@ public class EditMessageFragment extends Fragment {
         // put any usages of findViewById() here
 
         // Get references to widgets
-        final EditText etMessage = view.findViewById(R.id.fragment_edit_message_et_message);
+        mEtMessage = view.findViewById(R.id.fragment_edit_message_et_message);
 
         // Get the Message's id from args
         // TODO this will be -1 when we're creating a new Message, i.e. editing a Message that isn't stored in the database yet
         final int messageId = getArguments().getInt(ARG_KEY_MESSAGE_ID, -1);
 
         // Request a ViewModel from the Android system
-        EditMessageFragmentViewModel viewModel = ViewModelProviders.of(this).get(EditMessageFragmentViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(EditMessageFragmentViewModel.class);
 
         // Set ViewModel's message
-        viewModel.setMessageById(messageId);
+        mViewModel.setMessageById(messageId);
 
         // Observe ViewModel's LiveData
-        viewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<Message>() {
+        mViewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<Message>() {
             @Override
             public void onChanged(Message message) {
                 // update etMessage's text
-                etMessage.setText(message.getText());
+                mEtMessage.setText(message.getText());
             }
         });
     }
@@ -73,8 +79,11 @@ public class EditMessageFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_save_message:
-                // TODO save message
-                Toast.makeText(getContext(), "TODO save message", Toast.LENGTH_SHORT).show();
+                // Save message
+                mViewModel.saveMessage(mEtMessage.getText().toString());
+                // TODO hide soft keyboard
+                // Navigate back/up
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();
                 return true;
             case R.id.menu_item_delete_message:
                 // TODO delete message

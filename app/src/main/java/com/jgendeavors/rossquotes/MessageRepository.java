@@ -52,6 +52,10 @@ public class MessageRepository {
         return result;
     }
 
+    public void update(Message message) {
+        new UpdateMessageAsyncTask(mMessageDao).execute(message);
+    }
+
 
     // AsyncTasks for performing database operations on a background thread
     // Note: they are static so they don't have a reference to the Repository itself, which could create memory leaks
@@ -72,6 +76,26 @@ public class MessageRepository {
         @Override
         protected Message doInBackground(Integer... integers) {
             return messageDao.getMessage(integers[0]);
+        }
+    }
+
+    /**
+     * Wraps MessageDao.update(Message)
+     */
+    private static class UpdateMessageAsyncTask extends AsyncTask<Message, Void, Void> {
+        // Instance variables
+        private MessageDao messageDao; // since this AsyncTask is static, it doesn't have access to the repository's DAO
+
+        // Constructor
+        public UpdateMessageAsyncTask(MessageDao messageDao) {
+            this.messageDao = messageDao;
+        }
+
+        // Overridden methods
+        @Override
+        protected Void doInBackground(Message... messages) {
+            messageDao.update(messages[0]);
+            return null;
         }
     }
 }

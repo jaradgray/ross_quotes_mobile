@@ -25,4 +25,25 @@ public class EditMessageFragmentViewModel extends AndroidViewModel {
     // API methods
     public void setMessageById(int messageId) { mMessage.postValue(mRepository.getMessage(messageId)); }
     public LiveData<Message> getMessage() { return mMessage; }
+
+    /**
+     * Inserts or updates a Message
+     * in the database, via the Repository.
+     * @param text
+     */
+    public void saveMessage(String text) {
+        Message message;
+        if (mMessage.getValue() == null) {
+            // TODO save new Message
+            message = new Message(-11111111, "dummy");
+        } else {
+            // Update existing Message
+            Message oldMessage = mMessage.getValue();
+            message = new Message(oldMessage.getContactId(), text);
+            message.setId(oldMessage.getId());
+            mRepository.update(message);
+        }
+        // update this ViewModel's mMessage
+        mMessage.postValue(message);
+    }
 }
