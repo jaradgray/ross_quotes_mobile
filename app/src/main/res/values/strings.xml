@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">Ross Quotes</string>
 
-    <!-- Options Menus -->
-
     <!-- EditMessageFragment -->
+    <!-- options menu -->
     <string name="menu_item_save_message_title">Save</string>
     <string name="menu_item_delete_message_title">Delete</string>
+    <!-- widgets -->
+    <string name="fragment_edit_message_et_message_hint">Enter a remarkable quote</string>
 
 
 </resources>

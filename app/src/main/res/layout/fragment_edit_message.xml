@@ -5,10 +5,10 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <TextView
-        android:id="@+id/fragment_edit_message_tv_message"
+    <EditText
+        android:id="@+id/fragment_edit_message_et_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="tv_message"/>
+        android:hint="@string/fragment_edit_message_et_message_hint"/>
 
 </ScrollView>

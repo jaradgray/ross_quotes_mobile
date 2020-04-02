@@ -40,7 +40,7 @@ public class EditMessageFragment extends Fragment {
         // put any usages of findViewById() here
 
         // Get references to widgets
-        TextView tvMessage = view.findViewById(R.id.fragment_edit_message_tv_message);
+        EditText etMessage = view.findViewById(R.id.fragment_edit_message_et_message);
 
         // Get the Message's id from args
         // TODO this will be -1 when we're creating a new Message, i.e. editing a Message that isn't stored in the database yet
@@ -51,7 +51,7 @@ public class EditMessageFragment extends Fragment {
 
         // Set etMessage's text based on ViewModel's Message
         Message message = viewModel.getMessage(messageId);
-        tvMessage.setText(message.getText());
+        etMessage.setText(message.getText());
     }
 
     @Override
