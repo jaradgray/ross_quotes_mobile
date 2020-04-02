@@ -15,6 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,8 +58,14 @@ public class ContactDetailsFragment extends Fragment {
         // Handle clicks on RecyclerView items by implementing MessageAdapter.OnItemClickListener interface
         adapter.setOnItemClickListener(new MessageAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
-                // TODO handle clicks on Message items
+            public void onItemClick(Message message) {
+                // Navigate to EditMessageFragment
+                // build the Bundle to pass data
+                Bundle bundle = new Bundle();
+                bundle.putInt(EditMessageFragment.ARG_KEY_MESSAGE_ID, message.getId());
+                // navigate
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment)
+                        .navigate(R.id.action_contactDetailsFragment_to_editMessageFragment, bundle);
             }
         });
 

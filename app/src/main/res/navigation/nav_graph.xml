@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/dashboardFragment">
 
     <fragment
@@ -30,7 +32,11 @@
     <fragment
         android:id="@+id/contactDetailsFragment"
         android:name="com.jgendeavors.rossquotes.ContactDetailsFragment"
-        android:label="ContactDetailsFragment" />
+        android:label="ContactDetailsFragment" >
+        <action
+            android:id="@+id/action_contactDetailsFragment_to_editMessageFragment"
+            app:destination="@id/editMessageFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/recentMessagesFragment"
@@ -41,5 +47,11 @@
         android:id="@+id/settingsFragment"
         android:name="com.jgendeavors.rossquotes.SettingsFragment"
         android:label="SettingsFragment" />
+
+    <fragment
+        android:id="@+id/editMessageFragment"
+        android:name="com.jgendeavors.rossquotes.EditMessageFragment"
+        android:label="EditMessageFragment"
+        tools:layout="@layout/fragment_edit_message" />
 
 </navigation>
