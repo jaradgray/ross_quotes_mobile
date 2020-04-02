@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/fragment_edit_contact_b_save_text"
-        android:layout_gravity="bottom|end"/>
+        android:layout_gravity="bottom|end"
+        app:layout_dodgeInsetEdges="bottom"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
