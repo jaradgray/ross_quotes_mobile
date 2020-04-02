@@ -48,6 +48,7 @@ public class ContactDetailsFragment extends Fragment {
         // Get references to widgets
         ImageView ivProfile = view.findViewById(R.id.fragment_contact_details_iv_profile);
         final TextView tvName = view.findViewById(R.id.fragment_contact_details_tv_name);
+        ImageView ivEdit = view.findViewById(R.id.fragment_contact_details_iv_edit_contact);
         RecyclerView recyclerView = view.findViewById(R.id.fragment_contact_details_rv_quotes);
         FloatingActionButton fab = view.findViewById(R.id.fragment_contact_details_fab);
 
@@ -66,6 +67,20 @@ public class ContactDetailsFragment extends Fragment {
                 // navigate
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment)
                         .navigate(R.id.action_contactDetailsFragment_to_editMessageFragment, bundle);
+            }
+        });
+
+        // Handle clicks on edit button
+        ivEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Navigate to EditContactFragment
+                // build the Bundle to pass data
+                Bundle bundle = new Bundle();
+                bundle.putInt(EditContactFragment.ARG_KEY_CONTACT_ID, contactId);
+                // navigate
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment)
+                        .navigate(R.id.action_contactDetailsFragment_to_editContactFragment, bundle);
             }
         });
 

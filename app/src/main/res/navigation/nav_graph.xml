@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_contactDetailsFragment_to_editMessageFragment"
             app:destination="@id/editMessageFragment" />
+        <action
+            android:id="@+id/action_contactDetailsFragment_to_editContactFragment"
+            app:destination="@id/editContactFragment" />
     </fragment>
 
     <fragment
@@ -53,5 +56,10 @@
         android:name="com.jgendeavors.rossquotes.EditMessageFragment"
         android:label="EditMessageFragment"
         tools:layout="@layout/fragment_edit_message" />
+
+    <fragment
+        android:id="@+id/editContactFragment"
+        android:name="com.jgendeavors.rossquotes.EditContactFragment"
+        android:label="EditContactFragment" />
 
 </navigation>

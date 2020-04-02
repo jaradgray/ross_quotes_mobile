@@ -1,6 +1,7 @@
 package com.jgendeavors.rossquotes;
 
 import android.app.Application;
+import android.os.AsyncTask;
 
 import java.util.List;
 
@@ -29,7 +30,31 @@ public class ContactRepository {
 
     // API methods
 
+    public void update(Contact contact) { new UpdateContactAsyncTask(mContactDao).execute(contact); }
+
     public LiveData<Contact> getContact(int id) { return mContactDao.getContact(id); }
 
     public LiveData<List<Contact>> getAlphabetizedContacts() { return mAlphabetizedContacts; }
+
+
+    // AsyncTasks for performing database operations on a background thread
+    // Note: they are static so they don't have a reference to the Repository itself, which could create memory leaks
+
+    /** Wraps ContactDao.update(Contact) */
+    private static class UpdateContactAsyncTask extends AsyncTask<Contact, Void, Void> {
+        // Instance variables
+        private ContactDao contactDao; // since this AsyncTask is static, it doesn't have access to the repository's DAO
+
+        // Constructor
+        public UpdateContactAsyncTask(ContactDao contactDao) {
+            this.contactDao = contactDao;
+        }
+
+        // Overridden methods
+        @Override
+        protected Void doInBackground(Contact... contacts) {
+            contactDao.update(contacts[0]);
+            return null;
+        }
+    }
 }

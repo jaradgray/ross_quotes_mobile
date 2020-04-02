@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
+
+        <ImageView
+            android:id="@+id/fragment_edit_contact_iv_contact_photo"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:src="@drawable/ic_person"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_camera"
+            android:layout_alignEnd="@id/fragment_edit_contact_iv_contact_photo"
+            android:layout_alignBottom="@id/fragment_edit_contact_iv_contact_photo"/>
+
+        <EditText
+            android:id="@+id/fragment_edit_contact_et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/fragment_edit_contact_iv_contact_photo"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/fragment_edit_contact_b_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/fragment_edit_contact_b_save_text"
+        android:layout_gravity="bottom|end"
+        app:layout_dodgeInsetEdges="bottom"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

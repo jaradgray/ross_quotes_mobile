@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:padding="8dp">
 
+    <!-- Contact section -->
+
     <ImageView
         android:id="@+id/fragment_contact_details_iv_profile"
         android:layout_width="24dp"
@@ -17,6 +19,17 @@
         android:layout_height="wrap_content"
         android:text="tv_name"
         android:layout_toEndOf="@+id/fragment_contact_details_iv_profile"/>
+
+    <ImageView
+        android:id="@+id/fragment_contact_details_iv_edit_contact"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_edit"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/fragment_contact_details_tv_name"/>
+
+
+    <!-- Quotes section -->
 
     <TextView
         android:id="@+id/fragment_contact_details_tv_quotes_header"
