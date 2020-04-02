@@ -32,6 +32,8 @@ public class ContactRepository {
 
     public void update(Contact contact) { new UpdateContactAsyncTask(mContactDao).execute(contact); }
 
+    public void delete(int contactId) { new DeleteContactAsyncTask(mContactDao).execute(contactId); }
+
     public LiveData<Contact> getContact(int id) { return mContactDao.getContact(id); }
 
     public LiveData<List<Contact>> getAlphabetizedContacts() { return mAlphabetizedContacts; }
@@ -54,6 +56,24 @@ public class ContactRepository {
         @Override
         protected Void doInBackground(Contact... contacts) {
             contactDao.update(contacts[0]);
+            return null;
+        }
+    }
+
+    /** Wraps ContactDao.delete(int) */
+    private static class DeleteContactAsyncTask extends AsyncTask<Integer, Void, Void> {
+        // Instance variables
+        private ContactDao contactDao; // since this AsyncTask is static, it doesn't have access to the repository's DAO
+
+        // Constructor
+        public DeleteContactAsyncTask(ContactDao contactDao) {
+            this.contactDao = contactDao;
+        }
+
+        // Overridden methods
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            contactDao.delete(integers[0]);
             return null;
         }
     }

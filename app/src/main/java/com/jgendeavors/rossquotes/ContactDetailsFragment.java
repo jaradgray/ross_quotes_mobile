@@ -3,6 +3,9 @@ package com.jgendeavors.rossquotes;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -30,11 +33,18 @@ public class ContactDetailsFragment extends Fragment {
     public static final String ARG_KEY_CONTACT_ID = "ARG_KEY_CONTACT_ID";
 
 
+    // Instance variables
+    private ContactDetailsFragmentViewModel mViewModel;
+
+
     // Lifecycle overrides
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Indicate we'll have an options menu
+        setHasOptionsMenu(true);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_contact_details, container, false);
     }
@@ -107,12 +117,12 @@ public class ContactDetailsFragment extends Fragment {
         });
 
         // Request a ViewModel from the Android system
-        ContactDetailsFragmentViewModel viewModel = ViewModelProviders.of(this).get(ContactDetailsFragmentViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(ContactDetailsFragmentViewModel.class);
 
         // Observe the ViewModel's LiveData
 
         // contact
-        viewModel.getContact(contactId).observe(getViewLifecycleOwner(), new Observer<Contact>() {
+        mViewModel.getContact(contactId).observe(getViewLifecycleOwner(), new Observer<Contact>() {
             @Override
             public void onChanged(Contact contact) {
                 // TODO update profile pic
@@ -123,12 +133,36 @@ public class ContactDetailsFragment extends Fragment {
         });
 
         // contact's messages
-        viewModel.getMessagesForContact(contactId).observe(getViewLifecycleOwner(), new Observer<List<Message>>() {
+        mViewModel.getMessagesForContact(contactId).observe(getViewLifecycleOwner(), new Observer<List<Message>>() {
             @Override
             public void onChanged(List<Message> messages) {
                 // update adapter's data
                 adapter.setMessages(messages);
             }
         });
+    }
+
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        // Inflate the Fragment's options menu
+        inflater.inflate(R.menu.fragment_contact_details_options_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_delete_contact:
+                // Delete Contact
+                int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
+                mViewModel.deleteContact(contactId);
+                // Navigate back/up
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

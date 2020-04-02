@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Ross Quotes</string>
 
+    <!-- ContactDetailsFragment -->
+    <!-- options menu -->
+    <string name="menu_item_delete_contact_title">Delete contact</string>
+
     <!-- EditContactFragment -->
+    <!-- widgets -->
     <string name="fragment_edit_contact_et_name_hint">Name</string>
     <string name="fragment_edit_contact_b_save_text">Save</string>
 
