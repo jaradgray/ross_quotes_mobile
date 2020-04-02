@@ -52,6 +52,16 @@ public class MessageRepository {
         return result;
     }
 
+    public long insert(Message message) {
+        long result = -1;
+        try {
+            result = new InsertMessageAsyncTask(mMessageDao).execute(message).get();
+        } catch (Exception e) {
+            Log.e(TAG, "MessageRepository.insert(): " + e);
+        }
+        return result;
+    }
+
     public void update(Message message) {
         new UpdateMessageAsyncTask(mMessageDao).execute(message);
     }
@@ -64,9 +74,7 @@ public class MessageRepository {
     // AsyncTasks for performing database operations on a background thread
     // Note: they are static so they don't have a reference to the Repository itself, which could create memory leaks
 
-    /**
-     * Wraps MessageDao.getMessage(int)
-     */
+    /** Wraps MessageDao.getMessage(int) */
     private static class GetMessageAsyncTask extends AsyncTask<Integer, Void, Message> {
         // Instance variables
         private MessageDao messageDao; // since this AsyncTask is static, it doesn't have access to the repository's DAO
@@ -83,9 +91,24 @@ public class MessageRepository {
         }
     }
 
-    /**
-     * Wraps MessageDao.update(Message)
-     */
+    /** Wraps MessageDao.insert(Message) */
+    private static class InsertMessageAsyncTask extends AsyncTask<Message, Void, Long> {
+        // Instance variables
+        private MessageDao messageDao; // since this AsyncTask is static, it doesn't have access to the repository's DAO
+
+        // Constructor
+        public InsertMessageAsyncTask(MessageDao messageDao) {
+            this.messageDao = messageDao;
+        }
+
+        // Overridden methods
+        @Override
+        protected Long doInBackground(Message... messages) {
+            return messageDao.insert(messages[0]);
+        }
+    }
+
+    /** Wraps MessageDao.update(Message) */
     private static class UpdateMessageAsyncTask extends AsyncTask<Message, Void, Void> {
         // Instance variables
         private MessageDao messageDao; // since this AsyncTask is static, it doesn't have access to the repository's DAO
@@ -103,9 +126,7 @@ public class MessageRepository {
         }
     }
 
-    /**
-     * Wraps messageDao.delete(Message)
-     */
+    /** Wraps messageDao.delete(Message) */
     private static class DeleteMessageAsyncTask extends AsyncTask<Message, Void, Void> {
         // Instance variables
         private MessageDao messageDao; // since this AsyncTask is static, it doesn't have access to the repository's DAO
