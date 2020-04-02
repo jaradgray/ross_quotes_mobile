@@ -20,7 +20,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
      * Interface for item clicks
      */
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(Message message);
     }
     private OnItemClickListener mOnItemClickListener;
     public void setOnItemClickListener(OnItemClickListener listener) { mOnItemClickListener = listener; }
@@ -37,7 +37,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            // TODO get references to widgets
+            // Get references to widgets
             tvMessage = itemView.findViewById(R.id.item_message_tv_message);
 
             // Handle item clicks
@@ -48,7 +48,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                     if (mOnItemClickListener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            mOnItemClickListener.onItemClick(position);
+                            mOnItemClickListener.onItemClick(mMessages.get(position));
                         }
                     }
                 }
