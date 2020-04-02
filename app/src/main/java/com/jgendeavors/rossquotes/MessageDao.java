@@ -17,4 +17,7 @@ public interface MessageDao {
 
     @Query("SELECT * FROM message_table WHERE contact_id = :contactId")
     LiveData<List<Message>> getMessagesForContact(int contactId);
+
+    @Query("SELECT * FROM message_table WHERE id = :id")
+    Message getMessage(int id);
 }

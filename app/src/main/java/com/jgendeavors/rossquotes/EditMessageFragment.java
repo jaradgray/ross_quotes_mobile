@@ -34,15 +34,15 @@ public class EditMessageFragment extends Fragment {
         // Get references to widgets
         TextView tvMessage = view.findViewById(R.id.fragment_edit_message_tv_message);
 
-//        // Get the Message's id from args
-//        // TODO this will be -1 when we're creating a new Message, i.e. editing a Message that isn't stored in the database yet
-//        int messageId = getArguments().getInt(ARG_KEY_MESSAGE_ID, -1);
-//
-//        // Request a ViewModel from the Android system
-//        EditMessageFragmentViewModel viewModel = ViewModelProviders.of(this).get(EditMessageFragmentViewModel.class);
-//
-//        // Set tvMessage's text based on ViewModel's Message
-//        Message message = viewModel.getMessage(messageId);
-//        tvMessage.setText(message.getText());
+        // Get the Message's id from args
+        // TODO this will be -1 when we're creating a new Message, i.e. editing a Message that isn't stored in the database yet
+        int messageId = getArguments().getInt(ARG_KEY_MESSAGE_ID, -1);
+
+        // Request a ViewModel from the Android system
+        EditMessageFragmentViewModel viewModel = ViewModelProviders.of(this).get(EditMessageFragmentViewModel.class);
+
+        // Set tvMessage's text based on ViewModel's Message
+        Message message = viewModel.getMessage(messageId);
+        tvMessage.setText(message.getText());
     }
 }
