@@ -52,14 +52,6 @@ public class ContactDetailsFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.fragment_contact_details_rv_quotes);
         FloatingActionButton fab = view.findViewById(R.id.fragment_contact_details_fab);
 
-        // Handle clicks on edit button
-        ivEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO navigate to EditContactFragment
-            }
-        });
-
         // Get the id of the Contact from args
         final int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
 
@@ -75,6 +67,20 @@ public class ContactDetailsFragment extends Fragment {
                 // navigate
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment)
                         .navigate(R.id.action_contactDetailsFragment_to_editMessageFragment, bundle);
+            }
+        });
+
+        // Handle clicks on edit button
+        ivEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Navigate to EditContactFragment
+                // build the Bundle to pass data
+                Bundle bundle = new Bundle();
+                bundle.putInt(EditContactFragment.ARG_KEY_CONTACT_ID, contactId);
+                // navigate
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment)
+                        .navigate(R.id.action_contactDetailsFragment_to_editContactFragment);
             }
         });
 
