@@ -46,4 +46,12 @@ public class EditMessageFragmentViewModel extends AndroidViewModel {
         // update this ViewModel's mMessage
         mMessage.postValue(message);
     }
+
+    /**
+     * Deletes the Message we're dealing with from the database, via the Repository
+     */
+    public void deleteMessage() {
+        if (mMessage.getValue() == null) return;
+        mRepository.delete(mMessage.getValue());
+    }
 }

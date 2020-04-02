@@ -56,6 +56,10 @@ public class MessageRepository {
         new UpdateMessageAsyncTask(mMessageDao).execute(message);
     }
 
+    public void delete(Message message) {
+        new DeleteMessageAsyncTask(mMessageDao).execute(message);
+    }
+
 
     // AsyncTasks for performing database operations on a background thread
     // Note: they are static so they don't have a reference to the Repository itself, which could create memory leaks
@@ -95,6 +99,26 @@ public class MessageRepository {
         @Override
         protected Void doInBackground(Message... messages) {
             messageDao.update(messages[0]);
+            return null;
+        }
+    }
+
+    /**
+     * Wraps messageDao.delete(Message)
+     */
+    private static class DeleteMessageAsyncTask extends AsyncTask<Message, Void, Void> {
+        // Instance variables
+        private MessageDao messageDao; // since this AsyncTask is static, it doesn't have access to the repository's DAO
+
+        // Constructor
+        public DeleteMessageAsyncTask(MessageDao messageDao) {
+            this.messageDao = messageDao;
+        }
+
+        // Overridden methods
+        @Override
+        protected Void doInBackground(Message... messages) {
+            messageDao.delete(messages[0]);
             return null;
         }
     }

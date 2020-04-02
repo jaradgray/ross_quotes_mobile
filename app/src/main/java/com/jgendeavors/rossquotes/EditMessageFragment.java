@@ -86,8 +86,12 @@ public class EditMessageFragment extends Fragment {
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();
                 return true;
             case R.id.menu_item_delete_message:
-                // TODO delete message
-                Toast.makeText(getContext(), "TODO delete message", Toast.LENGTH_SHORT).show();
+                // Delete message
+                mViewModel.deleteMessage();
+                Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                // TODO hide soft keyboard
+                // Navigate back/up
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
