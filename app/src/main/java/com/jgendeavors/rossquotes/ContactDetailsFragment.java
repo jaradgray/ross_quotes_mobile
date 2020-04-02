@@ -80,7 +80,7 @@ public class ContactDetailsFragment extends Fragment {
                 bundle.putInt(EditContactFragment.ARG_KEY_CONTACT_ID, contactId);
                 // navigate
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment)
-                        .navigate(R.id.action_contactDetailsFragment_to_editContactFragment);
+                        .navigate(R.id.action_contactDetailsFragment_to_editContactFragment, bundle);
             }
         });
 
