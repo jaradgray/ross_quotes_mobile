@@ -31,11 +31,13 @@ public class EditMessageFragmentViewModel extends AndroidViewModel {
      * in the database, via the Repository.
      * @param text
      */
-    public void saveMessage(String text) {
+    public void saveMessage(int contactId, String text) {
         Message message;
         if (mMessage.getValue() == null) {
-            // TODO save new Message
-            message = new Message(-11111111, "dummy");
+            // Save new Message
+            message = new Message(contactId, text);
+            int id = (int)mRepository.insert(message);
+            message.setId(id);
         } else {
             // Update existing Message
             Message oldMessage = mMessage.getValue();

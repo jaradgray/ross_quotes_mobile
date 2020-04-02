@@ -17,6 +17,9 @@ public interface MessageDao {
     @Insert
     void insert(List<Message> messages);
 
+    @Insert
+    long insert(Message message);
+
     @Update
     void update(Message message);
 

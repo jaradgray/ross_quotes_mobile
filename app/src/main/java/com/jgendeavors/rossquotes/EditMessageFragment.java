@@ -21,6 +21,8 @@ import androidx.navigation.Navigation;
 public class EditMessageFragment extends Fragment {
     // Constants
     public static final String ARG_KEY_MESSAGE_ID = "ARG_KEY_MESSAGE_ID";
+    public static final int ARG_VALUE_NO_MESSAGE_ID = -1;
+    public static final String ARG_KEY_CONTACT_ID = "ARG_KEY_CONTACT_ID";
 
 
     // Instance variables
@@ -50,14 +52,16 @@ public class EditMessageFragment extends Fragment {
         mEtMessage = view.findViewById(R.id.fragment_edit_message_et_message);
 
         // Get the Message's id from args
-        // TODO this will be -1 when we're creating a new Message, i.e. editing a Message that isn't stored in the database yet
-        final int messageId = getArguments().getInt(ARG_KEY_MESSAGE_ID, -1);
+        // Note: this will be ARG_VALUE_NO_MESSAGE_ID when we're creating a new Message, i.e. editing a Message that isn't stored in the database yet
+        final int messageId = getArguments().getInt(ARG_KEY_MESSAGE_ID);
 
         // Request a ViewModel from the Android system
         mViewModel = ViewModelProviders.of(this).get(EditMessageFragmentViewModel.class);
 
-        // Set ViewModel's message
-        mViewModel.setMessageById(messageId);
+        // Set ViewModel's Message if we're dealing with an existing Message
+        if (messageId != ARG_VALUE_NO_MESSAGE_ID) {
+            mViewModel.setMessageById(messageId);
+        }
 
         // Observe ViewModel's LiveData
         mViewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<Message>() {
@@ -80,7 +84,8 @@ public class EditMessageFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_item_save_message:
                 // Save message
-                mViewModel.saveMessage(mEtMessage.getText().toString());
+                int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID); // get Contact id from args
+                mViewModel.saveMessage(contactId, mEtMessage.getText().toString());
                 // TODO hide soft keyboard
                 // Navigate back/up
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();

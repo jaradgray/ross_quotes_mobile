@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -47,6 +49,25 @@ public class ContactDetailsFragment extends Fragment {
         ImageView ivProfile = view.findViewById(R.id.fragment_contact_details_iv_profile);
         final TextView tvName = view.findViewById(R.id.fragment_contact_details_tv_name);
         RecyclerView recyclerView = view.findViewById(R.id.fragment_contact_details_rv_quotes);
+        FloatingActionButton fab = view.findViewById(R.id.fragment_contact_details_fab);
+
+        // Get the id of the Contact from args
+        final int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
+
+        // Handle clicks on FAB
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Navigate to EditMessageFragment
+                // build the Bundle to pass data
+                Bundle bundle = new Bundle();
+                bundle.putInt(EditMessageFragment.ARG_KEY_CONTACT_ID, contactId);
+                bundle.putInt(EditMessageFragment.ARG_KEY_MESSAGE_ID, EditMessageFragment.ARG_VALUE_NO_MESSAGE_ID);
+                // navigate
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment)
+                        .navigate(R.id.action_contactDetailsFragment_to_editMessageFragment, bundle);
+            }
+        });
 
         // Initialize RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -62,15 +83,13 @@ public class ContactDetailsFragment extends Fragment {
                 // Navigate to EditMessageFragment
                 // build the Bundle to pass data
                 Bundle bundle = new Bundle();
+                bundle.putInt(EditMessageFragment.ARG_KEY_CONTACT_ID, contactId);
                 bundle.putInt(EditMessageFragment.ARG_KEY_MESSAGE_ID, message.getId());
                 // navigate
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment)
                         .navigate(R.id.action_contactDetailsFragment_to_editMessageFragment, bundle);
             }
         });
-
-        // Get the id of the Contact from args
-        int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
 
         // Request a ViewModel from the Android system
         ContactDetailsFragmentViewModel viewModel = ViewModelProviders.of(this).get(ContactDetailsFragmentViewModel.class);
