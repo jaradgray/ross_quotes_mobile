@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,6 +57,15 @@ public class EditContactFragment extends Fragment {
                 }
             });
         }
+
+        // Handle clicks on contact photo
+        ivContactPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO select contact photo
+                Toast.makeText(getContext(), "TODO select contact photo", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Handle clicks on save button
         bSave.setOnClickListener(new View.OnClickListener() {
