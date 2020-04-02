@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Ross Quotes</string>
 
+    <!-- EditContactFragment -->
+    <string name="fragment_edit_contact_et_name_hint">Name</string>
+    <string name="fragment_edit_contact_b_save_text">Save</string>
+
     <!-- EditMessageFragment -->
     <!-- options menu -->
     <string name="menu_item_save_message_title">Save</string>
