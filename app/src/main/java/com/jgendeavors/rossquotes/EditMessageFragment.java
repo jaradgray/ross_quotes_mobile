@@ -21,6 +21,7 @@ import androidx.navigation.Navigation;
 public class EditMessageFragment extends Fragment {
     // Constants
     public static final String ARG_KEY_MESSAGE_ID = "ARG_KEY_MESSAGE_ID";
+    public static final int ARG_VALUE_NO_MESSAGE_ID = -1;
 
 
     // Instance variables
@@ -51,13 +52,15 @@ public class EditMessageFragment extends Fragment {
 
         // Get the Message's id from args
         // TODO this will be -1 when we're creating a new Message, i.e. editing a Message that isn't stored in the database yet
-        final int messageId = getArguments().getInt(ARG_KEY_MESSAGE_ID, -1);
+        final int messageId = getArguments().getInt(ARG_KEY_MESSAGE_ID);
 
         // Request a ViewModel from the Android system
         mViewModel = ViewModelProviders.of(this).get(EditMessageFragmentViewModel.class);
 
-        // Set ViewModel's message
-        mViewModel.setMessageById(messageId);
+        // Set ViewModel's Message if we're dealing with an existing Message
+        if (messageId != ARG_VALUE_NO_MESSAGE_ID) {
+            mViewModel.setMessageById(messageId);
+        }
 
         // Observe ViewModel's LiveData
         mViewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<Message>() {
