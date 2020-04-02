@@ -4,10 +4,13 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 public class EditMessageFragmentViewModel extends AndroidViewModel {
     // Instance variables
     private MessageRepository mRepository;
+    private MutableLiveData<Message> mMessage;
 
 
     // Constructor
@@ -15,9 +18,11 @@ public class EditMessageFragmentViewModel extends AndroidViewModel {
         super(application);
 
         mRepository = new MessageRepository(application);
+        mMessage = new MutableLiveData<>();
     }
 
 
     // API methods
-    public Message getMessage(int messageId) { return mRepository.getMessage(messageId); }
+    public void setMessageById(int messageId) { mMessage.postValue(mRepository.getMessage(messageId)); }
+    public LiveData<Message> getMessage() { return mMessage; }
 }

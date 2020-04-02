@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 public class EditMessageFragment extends Fragment {
@@ -40,18 +41,26 @@ public class EditMessageFragment extends Fragment {
         // put any usages of findViewById() here
 
         // Get references to widgets
-        EditText etMessage = view.findViewById(R.id.fragment_edit_message_et_message);
+        final EditText etMessage = view.findViewById(R.id.fragment_edit_message_et_message);
 
         // Get the Message's id from args
         // TODO this will be -1 when we're creating a new Message, i.e. editing a Message that isn't stored in the database yet
-        int messageId = getArguments().getInt(ARG_KEY_MESSAGE_ID, -1);
+        final int messageId = getArguments().getInt(ARG_KEY_MESSAGE_ID, -1);
 
         // Request a ViewModel from the Android system
         EditMessageFragmentViewModel viewModel = ViewModelProviders.of(this).get(EditMessageFragmentViewModel.class);
 
-        // Set etMessage's text based on ViewModel's Message
-        Message message = viewModel.getMessage(messageId);
-        etMessage.setText(message.getText());
+        // Set ViewModel's message
+        viewModel.setMessageById(messageId);
+
+        // Observe ViewModel's LiveData
+        viewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<Message>() {
+            @Override
+            public void onChanged(Message message) {
+                // update etMessage's text
+                etMessage.setText(message.getText());
+            }
+        });
     }
 
     @Override
