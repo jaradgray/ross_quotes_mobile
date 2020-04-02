@@ -30,6 +30,8 @@ public class ContactRepository {
 
     // API methods
 
+    public void insert(Contact contact) { new InsertContactAsyncTask(mContactDao).execute(contact); }
+
     public void update(Contact contact) { new UpdateContactAsyncTask(mContactDao).execute(contact); }
 
     public void delete(int contactId) { new DeleteContactAsyncTask(mContactDao).execute(contactId); }
@@ -41,6 +43,23 @@ public class ContactRepository {
 
     // AsyncTasks for performing database operations on a background thread
     // Note: they are static so they don't have a reference to the Repository itself, which could create memory leaks
+
+    /** Wraps ContactDao.insert(Contact) */
+    private static class InsertContactAsyncTask extends AsyncTask<Contact, Void, Long> {
+        // Instance variables
+        private ContactDao contactDao; // since this AsyncTask is static, it doesn't have access to the repository's DAO
+
+        // Constructor
+        public InsertContactAsyncTask(ContactDao contactDao) {
+            this.contactDao = contactDao;
+        }
+
+        // Overridden methods
+        @Override
+        protected Long doInBackground(Contact... contacts) {
+            return contactDao.insert(contacts[0]);
+        }
+    }
 
     /** Wraps ContactDao.update(Contact) */
     private static class UpdateContactAsyncTask extends AsyncTask<Contact, Void, Void> {

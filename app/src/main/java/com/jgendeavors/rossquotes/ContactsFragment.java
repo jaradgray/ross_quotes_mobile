@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -32,8 +34,11 @@ public class ContactsFragment extends Fragment {
 
         // put any usages of findViewById() here
 
-        // Initialize RecyclerView
+        // Get references to widgets
         RecyclerView recyclerView = view.findViewById(R.id.fragment_contacts_recycler_view);
+        FloatingActionButton fab = view.findViewById(R.id.fragment_contacts_fab);
+
+        // Initialize RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
@@ -54,6 +59,20 @@ public class ContactsFragment extends Fragment {
                 // navigate
                 final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
                 navController.navigate(R.id.action_contactsFragment_to_contactDetailsFragment, bundle);
+            }
+        });
+
+        // Handle clicks on FAB
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Navigate to EditContactFragment
+                // build the Bundle to pass data
+                Bundle bundle = new Bundle();
+                bundle.putInt(EditContactFragment.ARG_KEY_CONTACT_ID, EditContactFragment.ARG_VALUE_NO_CONTACT_ID);
+                // navigate
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment)
+                        .navigate(R.id.action_contactsFragment_to_editContactFragment, bundle);
             }
         });
 
