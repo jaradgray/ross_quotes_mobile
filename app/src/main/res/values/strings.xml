@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Ross Quotes</string>
+
+    <!-- Options Menus -->
+
+    <!-- EditMessageFragment -->
+    <string name="menu_item_save_message_title">Save</string>
+    <string name="menu_item_delete_message_title">Delete</string>
+
+
 </resources>

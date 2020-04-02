@@ -2,9 +2,14 @@ package com.jgendeavors.rossquotes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +21,14 @@ public class EditMessageFragment extends Fragment {
     public static final String ARG_KEY_MESSAGE_ID = "ARG_KEY_MESSAGE_ID";
 
 
-    // Lifecycle overrides
+    // Overrides
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Indicate we'll have an options menu
+        setHasOptionsMenu(true);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_edit_message, container, false);
     }
@@ -41,8 +49,30 @@ public class EditMessageFragment extends Fragment {
         // Request a ViewModel from the Android system
         EditMessageFragmentViewModel viewModel = ViewModelProviders.of(this).get(EditMessageFragmentViewModel.class);
 
-        // Set tvMessage's text based on ViewModel's Message
+        // Set etMessage's text based on ViewModel's Message
         Message message = viewModel.getMessage(messageId);
         tvMessage.setText(message.getText());
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.fragment_edit_message_options_menu, menu); // inflate the Fragment's options menu
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_save_message:
+                // TODO save message
+                Toast.makeText(getContext(), "TODO save message", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.menu_item_delete_message:
+                // TODO delete message
+                Toast.makeText(getContext(), "TODO delete message", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
