@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
 public class EditContactFragment extends Fragment {
     // Constants
@@ -41,10 +42,10 @@ public class EditContactFragment extends Fragment {
         Button bSave = view.findViewById(R.id.fragment_edit_contact_b_save);
 
         // Request a ViewModel from the Android system
-        EditContactFragmentViewModel viewModel = ViewModelProviders.of(this).get(EditContactFragmentViewModel.class);
+        final EditContactFragmentViewModel viewModel = ViewModelProviders.of(this).get(EditContactFragmentViewModel.class);
 
         // Observe ViewModel's LiveData if we're dealing with an existing Contact
-        int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
+        final int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
         if (contactId != ARG_VALUE_NO_CONTACT_ID) {
             viewModel.getContact(contactId).observe(getViewLifecycleOwner(), new Observer<Contact>() {
                 @Override
@@ -55,5 +56,17 @@ public class EditContactFragment extends Fragment {
                 }
             });
         }
+
+        // Handle clicks on save button
+        bSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Insert/update Contact
+                viewModel.insertOrUpdateContact(contactId, etName.getText().toString());
+                // TODO hide soft keyboard
+                // Navigate up/back
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();
+            }
+        });
     }
 }

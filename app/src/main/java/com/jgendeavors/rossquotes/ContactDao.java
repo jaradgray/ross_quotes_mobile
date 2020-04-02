@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 /**
  * The DAO (Data Access Object) provides abstracted access to the Room database
@@ -20,6 +21,9 @@ import androidx.room.Query;
 public interface ContactDao {
     @Insert
     List<Long> insert(List<Contact> contacts);
+
+    @Update
+    void update(Contact contact);
 
     @Query("SELECT * FROM contact_table WHERE id = :id")
     LiveData<Contact> getContact(int id);
