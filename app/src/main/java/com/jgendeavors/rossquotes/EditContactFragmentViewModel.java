@@ -32,7 +32,10 @@ public class EditContactFragmentViewModel extends AndroidViewModel {
     public void insertOrUpdateContact(int contactId, String name) {
         Contact contact;
         if (contactId == EditContactFragment.ARG_VALUE_NO_CONTACT_ID) {
-            // TODO Insert new Contact
+            // Insert new Contact
+            // TODO maybe validate by making sure there's a name or picture
+            contact = new Contact(name);
+            mRepository.insert(contact);
         } else {
             // Update existing Contact
             contact = new Contact(name);

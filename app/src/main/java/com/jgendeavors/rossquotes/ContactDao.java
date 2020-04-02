@@ -23,6 +23,9 @@ public interface ContactDao {
     @Insert
     List<Long> insert(List<Contact> contacts);
 
+    @Insert
+    long insert(Contact contact);
+
     @Update
     void update(Contact contact);
 
