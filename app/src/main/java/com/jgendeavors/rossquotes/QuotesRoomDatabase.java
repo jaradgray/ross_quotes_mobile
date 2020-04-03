@@ -60,9 +60,13 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
                     // Contacts
                     ContactDao contactDao = INSTANCE.contactDao();
 
+                    // absolute path to resources folder. Add res id to the path to get path to the resource
+                    // Used to set bundled Contacts' profile photos
+                    String resPath = "android.resource://com.jgendeavors.rossquotes/";
+
                     List<Contact> contacts = new ArrayList<>();
-                    contacts.add(new Contact("Bob Ross"));
-                    contacts.add(new Contact("Rick Steves"));
+                    contacts.add(new Contact("Bob Ross", resPath + R.drawable.profile_ross));
+                    contacts.add(new Contact("Rick Steves", resPath + R.drawable.profile_steves));
 
                     // insert Contacts into db and keep a reference to their Ids
                     List<Long> contactIds = contactDao.insert(contacts);
