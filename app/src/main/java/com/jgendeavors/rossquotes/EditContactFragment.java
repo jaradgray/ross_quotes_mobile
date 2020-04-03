@@ -54,8 +54,10 @@ public class EditContactFragment extends Fragment {
                 public void onChanged(Contact contact) {
                     // Update UI based on contact
                     // contact photo
-                    Uri imgUri = Uri.parse(contact.getImageAbsolutePath());
+                    String imgPath = contact.getImageAbsolutePath();
+                    Uri imgUri = Uri.parse(imgPath);
                     ivContactPhoto.setImageURI(imgUri);
+                    ivContactPhoto.setTag(imgPath); // store image's path in iv's tag
                     // name
                     etName.setText(contact.getName());
                 }
@@ -76,7 +78,7 @@ public class EditContactFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Insert/update Contact
-                viewModel.insertOrUpdateContact(contactId, etName.getText().toString());
+                viewModel.insertOrUpdateContact(contactId, etName.getText().toString(), ivContactPhoto.getTag().toString());
                 // TODO hide soft keyboard
                 // Navigate up/back
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();

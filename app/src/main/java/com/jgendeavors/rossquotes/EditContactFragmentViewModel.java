@@ -29,16 +29,16 @@ public class EditContactFragmentViewModel extends AndroidViewModel {
      * @param contactId
      * @param name
      */
-    public void insertOrUpdateContact(int contactId, String name) {
+    public void insertOrUpdateContact(int contactId, String name, String imageAbsolutePath) {
         Contact contact;
         if (contactId == EditContactFragment.ARG_VALUE_NO_CONTACT_ID) {
             // Insert new Contact
             // TODO maybe validate by making sure there's a name or picture
-            contact = new Contact(name, null /* TODO implement*/);
+            contact = new Contact(name, imageAbsolutePath);
             mRepository.insert(contact);
         } else {
             // Update existing Contact
-            contact = new Contact(name, null /* TODO implement */);
+            contact = new Contact(name, imageAbsolutePath);
             contact.setId(contactId);
             mRepository.update(contact);
         }
