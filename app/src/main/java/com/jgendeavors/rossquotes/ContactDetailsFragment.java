@@ -1,6 +1,7 @@
 package com.jgendeavors.rossquotes;
 
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -56,7 +57,7 @@ public class ContactDetailsFragment extends Fragment {
         // put any usages of findViewById() here
 
         // Get references to widgets
-        ImageView ivProfile = view.findViewById(R.id.fragment_contact_details_iv_profile);
+        final ImageView ivProfile = view.findViewById(R.id.fragment_contact_details_iv_profile);
         final TextView tvName = view.findViewById(R.id.fragment_contact_details_tv_name);
         ImageView ivEdit = view.findViewById(R.id.fragment_contact_details_iv_edit_contact);
         RecyclerView recyclerView = view.findViewById(R.id.fragment_contact_details_rv_quotes);
@@ -125,7 +126,9 @@ public class ContactDetailsFragment extends Fragment {
         mViewModel.getContact(contactId).observe(getViewLifecycleOwner(), new Observer<Contact>() {
             @Override
             public void onChanged(Contact contact) {
-                // TODO update profile pic
+                // update profile pic
+                Uri imgUri = Uri.parse(contact.getImageAbsolutePath());
+                ivProfile.setImageURI(imgUri);
 
                 // update name
                 tvName.setText(contact.getName());
