@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -67,6 +68,16 @@ public class DashboardFragment extends Fragment {
             public void onClick(View view) {
                 // Navigate to SettingsFragment
                 navController.navigate(R.id.action_dashboardFragment_to_settingsFragment);
+            }
+        });
+
+        // TODO delete the following, it's just for testing
+        Button buttonSetAlarm = view.findViewById(R.id.fragment_dashboard_b_set_alarm);
+        buttonSetAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO set alarm to show a notification in the near future
+                Toast.makeText(getContext(), "TODO set alarm", Toast.LENGTH_SHORT).show();
             }
         });
     }
