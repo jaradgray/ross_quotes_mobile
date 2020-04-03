@@ -4,6 +4,8 @@ import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -21,8 +23,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         //  display a random quote from db
         //  schedule alarm again for a random time within timeframe
 
-        // TODO each new message should be a separate notification, right?
-
         // create the NotificationManager
         // use NotificationManagerCompat for displaying notifications
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
@@ -39,8 +39,30 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         // display the notification
         notificationManager.notify(
-                1 /* id; can update this notification by sending another one with the same id*/,
+                getNextNotificationId(context) /* id; can update this notification by sending another one with the same id. All our message notifications will have unique IDs */,
                 notification
         );
+    }
+
+
+    // Private methods
+
+    /**
+     * Returns a unique integer to be used for message notification IDs.
+     * Based on this SO answer: https://stackoverflow.com/a/41122403
+     *
+     * @param context
+     * @return
+     */
+    private int getNextNotificationId(Context context) {
+        // get the last ID to be stored in SharedPreferences and increment it
+        final String PREF_LAST_NOTIFICATION_ID = "PREF_LAST_NOTIFICATION_ID";
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        int result = prefs.getInt(PREF_LAST_NOTIFICATION_ID, 0) + 1;
+        if (result == Integer.MAX_VALUE) result = 0; // just to be sure!
+        // update SharedPreferences
+        prefs.edit().putInt(PREF_LAST_NOTIFICATION_ID, result).apply();
+
+        return result;
     }
 }
