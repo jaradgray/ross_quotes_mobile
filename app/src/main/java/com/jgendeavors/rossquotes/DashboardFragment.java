@@ -1,11 +1,17 @@
 package com.jgendeavors.rossquotes;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -76,8 +82,23 @@ public class DashboardFragment extends Fragment {
         buttonSetAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO set alarm to show a notification in the near future
-                Toast.makeText(getContext(), "TODO set alarm", Toast.LENGTH_SHORT).show();
+                // Set alarm for 1 second from now
+                // set a Calendar for 1 second from now
+                Calendar c = Calendar.getInstance();
+                c.add(Calendar.SECOND, 1);
+
+                // create the intent the alarm will broadcast
+                Intent intent = new Intent(getContext(), AlarmReceiver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                        getContext(),
+                        1 /* requestCode, must be unique for each different PendingIntent. We'll have at most one PendingIntent at any time. */,
+                        intent,
+                        0 /* flags */
+                );
+
+                // set alarm
+                AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+                alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
             }
         });
     }
