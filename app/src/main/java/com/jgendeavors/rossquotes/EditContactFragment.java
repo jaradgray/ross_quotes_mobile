@@ -1,5 +1,6 @@
 package com.jgendeavors.rossquotes;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ public class EditContactFragment extends Fragment {
         // put any usages of findViewById() here
 
         // Get references to widgets
-        ImageView ivContactPhoto = view.findViewById(R.id.fragment_edit_contact_iv_contact_photo);
+        final ImageView ivContactPhoto = view.findViewById(R.id.fragment_edit_contact_iv_contact_photo);
         final EditText etName = view.findViewById(R.id.fragment_edit_contact_et_name);
         Button bSave = view.findViewById(R.id.fragment_edit_contact_b_save);
 
@@ -51,8 +52,11 @@ public class EditContactFragment extends Fragment {
             viewModel.getContact(contactId).observe(getViewLifecycleOwner(), new Observer<Contact>() {
                 @Override
                 public void onChanged(Contact contact) {
-                    // update UI based on contact
-                    // TODO update contact photo
+                    // Update UI based on contact
+                    // contact photo
+                    Uri imgUri = Uri.parse(contact.getImageAbsolutePath());
+                    ivContactPhoto.setImageURI(imgUri);
+                    // name
                     etName.setText(contact.getName());
                 }
             });
