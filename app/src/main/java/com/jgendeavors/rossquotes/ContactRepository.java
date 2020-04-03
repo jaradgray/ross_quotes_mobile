@@ -1,6 +1,7 @@
 package com.jgendeavors.rossquotes;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import java.util.List;
@@ -21,8 +22,8 @@ public class ContactRepository {
 
 
     // Constructor
-    public ContactRepository(Application application) {
-        QuotesRoomDatabase database = QuotesRoomDatabase.getInstance(application);
+    public ContactRepository(Context context) {
+        QuotesRoomDatabase database = QuotesRoomDatabase.getInstance(context);
         mContactDao = database.contactDao();
         mAlphabetizedContacts = mContactDao.getAlphabetizedContacts(); // Room automatically executes database operations that return LiveData on a background thread
     }

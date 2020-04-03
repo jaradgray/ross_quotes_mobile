@@ -1,6 +1,7 @@
 package com.jgendeavors.rossquotes;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -24,8 +25,8 @@ public class MessageRepository {
 
 
     // Constructor
-    public MessageRepository(Application application) {
-        QuotesRoomDatabase database = QuotesRoomDatabase.getInstance(application);
+    public MessageRepository(Context context) {
+        QuotesRoomDatabase database = QuotesRoomDatabase.getInstance(context);
         mMessageDao = database.messageDao();
     }
 
