@@ -1,5 +1,7 @@
 package com.jgendeavors.rossquotes;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,6 +23,13 @@ public class EditContactFragment extends Fragment {
     // Constants
     public static final String ARG_KEY_CONTACT_ID = "ARG_KEY_CONTACT_ID";
     public static final int ARG_VALUE_NO_CONTACT_ID = -1;
+    public static final int REQUEST_CODE_CHOOSE_IMAGE = 1;
+
+
+    // Instance variables
+    private ImageView mIvContactPhoto;
+    private EditText mEtName;
+    private EditContactFragmentViewModel mViewModel;
 
 
     // Lifecycle overrides
@@ -39,37 +48,44 @@ public class EditContactFragment extends Fragment {
         // put any usages of findViewById() here
 
         // Get references to widgets
-        final ImageView ivContactPhoto = view.findViewById(R.id.fragment_edit_contact_iv_contact_photo);
-        final EditText etName = view.findViewById(R.id.fragment_edit_contact_et_name);
+        mIvContactPhoto = view.findViewById(R.id.fragment_edit_contact_iv_contact_photo);
+        mEtName = view.findViewById(R.id.fragment_edit_contact_et_name);
         Button bSave = view.findViewById(R.id.fragment_edit_contact_b_save);
 
         // Request a ViewModel from the Android system
-        final EditContactFragmentViewModel viewModel = ViewModelProviders.of(this).get(EditContactFragmentViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(EditContactFragmentViewModel.class);
 
         // Observe ViewModel's LiveData if we're dealing with an existing Contact
         final int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
         if (contactId != ARG_VALUE_NO_CONTACT_ID) {
-            viewModel.getContact(contactId).observe(getViewLifecycleOwner(), new Observer<Contact>() {
+            mViewModel.getContact(contactId).observe(getViewLifecycleOwner(), new Observer<Contact>() {
                 @Override
                 public void onChanged(Contact contact) {
                     // Update UI based on contact
                     // contact photo
                     String imgPath = contact.getImageAbsolutePath();
                     Uri imgUri = Uri.parse(imgPath);
-                    ivContactPhoto.setImageURI(imgUri);
-                    ivContactPhoto.setTag(imgPath); // store image's path in iv's tag
+                    mIvContactPhoto.setImageURI(imgUri);
+                    mIvContactPhoto.setTag(imgPath); // store image's path in iv's tag
                     // name
-                    etName.setText(contact.getName());
+                    mEtName.setText(contact.getName());
                 }
             });
         }
 
         // Handle clicks on contact photo
-        ivContactPhoto.setOnClickListener(new View.OnClickListener() {
+        mIvContactPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO select contact photo
-                Toast.makeText(getContext(), "TODO select contact photo", Toast.LENGTH_SHORT).show();
+                // Select contact photo
+                // based on this SO answer: https://stackoverflow.com/a/5309217
+                Intent pickImageIntent = new Intent();
+                pickImageIntent.setType("image/*");
+                pickImageIntent.setAction(Intent.ACTION_PICK);
+                // verify that the Intent will resolve to an Activity; i.e. make sure the device has an app that can handle the Intent
+                if (pickImageIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivityForResult(Intent.createChooser(pickImageIntent, "Select Image"), REQUEST_CODE_CHOOSE_IMAGE);
+                }
             }
         });
 
@@ -78,11 +94,24 @@ public class EditContactFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Insert/update Contact
-                viewModel.insertOrUpdateContact(contactId, etName.getText().toString(), ivContactPhoto.getTag().toString());
+                mViewModel.insertOrUpdateContact(contactId, mEtName.getText().toString(), mIvContactPhoto.getTag().toString());
                 // TODO hide soft keyboard
                 // Navigate up/back
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // User selected a contact image
+        if (requestCode == REQUEST_CODE_CHOOSE_IMAGE && resultCode == Activity.RESULT_OK) {
+            // Save contact
+            final int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
+            String imgPath = data.getDataString();
+            mViewModel.insertOrUpdateContact(contactId, mEtName.getText().toString(), imgPath);
+        }
     }
 }
