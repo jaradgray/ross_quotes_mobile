@@ -55,9 +55,19 @@ public class EditContactFragment extends Fragment {
         // Request a ViewModel from the Android system
         mViewModel = ViewModelProviders.of(this).get(EditContactFragmentViewModel.class);
 
-        // Observe ViewModel's LiveData if we're dealing with an existing Contact
+        // Perform initialization based on if we're dealing with a new or existing Contact
         final int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
-        if (contactId != ARG_VALUE_NO_CONTACT_ID) {
+        if (contactId == ARG_VALUE_NO_CONTACT_ID) {
+            // New Contact
+            // Set ImageView's image and tag to default values
+            final String resPath = "android.resource://com.jgendeavors.rossquotes/";
+            String imgPath = resPath + R.drawable.ic_person;
+            Uri imgUri = Uri.parse(imgPath);
+            mIvContactPhoto.setImageURI(imgUri);
+            mIvContactPhoto.setTag(imgPath);
+        } else {
+            // Existing Contact
+            // Observe ViewModel's LiveData
             mViewModel.getContact(contactId).observe(getViewLifecycleOwner(), new Observer<Contact>() {
                 @Override
                 public void onChanged(Contact contact) {
