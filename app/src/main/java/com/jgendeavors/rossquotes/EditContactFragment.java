@@ -108,10 +108,9 @@ public class EditContactFragment extends Fragment {
 
         // User selected a contact image
         if (requestCode == REQUEST_CODE_CHOOSE_IMAGE && resultCode == Activity.RESULT_OK) {
-            // Save contact
-            final int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
-            String imgPath = data.getDataString();
-            mViewModel.insertOrUpdateContact(contactId, mEtName.getText().toString(), imgPath);
+            // Update ImageView's image and tag based on selected image
+            mIvContactPhoto.setImageURI(data.getData());
+            mIvContactPhoto.setTag(data.getDataString());
         }
     }
 }
