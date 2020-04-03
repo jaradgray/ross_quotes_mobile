@@ -17,11 +17,15 @@ public class Contact {
     @ColumnInfo(name = "name")
     private String mName;
 
+    @ColumnInfo(name = "image_absolute_path")
+    private String mImageAbsolutePath;
+
 
     // Constructor
 
-    public Contact(String name) {
+    public Contact(String name, String imageAbsolutePath) {
         mName = name;
+        mImageAbsolutePath = imageAbsolutePath;
     }
 
 
@@ -32,4 +36,5 @@ public class Contact {
     // Getters
     public int getId() { return mId; }
     public String getName() { return mName; }
+    public String getImageAbsolutePath() { return mImageAbsolutePath; }
 }
