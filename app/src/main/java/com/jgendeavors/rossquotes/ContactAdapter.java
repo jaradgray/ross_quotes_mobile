@@ -1,5 +1,6 @@
 package com.jgendeavors.rossquotes;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,8 +92,9 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
         // Set holder's data based on contact
         holder.tvName.setText(contact.getName());
-
-        // TODO set holder's ivPicture based on contact
+        // picture
+        Uri imgUri = Uri.parse(contact.getImageAbsolutePath());
+        holder.ivPicture.setImageURI(imgUri);
     }
 
     @Override
