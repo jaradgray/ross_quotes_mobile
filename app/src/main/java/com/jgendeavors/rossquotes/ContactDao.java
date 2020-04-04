@@ -37,4 +37,7 @@ public interface ContactDao {
 
     @Query("SELECT * FROM contact_table ORDER BY name ASC")
     LiveData<List<Contact>> getAlphabetizedContacts();
+
+    @Query("SELECT * FROM contact_table WHERE id = :id")
+    Contact getContactSync(int id);
 }

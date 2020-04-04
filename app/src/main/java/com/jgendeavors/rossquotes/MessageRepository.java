@@ -6,6 +6,10 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import androidx.lifecycle.LiveData;
 
@@ -69,6 +73,39 @@ public class MessageRepository {
 
     public void delete(Message message) {
         new DeleteMessageAsyncTask(mMessageDao).execute(message);
+    }
+
+    /**
+     * Returns a List of all Messages in the database.
+     * Database operations must execute on a background thread, but this method blocks until the operation completes.
+     *
+     * @return
+     */
+    public List<Message> getAllSync() {
+        // Decided to use ExecutorService instead of AsyncTask since AsyncTask is stupid and deprecated.
+        //  based on this example: https://howtodoinjava.com/java/multi-threading/executor-service-example/
+
+        // TODO there's probably some way to make this simpler...
+
+        // Get an ExecutorService
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
+
+        // Submit a value-returning task for execution, store the pending result of the task in a Future object
+        Future<List<Message>> future = executorService.submit(new Callable<List<Message>>() {
+            @Override
+            public List<Message> call() throws Exception {
+                return mMessageDao.getAllSync();
+            }
+        });
+
+        // Return the result of the submitted task
+        List<Message> result = null;
+        try {
+            result = future.get(); // Future.get() waits for the operation to complete, similar to AsyncTask.execute().get()
+        } catch (Exception e) {
+            Log.e(TAG, "MessageRepository.getAllSync(): " + e);
+        }
+        return result;
     }
 
 
