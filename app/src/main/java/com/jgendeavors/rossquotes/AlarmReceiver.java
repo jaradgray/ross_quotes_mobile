@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.util.Log;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Random;
 
@@ -57,14 +60,22 @@ public class AlarmReceiver extends BroadcastReceiver {
         // use NotificationManagerCompat for displaying notifications
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
-//        Bitmap largeIcon = BitmapFactory.decodeFile(contact.getImageAbsolutePath());
+        // Get Bitmap from Contact's image Uri to be used for notification's large icon
+        //  based on this SO answer: https://stackoverflow.com/a/4717740
+        Uri imgUri = Uri.parse(contact.getImageAbsolutePath());
+        Bitmap largeIcon = null;
+        try {
+            largeIcon = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imgUri);
+        } catch (Exception e) {
+            Log.e(TAG, "onReceive: ", e);
+        }
 
         // create the notification
         Notification notification = new NotificationCompat.Builder(context, App.CHANNEL_ID_MESSAGES)
                 .setSmallIcon(R.drawable.ic_add)
                 .setContentTitle(contact.getName())
                 .setContentText(message.getText())
-//                .setLargeIcon(largeIcon)
+                .setLargeIcon(largeIcon)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
