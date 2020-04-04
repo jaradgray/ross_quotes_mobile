@@ -25,7 +25,11 @@ import androidx.core.app.NotificationManagerCompat;
  * notification message.
  */
 public class AlarmReceiver extends BroadcastReceiver {
+    // Constants
     private static final String TAG = "AlarmReceiver";
+    // having some issues where db queries returned empty on the first few accesses
+    //  as a workaround, we retry the query a maximum number of times
+    public static final int MAX_DB_RETRIES = 10;
 
 
     @Override
@@ -34,16 +38,21 @@ public class AlarmReceiver extends BroadcastReceiver {
         // Alarm fired, so show a notification with a random quote from the database
 
 
-        // Display a random Message from the db for now
-        // TODO add logic so that we show all messages before repeating any
+        // Display a random Message from the db
 
         // Get a random Message from the database
         // get a list of all Messages in the database
         MessageRepository messageRepository = new MessageRepository(context);
         List<Message> messages = messageRepository.getAllSync();
-        // messages seemed to be empty on first query, so here we detect it and workaround
-        while (messages.isEmpty()) {
+        // first accesses return empty workaround
+        int numRetries = 0;
+        while (messages.isEmpty() && numRetries < MAX_DB_RETRIES) {
             messages = messageRepository.getAllSync();
+            numRetries++;
+        }
+        if (messages.isEmpty()) {
+            Log.e(TAG, "onReceive: found no Messages in db after " + MAX_DB_RETRIES + " queries. Returning.");
+            return;
         }
         // get a random Message from the list
         Random randy = new Random();
