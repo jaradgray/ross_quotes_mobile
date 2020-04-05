@@ -15,6 +15,11 @@
 
     </PreferenceCategory>
 
+    <com.jgendeavors.rossquotes.IntervalDialogPreference
+        android:key="ghalalala"
+        android:title="Interval dialog preference"
+        android:summary="summary" />
+
     <PreferenceCategory
         android:key="schedule_category"
         android:title="Schedule"
