@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Ross Quotes</string>
 
+    <!-- Preference Screen (SettingsFragment) -->
+    <string name="pref_entry_interval_unit_second">Seconds</string>
+    <string name="pref_entry_interval_unit_minute">Minutes</string>
+    <string name="pref_entry_interval_unit_hour">Hours</string>
+    <string name="pref_entry_interval_unit_day">Days</string>
+
     <!-- ContactDetailsFragment -->
     <!-- options menu -->
     <string name="menu_item_delete_contact_title">Delete contact</string>

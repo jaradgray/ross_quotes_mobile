@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:key="general_category"
+        android:title="General">
+
+        <!-- Global enable/disable -->
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="PREF_APP_ENABLED"
+            android:summary="Receive message notifications from Bob and others"
+            android:title="Receive notifications" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="schedule_category"
+        android:title="Schedule"
+        android:summary="Set the minimum and maximum times to wait between notifications">
+
+        <!-- Min interval -->
+        <DropDownPreference
+            android:key="PREF_KEY_MIN_INTERVAL"
+            android:title="Minimum interval"
+            android:entries="@array/pref_interval_values"
+            android:entryValues="@array/pref_interval_values"
+            app:useSimpleSummaryProvider="true"/>
+
+        <DropDownPreference
+            android:key="PREF_KEY_MIN_INTERVAL_UNIT"
+            android:title="Minimum interval unit"
+            android:entries="@array/pref_entries_interval_units"
+            app:entryValues="@array/pref_entry_values_interval_units"
+            app:useSimpleSummaryProvider="true"/>
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
