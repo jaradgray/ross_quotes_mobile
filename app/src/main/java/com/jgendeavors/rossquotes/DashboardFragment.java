@@ -90,5 +90,13 @@ public class DashboardFragment extends Fragment {
                 AlarmHelper.setAlarm(getContext(), c);
             }
         });
+
+        Button buttonCancelAlarm = view.findViewById(R.id.fragment_dashboard_b_cancel_alarm);
+        buttonCancelAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlarmHelper.cancelAlarm(getContext());
+            }
+        });
     }
 }

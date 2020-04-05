@@ -33,4 +33,25 @@ public class AlarmHelper {
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 
+    /**
+     * Cancels the alarm if it is set.
+     *
+     * @param context
+     */
+    public static void cancelAlarm(Context context) {
+        // Set up the Intents and AlarmManager exactly as in setAlarm()
+        Intent intent = new Intent(context, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                context,
+                1 /* requestCode, must be unique for each different PendingIntent. We'll have at most one PendingIntent at any time. */,
+                intent,
+                0 /* flags */
+        );
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+
+        // Cancel alarm
+        alarmManager.cancel(pendingIntent);
+        pendingIntent.cancel();
+    }
+
 }
