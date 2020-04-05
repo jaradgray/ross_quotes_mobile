@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 
 import java.io.FileNotFoundException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
@@ -97,7 +98,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         );
 
 
+        // Schedule another alarm 5 seconds from now
         // TODO schedule another alarm to be triggered with the set timeframe
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.SECOND, 5);
+        AlarmHelper.setAlarm(context, c);
     }
 
 
