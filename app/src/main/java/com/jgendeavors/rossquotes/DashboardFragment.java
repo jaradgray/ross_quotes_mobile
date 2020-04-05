@@ -86,19 +86,8 @@ public class DashboardFragment extends Fragment {
                 // set a Calendar for 1 second from now
                 Calendar c = Calendar.getInstance();
                 c.add(Calendar.SECOND, 1);
-
-                // create the intent the alarm will broadcast
-                Intent intent = new Intent(getContext(), AlarmReceiver.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                        getContext(),
-                        1 /* requestCode, must be unique for each different PendingIntent. We'll have at most one PendingIntent at any time. */,
-                        intent,
-                        0 /* flags */
-                );
-
                 // set alarm
-                AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+                AlarmHelper.setAlarm(getContext(), c);
             }
         });
     }
