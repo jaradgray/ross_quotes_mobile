@@ -1,9 +1,14 @@
 package com.jgendeavors.rossquotes;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import androidx.lifecycle.LiveData;
 
@@ -15,14 +20,17 @@ import androidx.lifecycle.LiveData;
  * The Repository provides our ViewModel with a clean API for accessing our app's data
  */
 public class ContactRepository {
+    private static final String TAG = "ContactRepository";
+
+
     // Instance variables
     private ContactDao mContactDao;
     private LiveData<List<Contact>> mAlphabetizedContacts;
 
 
     // Constructor
-    public ContactRepository(Application application) {
-        QuotesRoomDatabase database = QuotesRoomDatabase.getInstance(application);
+    public ContactRepository(Context context) {
+        QuotesRoomDatabase database = QuotesRoomDatabase.getInstance(context);
         mContactDao = database.contactDao();
         mAlphabetizedContacts = mContactDao.getAlphabetizedContacts(); // Room automatically executes database operations that return LiveData on a background thread
     }
@@ -39,6 +47,35 @@ public class ContactRepository {
     public LiveData<Contact> getContact(int id) { return mContactDao.getContact(id); }
 
     public LiveData<List<Contact>> getAlphabetizedContacts() { return mAlphabetizedContacts; }
+
+    /**
+     * Returns the Contact with the given id from the database synchronously.
+     * Simplified and based on MessageRepository.getAllSync()
+     *
+     * @param id
+     * @return
+     */
+    public Contact getContactSync(final int id) {
+        // Create ExecutorService
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
+
+        // Create the task the ExecutorService will execute
+        Callable<Contact> callableTask = new Callable<Contact>() {
+            @Override
+            public Contact call() throws Exception {
+                return mContactDao.getContactSync(id);
+            }
+        };
+
+        // Return the result of the task when it completes
+        Contact result = null;
+        try {
+            result = executorService.submit(callableTask).get();
+        } catch (Exception e) {
+            Log.e(TAG, "ContactRepository.getContactSync(): " + e);
+        }
+        return result;
+    }
 
 
     // AsyncTasks for performing database operations on a background thread

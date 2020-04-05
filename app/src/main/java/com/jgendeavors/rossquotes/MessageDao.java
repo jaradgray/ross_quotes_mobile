@@ -31,4 +31,10 @@ public interface MessageDao {
 
     @Query("SELECT * FROM message_table WHERE id = :id")
     Message getMessage(int id);
+
+    @Query("SELECT * FROM message_table")
+    List<Message> getAllSync();
+
+    @Query("DELETE FROM message_table WHERE contact_id = :contactId")
+    void deleteByContactId(int contactId);
 }

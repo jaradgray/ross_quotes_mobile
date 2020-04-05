@@ -1,10 +1,17 @@
 package com.jgendeavors.rossquotes;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.Calendar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -67,6 +74,28 @@ public class DashboardFragment extends Fragment {
             public void onClick(View view) {
                 // Navigate to SettingsFragment
                 navController.navigate(R.id.action_dashboardFragment_to_settingsFragment);
+            }
+        });
+
+        // TODO delete the following, it's just for testing
+        Button buttonSetAlarm = view.findViewById(R.id.fragment_dashboard_b_set_alarm);
+        buttonSetAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Set alarm for 1 second from now
+                // set a Calendar for 1 second from now
+                Calendar c = Calendar.getInstance();
+                c.add(Calendar.SECOND, 1);
+                // set alarm
+                AlarmHelper.setAlarm(getContext(), c);
+            }
+        });
+
+        Button buttonCancelAlarm = view.findViewById(R.id.fragment_dashboard_b_cancel_alarm);
+        buttonCancelAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlarmHelper.cancelAlarm(getContext());
             }
         });
     }

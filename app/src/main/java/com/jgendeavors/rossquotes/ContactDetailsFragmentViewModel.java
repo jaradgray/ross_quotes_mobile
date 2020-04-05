@@ -30,9 +30,14 @@ public class ContactDetailsFragmentViewModel extends AndroidViewModel {
         return mMessageRepository.getMessagesForContact(contactId);
     }
 
-    /** Deletes the Contact with the given id from the database, via the Repository */
+    /**
+     *  Deletes from the database the Contact whose id matches @contactId
+     *  and every Message whose contactId matches @contactId,
+     *  via the respective Repositories
+     */
     public void deleteContact(int contactId) {
         mContactRepository.delete(contactId);
+        mMessageRepository.deleteByContactId(contactId);
     }
 
 
