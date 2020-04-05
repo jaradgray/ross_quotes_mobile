@@ -52,7 +52,8 @@ public class AlarmReceiver extends BroadcastReceiver {
             numRetries++;
         }
         if (messages.isEmpty()) {
-            Log.e(TAG, "onReceive: found no Messages in db after " + MAX_DB_RETRIES + " queries. Returning.");
+            Log.e(TAG, "onReceive: found no Messages in db after " + MAX_DB_RETRIES + " queries. Canceling alarm and returning.");
+            AlarmHelper.cancelAlarm(context);
             return;
         }
         // get a random Message from the list
