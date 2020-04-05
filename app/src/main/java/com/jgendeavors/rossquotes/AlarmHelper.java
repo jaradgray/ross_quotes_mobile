@@ -54,4 +54,25 @@ public class AlarmHelper {
         pendingIntent.cancel();
     }
 
+    /**
+     * Returns true if the alarm to send a notification has been set, false otherwise.
+     * Based on this SO answer: https://stackoverflow.com/a/28076168
+     *
+     * @param context
+     * @return
+     */
+    public static boolean isSet(Context context) {
+        // Set up the Intent the same as in setAlarm()
+        Intent intent = new Intent(context, AlarmReceiver.class);
+        // Set up the PendingIntent as in setAlarm(), except with the FLAG_NO_CREATE flag
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                context,
+                1,
+                intent,
+                PendingIntent.FLAG_NO_CREATE /* returns null if the PendingIntent doesn't exist, instead of creating it */
+        );
+
+        return pendingIntent != null;
+    }
+
 }

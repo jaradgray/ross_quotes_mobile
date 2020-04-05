@@ -4,6 +4,10 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
+import android.util.Log;
+import android.widget.Toast;
+
+import java.util.Calendar;
 
 /**
  * The App class wraps our application and we can setup code in here
@@ -23,10 +27,21 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
+        // Put code that should be performed once on app launch here
+
         // TODO delete this; just for testing
         deleteDatabase(QuotesRoomDatabase.DB_NAME);
 
         createNotificationChannels();
+
+        // Set the alarm to start sending notifications if it isn't already set
+        if (!AlarmHelper.isSet(getApplicationContext())) {
+            // Set alarm to 5 seconds from now
+            // TODO set alarm to a random time within set timeframe
+            Calendar c = Calendar.getInstance();
+            c.add(Calendar.SECOND, 5);
+            AlarmHelper.setAlarm(getApplicationContext(), c);
+        }
     }
 
 
