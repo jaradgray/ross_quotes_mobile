@@ -108,6 +108,23 @@ public class MessageRepository {
         return result;
     }
 
+    /** Wraps MessageDao.deleteByContactId(int) */
+    public void deleteByContactId(final int contactId) {
+        // Get an ExecutorService
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
+
+        // Create the task the ExecutorService will execute (the task won't return a result, so we can use Runnable)
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                mMessageDao.deleteByContactId(contactId);
+            }
+        };
+
+        // Execute the task at some time in the future, via ExecutorService
+        executorService.execute(task);
+    }
+
 
     // AsyncTasks for performing database operations on a background thread
     // Note: they are static so they don't have a reference to the Repository itself, which could create memory leaks
