@@ -15,31 +15,16 @@
 
     </PreferenceCategory>
 
-    <com.jgendeavors.rossquotes.IntervalDialogPreference
-        android:key="ghalalala"
-        android:title="Interval dialog preference"
-        android:summary="summary" />
-
     <PreferenceCategory
         android:key="schedule_category"
         android:title="Schedule"
         android:summary="Set the minimum and maximum times to wait between notifications">
 
-        <!-- Min interval -->
-        <DropDownPreference
+        <com.jgendeavors.rossquotes.IntervalDialogPreference
             android:key="PREF_KEY_MIN_INTERVAL"
             android:title="Minimum interval"
-            android:entries="@array/pref_interval_values"
-            android:entryValues="@array/pref_interval_values"
-            app:useSimpleSummaryProvider="true"/>
-
-        <DropDownPreference
-            android:key="PREF_KEY_MIN_INTERVAL_UNIT"
-            android:title="Minimum interval unit"
-            android:entries="@array/pref_entries_interval_units"
-            app:entryValues="@array/pref_entry_values_interval_units"
-            app:useSimpleSummaryProvider="true"/>
-
+            android:summary="summary"
+            android:defaultValue="7,Hours"/>
 
     </PreferenceCategory>
 

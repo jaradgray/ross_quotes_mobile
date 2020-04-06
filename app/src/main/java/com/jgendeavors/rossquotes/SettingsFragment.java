@@ -10,6 +10,27 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.settings_main, rootKey);
+
+        // Set summaries of our custom IntervalDialogPreferences to reflect persisted values
+
+        IntervalDialogPreference minIntervalPref = findPreference("PREF_KEY_MIN_INTERVAL");
+
+        if (minIntervalPref != null) {
+            minIntervalPref.setSummaryProvider(new Preference.SummaryProvider() {
+                @Override
+                public CharSequence provideSummary(Preference preference) {
+                    String result = null;
+                    if (preference instanceof IntervalDialogPreference) {
+                        // get persisted interval
+                        IntervalDialogPreference pref = (IntervalDialogPreference) preference;
+                        String interval = pref.getInterval();
+                        // format interval string
+                        result = interval.replace(',', ' ');
+                    }
+                    return result;
+                }
+            });
+        }
     }
 
     /**
