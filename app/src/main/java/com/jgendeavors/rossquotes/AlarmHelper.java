@@ -4,6 +4,8 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.util.Calendar;
@@ -38,18 +40,23 @@ public class AlarmHelper {
     }
 
     /**
-     * Picks a random time between @minMillisFromNow and @maxMillisFromNow milliseconds from the current time
-     * and calls setAlarm(Context, Calendar) and passes the randomly selected time.
+     * Sets the alarm to trigger at a random time within the persisted timeframe, from the current time.
      *
      * @param context
-     * @param minMillisFromNow
-     * @param maxMillisFromNow
      */
-    public static void setAlarm(Context context, int minMillisFromNow, int maxMillisFromNow) {
-        // Get a random value between min and max
+    public static void setAlarmWithinPersistedTimeframe(Context context) {
+        // Get a random value (in millis) within the persisted timeframe
+        // get the persisted interval values (Strings)
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String minIntervalString = prefs.getString(App.PREF_KEY_MIN_INTERVAL, App.PREF_DEFAULT_VALUE_MIN_INTERVAL);
+        String maxIntervalString = prefs.getString(App.PREF_KEY_MAX_INTERVAL, App.PREF_DEFAULT_VALUE_MAX_INTERVAL);
+        // convert persisted Strings to millis
+        int minInterval = IntervalDialog.getIntervalMillis(minIntervalString);
+        int maxInterval = IntervalDialog.getIntervalMillis(maxIntervalString);
+        // get a random value between min and max intervals
         Random randy = new Random();
         // we add 1 to the bound to make the max value inclusive, and allow for min and max to be equal
-        int millisFromNow = randy.nextInt(maxMillisFromNow - minMillisFromNow + 1) + minMillisFromNow;
+        int millisFromNow = randy.nextInt(maxInterval - minInterval + 1) + minInterval;
 
         // Set a Calendar to the randomly selected number of millis in the future
         Calendar c = Calendar.getInstance();

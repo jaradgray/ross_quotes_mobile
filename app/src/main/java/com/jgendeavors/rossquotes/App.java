@@ -66,15 +66,8 @@ public class App extends Application {
                         // if pref was set to enabled, execution will proceed to next cases
                     case PREF_KEY_MIN_INTERVAL:
                     case PREF_KEY_MAX_INTERVAL:
-                        // Set alarm to a random time between the persisted min and max intervals from now
-                        // get the persisted interval values (Strings)
-                        String minIntervalString = sharedPreferences.getString(PREF_KEY_MIN_INTERVAL, PREF_DEFAULT_VALUE_MIN_INTERVAL);
-                        String maxIntervalString = sharedPreferences.getString(PREF_KEY_MAX_INTERVAL, PREF_DEFAULT_VALUE_MAX_INTERVAL);
-                        // convert persisted Strings to millis
-                        int minInterval = IntervalDialog.getIntervalMillis(minIntervalString);
-                        int maxInterval = IntervalDialog.getIntervalMillis(maxIntervalString);
-                        // set alarm
-                        AlarmHelper.setAlarm(getApplicationContext(), minInterval, maxInterval);
+                        // Set alarm to a random time within the persisted min and max intervals from now
+                        AlarmHelper.setAlarmWithinPersistedTimeframe(getApplicationContext());
                         break;
                 }
             }
