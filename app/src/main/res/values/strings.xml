@@ -1,6 +1,24 @@
 <resources>
     <string name="app_name">Ross Quotes</string>
 
+    <!-- SettingsFragment (and settings_main.xml) -->
+    <string name="pref_title_general_category">General</string>
+    <string name="pref_title_receive_notifications">Receive notifications</string>
+    <string name="pref_summary_receive_notifications">Receive message notifications from Bob and others</string>
+
+    <string name="pref_title_schedule_category">Schedule</string>
+    <string name="pref_summary_schedule_category">Adjust the time between notifications</string>
+
+    <string name="pref_title_min_interval">Minimum time</string>
+
+    <string name="pref_title_max_interval">Maximum time</string>
+
+    <!-- IntervalDialog -->
+    <string name="pref_entry_interval_unit_second">Seconds</string>
+    <string name="pref_entry_interval_unit_minute">Minutes</string>
+    <string name="pref_entry_interval_unit_hour">Hours</string>
+    <string name="pref_entry_interval_unit_day">Days</string>
+
     <!-- ContactDetailsFragment -->
     <!-- options menu -->
     <string name="menu_item_delete_contact_title">Delete contact</string>

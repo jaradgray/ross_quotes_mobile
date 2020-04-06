@@ -99,11 +99,12 @@ public class AlarmReceiver extends BroadcastReceiver {
         );
 
 
-        // Schedule another alarm 5 seconds from now
-        // TODO schedule another alarm to be triggered with the set timeframe
-        Calendar c = Calendar.getInstance();
-        c.add(Calendar.SECOND, 5);
-        AlarmHelper.setAlarm(context, c);
+        // Schedule another alarm to be triggered within the persisted timeframe, if the app is enabled
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean isEnabled = prefs.getBoolean(App.PREF_KEY_APP_ENABLED, true);
+        if (isEnabled) {
+            AlarmHelper.setAlarmWithinPersistedTimeframe(context);
+        }
     }
 
 

@@ -45,4 +45,8 @@ dependencies {
     // CardView
     def cardview_version = "1.0.0"
     implementation "androidx.cardview:cardview:$cardview_version"
+
+    // Preference library
+    def preference_version = "1.1.0"
+    implementation "androidx.preference:preference:$preference_version"
 }
