@@ -100,10 +100,21 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
     @Override
     public void onDialogClosed(boolean positiveResult) {
         if (positiveResult) {
+            // Generate value to persist based on widget state
             String value = mValueSpinner.getSelectedItem().toString();
             String unit = mUnitSpinner.getSelectedItem().toString();
-            Toast.makeText(getContext(), "value: " + value + ", unit: " + unit, Toast.LENGTH_SHORT).show();
-            // TODO save interval based on state of spinners
+            String intervalString = value + "," + unit;
+
+            // Get the related Preference and save the value
+            DialogPreference preference = getPreference();
+            if (preference instanceof IntervalDialogPreference) {
+                IntervalDialogPreference intervalDialogPref = (IntervalDialogPreference) preference;
+                // The following conditional allows the client to ignore the user value (e.g. if it's the same as the currently-persisted value)
+                if (intervalDialogPref.callChangeListener(intervalString)) {
+                    // Save the value
+                    intervalDialogPref.setInterval(intervalString);
+                }
+            }
         }
     }
 }
