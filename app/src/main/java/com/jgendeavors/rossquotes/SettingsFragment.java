@@ -12,9 +12,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         setPreferencesFromResource(R.xml.settings_main, rootKey);
     }
 
+    /**
+     * Must be overridden to show custom DialogPreferences' DialogFragments
+     * @param preference
+     */
     @Override
     public void onDisplayPreferenceDialog(Preference preference) {
-
+        // Show the DialogFragment associated with the given Preference
         if (preference instanceof IntervalDialogPreference) {
             IntervalDialog dialog = IntervalDialog.getInstance(preference.getKey());
             dialog.setTargetFragment(this, 0);

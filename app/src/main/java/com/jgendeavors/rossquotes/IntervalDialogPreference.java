@@ -7,6 +7,9 @@ import android.util.AttributeSet;
 import androidx.annotation.Nullable;
 import androidx.preference.DialogPreference;
 
+/**
+ * The IntervalDialogPreference class handles the data management (i.e. preference persisting) aspect of an IntervalDialogPreference.
+ */
 public class IntervalDialogPreference extends DialogPreference {
     // Instance variables
     private String mInterval;
@@ -44,9 +47,9 @@ public class IntervalDialogPreference extends DialogPreference {
         return a.getString(index);
     }
 
-    /** Set value of instance variable based on persisted preference */
     @Override
     protected void onSetInitialValue(@Nullable Object defaultValue) {
+        // Set value of instance variable based on persisted preference
         setInterval(getPersistedString((String)defaultValue));
     }
 

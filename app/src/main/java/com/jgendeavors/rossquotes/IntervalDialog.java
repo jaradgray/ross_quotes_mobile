@@ -15,6 +15,9 @@ import java.util.List;
 import androidx.preference.DialogPreference;
 import androidx.preference.PreferenceDialogFragmentCompat;
 
+/**
+ * The IntervalDialog class handles the UI interaction aspect of an IntervalDialogPreference.
+ */
 public class IntervalDialog extends PreferenceDialogFragmentCompat {
 
     // Instance variables
