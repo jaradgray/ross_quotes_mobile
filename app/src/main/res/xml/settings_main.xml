@@ -24,6 +24,12 @@
             android:key="PREF_KEY_MIN_INTERVAL"
             android:title="Minimum interval"
             android:summary="summary"
+            android:defaultValue="5,Seconds"/>
+
+        <com.jgendeavors.rossquotes.IntervalDialogPreference
+            android:key="PREF_KEY_MAX_INTERVAL"
+            android:title="Maxxximum interval"
+            android:summary="summary"
             android:defaultValue="7,Hours"/>
 
     </PreferenceCategory>
