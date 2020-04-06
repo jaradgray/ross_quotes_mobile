@@ -51,6 +51,7 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
         super.onBindDialogView(view);
 
         // Set widget state to match persisted data from SharedPreferences
+        //  i.e. "display the persisted interval data when this Dialog is shown"
 
         // get references to widgets
         mValueSpinner = view.findViewById(R.id.pref_dialog_interval_spinner_value);
