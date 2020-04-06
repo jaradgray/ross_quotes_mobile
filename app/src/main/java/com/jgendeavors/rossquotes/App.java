@@ -47,16 +47,6 @@ public class App extends Application {
 
         createNotificationChannels();
 
-        // Set the alarm to start sending notifications if it isn't already set
-        // TODO delete this
-        if (!AlarmHelper.isSet(getApplicationContext())) {
-            // Set alarm to 5 seconds from now
-            // TODO set alarm to a random time within set timeframe
-            Calendar c = Calendar.getInstance();
-            c.add(Calendar.SECOND, 5);
-            AlarmHelper.setAlarm(getApplicationContext(), c);
-        }
-
         // Handle changes to SharedPreferences
         // declare the listener
         mPrefsListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -66,27 +56,25 @@ public class App extends Application {
                     case PREF_KEY_APP_ENABLED:
                         // Cancel or set the alarm
                         boolean isEnabled = sharedPreferences.getBoolean(prefKey, true);
-                        if (!isEnabled && AlarmHelper.isSet(getApplicationContext())) {
-                            AlarmHelper.cancelAlarm(getApplicationContext());
-                        } else if (isEnabled) {
-                            // Set alarm to a random time between the persisted min and max intervals from now
-                            // get the persisted interval values (Strings)
-                            String minIntervalString = sharedPreferences.getString(PREF_KEY_MIN_INTERVAL, null);
-                            String maxIntervalString = sharedPreferences.getString(PREF_KEY_MAX_INTERVAL, null);
-                            // convert persisted Strings to millis
-                            int minInterval = IntervalDialog.getIntervalMillis(minIntervalString);
-                            int maxInterval = IntervalDialog.getIntervalMillis(maxIntervalString);
-                            // set alarm
-                            AlarmHelper.setAlarm(getApplicationContext(), minInterval, maxInterval);
+                        if (!isEnabled) {
+                            // app disabled, cancel alarm if it's set
+                            if (AlarmHelper.isSet(getApplicationContext())) {
+                                AlarmHelper.cancelAlarm(getApplicationContext());
+                            }
+                            break;
                         }
-                        break;
+                        // if pref was set to enabled, execution will proceed to next cases
                     case PREF_KEY_MIN_INTERVAL:
-                        // TODO re-set the alarm to the new time frame
-                        Toast.makeText(getApplicationContext(), "App: " + PREF_KEY_MIN_INTERVAL + " changed.", Toast.LENGTH_SHORT).show();
-                        break;
                     case PREF_KEY_MAX_INTERVAL:
-                        // TODO re-set the alarm to the new time frame
-                        Toast.makeText(getApplicationContext(), "App: " + PREF_KEY_MAX_INTERVAL + " changed.", Toast.LENGTH_SHORT).show();
+                        // Set alarm to a random time between the persisted min and max intervals from now
+                        // get the persisted interval values (Strings)
+                        String minIntervalString = sharedPreferences.getString(PREF_KEY_MIN_INTERVAL, PREF_DEFAULT_VALUE_MIN_INTERVAL);
+                        String maxIntervalString = sharedPreferences.getString(PREF_KEY_MAX_INTERVAL, PREF_DEFAULT_VALUE_MAX_INTERVAL);
+                        // convert persisted Strings to millis
+                        int minInterval = IntervalDialog.getIntervalMillis(minIntervalString);
+                        int maxInterval = IntervalDialog.getIntervalMillis(maxIntervalString);
+                        // set alarm
+                        AlarmHelper.setAlarm(getApplicationContext(), minInterval, maxInterval);
                         break;
                 }
             }
@@ -96,6 +84,7 @@ public class App extends Application {
         prefs.registerOnSharedPreferenceChangeListener(mPrefsListener);
 
         // Initialize preferences to default values if they don't exist
+        //  this is to set initial preference values on fresh app install
         if (!prefs.contains(PREF_KEY_APP_ENABLED)) {
             prefs.edit().putBoolean(PREF_KEY_APP_ENABLED, true).apply();
         }
@@ -105,6 +94,13 @@ public class App extends Application {
         if (!prefs.contains(PREF_KEY_MAX_INTERVAL)) {
             prefs.edit().putString(PREF_KEY_MAX_INTERVAL, PREF_DEFAULT_VALUE_MAX_INTERVAL).apply();
         }
+
+        // TODO delete this
+        // Set alarm to 5 seconds from now
+        // TODO set alarm to a random time within set timeframe
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.SECOND, 5);
+        AlarmHelper.setAlarm(getApplicationContext(), c);
     }
 
 
