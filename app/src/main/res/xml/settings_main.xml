@@ -9,7 +9,7 @@
         <!-- Global enable/disable -->
         <SwitchPreferenceCompat
             android:defaultValue="true"
-            android:key="PREF_APP_ENABLED"
+            android:key="PREF_KEY_APP_ENABLED"
             android:summary="Receive message notifications from Bob and others"
             android:title="Receive notifications" />
 

@@ -3,7 +3,9 @@ package com.jgendeavors.rossquotes;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.SharedPreferences;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,6 +21,14 @@ import java.util.Calendar;
 public class App extends Application {
     // Constants
     public static final String CHANNEL_ID_MESSAGES = "CHANNEL_ID_MESSAGES";
+    // Pref keys
+    public static final String PREF_KEY_APP_ENABLED = "PREF_KEY_APP_ENABLED";
+    public static final String PREF_KEY_MIN_INTERVAL = "PREF_KEY_MIN_INTERVAL";
+    public static final String PREF_KEY_MAX_INTERVAL = "PREF_KEY_MAX_INTERVAL";
+
+
+    // Instance variables
+    SharedPreferences.OnSharedPreferenceChangeListener mPrefsListener; // just to be safe, so it doesn't get GC'd (which might happen if it were declared as an anonymous inner class)
 
 
     // Lifecycle overrides
@@ -42,6 +52,31 @@ public class App extends Application {
             c.add(Calendar.SECOND, 5);
             AlarmHelper.setAlarm(getApplicationContext(), c);
         }
+
+        // Handle changes to SharedPreferences
+        // declare the listener
+        mPrefsListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String prefKey) {
+                switch (prefKey) {
+                    case App.PREF_KEY_APP_ENABLED:
+                        // TODO implement this
+                        Toast.makeText(getApplicationContext(), "App: " + App.PREF_KEY_APP_ENABLED + " changed.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case App.PREF_KEY_MIN_INTERVAL:
+                        // TODO implement this
+                        Toast.makeText(getApplicationContext(), "App: " + App.PREF_KEY_MIN_INTERVAL + " changed.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case App.PREF_KEY_MAX_INTERVAL:
+                        // TODO implement this
+                        Toast.makeText(getApplicationContext(), "App: " + App.PREF_KEY_MAX_INTERVAL + " changed.", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+        // register the listener
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        prefs.registerOnSharedPreferenceChangeListener(mPrefsListener);
     }
 
 

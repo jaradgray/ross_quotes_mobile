@@ -116,22 +116,19 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
 
                 // Validate interval value based on pref key
 
-                final String PREF_KEY_MIN_INTERVAL = "PREF_KEY_MIN_INTERVAL";
-                final String PREF_KEY_MAX_INTERVAL = "PREF_KEY_MAX_INTERVAL";
-
-                if (intervalDialogPref.getKey().equals(PREF_KEY_MIN_INTERVAL)) {
+                if (intervalDialogPref.getKey().equals(App.PREF_KEY_MIN_INTERVAL)) {
                     // interval represented by intervalString can't be larger than current max interval
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                    String maxIntervalString = prefs.getString(PREF_KEY_MAX_INTERVAL, null);
+                    String maxIntervalString = prefs.getString(App.PREF_KEY_MAX_INTERVAL, null);
                     if (getIntervalMillis(intervalString) > getIntervalMillis(maxIntervalString)) {
                         // TODO use resource String
                         Toast.makeText(getContext(), "Interval too large", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                } else if (intervalDialogPref.getKey().equals(PREF_KEY_MAX_INTERVAL)) {
+                } else if (intervalDialogPref.getKey().equals(App.PREF_KEY_MAX_INTERVAL)) {
                     // interval represented by intervalString can't be smaller than current min interval
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                    String minIntervalString = prefs.getString(PREF_KEY_MIN_INTERVAL, null);
+                    String minIntervalString = prefs.getString(App.PREF_KEY_MIN_INTERVAL, null);
                     if (getIntervalMillis(intervalString) < getIntervalMillis(minIntervalString)) {
                         // TODO use resource String
                         Toast.makeText(getContext(), "Interval too small", Toast.LENGTH_SHORT).show();
