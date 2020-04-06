@@ -94,13 +94,6 @@ public class App extends Application {
         if (!prefs.contains(PREF_KEY_MAX_INTERVAL)) {
             prefs.edit().putString(PREF_KEY_MAX_INTERVAL, PREF_DEFAULT_VALUE_MAX_INTERVAL).apply();
         }
-
-        // TODO delete this
-        // Set alarm to 5 seconds from now
-        // TODO set alarm to a random time within set timeframe
-        Calendar c = Calendar.getInstance();
-        c.add(Calendar.SECOND, 5);
-        AlarmHelper.setAlarm(getApplicationContext(), c);
     }
 
 
