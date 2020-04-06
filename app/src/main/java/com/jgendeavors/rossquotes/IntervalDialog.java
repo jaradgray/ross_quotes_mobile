@@ -25,10 +25,18 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
     private Spinner mUnitSpinner;
 
 
-    public static IntervalDialog getInstance(String key) {
+    /**
+     * Our app will retrieve an IntervalDialog instance with this static method.
+     * The returned instance is associated with the preference
+     * (i.e. SharedPreference key-value pair) with the given @prefKey.
+     *
+     * @param prefKey
+     * @return
+     */
+    public static IntervalDialog getInstance(String prefKey) {
         final IntervalDialog fragment = new IntervalDialog();
         final Bundle bundle = new Bundle(1);
-        bundle.putString(ARG_KEY, key);
+        bundle.putString(ARG_KEY, prefKey);
         fragment.setArguments(bundle);
 
         return fragment;
