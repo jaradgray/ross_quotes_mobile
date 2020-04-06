@@ -25,6 +25,9 @@ public class App extends Application {
     public static final String PREF_KEY_APP_ENABLED = "PREF_KEY_APP_ENABLED";
     public static final String PREF_KEY_MIN_INTERVAL = "PREF_KEY_MIN_INTERVAL";
     public static final String PREF_KEY_MAX_INTERVAL = "PREF_KEY_MAX_INTERVAL";
+    // Pref default values
+    public static final String PREF_DEFAULT_VALUE_MIN_INTERVAL = "5,Seconds";
+    public static final String PREF_DEFAULT_VALUE_MAX_INTERVAL = "7,Hours";
 
 
     // Instance variables
@@ -45,6 +48,7 @@ public class App extends Application {
         createNotificationChannels();
 
         // Set the alarm to start sending notifications if it isn't already set
+        // TODO delete this
         if (!AlarmHelper.isSet(getApplicationContext())) {
             // Set alarm to 5 seconds from now
             // TODO set alarm to a random time within set timeframe
@@ -60,15 +64,15 @@ public class App extends Application {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String prefKey) {
                 switch (prefKey) {
                     case App.PREF_KEY_APP_ENABLED:
-                        // TODO implement this
+                        // TODO set or cancel the alarm
                         Toast.makeText(getApplicationContext(), "App: " + App.PREF_KEY_APP_ENABLED + " changed.", Toast.LENGTH_SHORT).show();
                         break;
                     case App.PREF_KEY_MIN_INTERVAL:
-                        // TODO implement this
+                        // TODO re-set the alarm to the new time frame
                         Toast.makeText(getApplicationContext(), "App: " + App.PREF_KEY_MIN_INTERVAL + " changed.", Toast.LENGTH_SHORT).show();
                         break;
                     case App.PREF_KEY_MAX_INTERVAL:
-                        // TODO implement this
+                        // TODO re-set the alarm to the new time frame
                         Toast.makeText(getApplicationContext(), "App: " + App.PREF_KEY_MAX_INTERVAL + " changed.", Toast.LENGTH_SHORT).show();
                         break;
                 }
@@ -77,6 +81,17 @@ public class App extends Application {
         // register the listener
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         prefs.registerOnSharedPreferenceChangeListener(mPrefsListener);
+
+        // Initialize preferences to default values if they don't exist
+        if (!prefs.contains(PREF_KEY_APP_ENABLED)) {
+            prefs.edit().putBoolean(PREF_KEY_APP_ENABLED, true).apply();
+        }
+        if (!prefs.contains(PREF_KEY_MIN_INTERVAL)) {
+            prefs.edit().putString(PREF_KEY_MIN_INTERVAL, PREF_DEFAULT_VALUE_MIN_INTERVAL).apply();
+        }
+        if (!prefs.contains(PREF_KEY_MAX_INTERVAL)) {
+            prefs.edit().putString(PREF_KEY_MAX_INTERVAL, PREF_DEFAULT_VALUE_MAX_INTERVAL).apply();
+        }
     }
 
 

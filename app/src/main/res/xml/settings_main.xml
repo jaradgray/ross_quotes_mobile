@@ -8,7 +8,6 @@
 
         <!-- Global enable/disable -->
         <SwitchPreferenceCompat
-            android:defaultValue="true"
             android:key="PREF_KEY_APP_ENABLED"
             android:summary="Receive message notifications from Bob and others"
             android:title="Receive notifications" />
@@ -23,14 +22,12 @@
         <com.jgendeavors.rossquotes.IntervalDialogPreference
             android:key="PREF_KEY_MIN_INTERVAL"
             android:title="Minimum interval"
-            android:summary="summary"
-            android:defaultValue="5,Seconds"/>
+            android:summary="summary"/>
 
         <com.jgendeavors.rossquotes.IntervalDialogPreference
             android:key="PREF_KEY_MAX_INTERVAL"
             android:title="Maxxximum interval"
-            android:summary="summary"
-            android:defaultValue="7,Hours"/>
+            android:summary="summary"/>
 
     </PreferenceCategory>
 
