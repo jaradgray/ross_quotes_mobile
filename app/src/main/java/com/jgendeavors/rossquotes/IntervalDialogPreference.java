@@ -55,6 +55,7 @@ public class IntervalDialogPreference extends DialogPreference {
 
     @Override
     public int getDialogLayoutResource() {
+        // Return the layout resource for this DialogPreference's associated DialogFragment
         return R.layout.pref_dialog_interval;
     }
 
