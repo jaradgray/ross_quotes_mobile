@@ -1,6 +1,8 @@
 package com.jgendeavors.rossquotes;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -112,10 +114,31 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
             if (preference instanceof IntervalDialogPreference) {
                 IntervalDialogPreference intervalDialogPref = (IntervalDialogPreference) preference;
 
-                // TODO validate interval based on pref key
-                //  min interval can't be longer than max interval
-                //  max interval can't be shorter than min interval
-                
+                // Validate interval value based on pref key
+
+                final String PREF_KEY_MIN_INTERVAL = "PREF_KEY_MIN_INTERVAL";
+                final String PREF_KEY_MAX_INTERVAL = "PREF_KEY_MAX_INTERVAL";
+
+                if (intervalDialogPref.getKey().equals(PREF_KEY_MIN_INTERVAL)) {
+                    // interval represented by intervalString can't be larger than current max interval
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    String maxIntervalString = prefs.getString(PREF_KEY_MAX_INTERVAL, null);
+                    if (getIntervalMillis(intervalString) > getIntervalMillis(maxIntervalString)) {
+                        // TODO use resource String
+                        Toast.makeText(getContext(), "Interval too large", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } else if (intervalDialogPref.getKey().equals(PREF_KEY_MAX_INTERVAL)) {
+                    // interval represented by intervalString can't be smaller than current min interval
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    String minIntervalString = prefs.getString(PREF_KEY_MIN_INTERVAL, null);
+                    if (getIntervalMillis(intervalString) < getIntervalMillis(minIntervalString)) {
+                        // TODO use resource String
+                        Toast.makeText(getContext(), "Interval too small", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+
                 // The following conditional allows the client to ignore the user value (e.g. if it's the same as the currently-persisted value)
                 if (intervalDialogPref.callChangeListener(intervalString)) {
                     // Save the value
@@ -123,5 +146,43 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
                 }
             }
         }
+    }
+
+
+    // Private methods
+
+    /**
+     * Returns the number of millis represented by the given @interval
+     *
+     * @param interval
+     * @return
+     */
+    private long getIntervalMillis(String interval) {
+        String[] split = interval.split(",");
+        int numUnits = Integer.parseInt(split[0]);
+        String unit = split[1];
+
+        final long MILLIS_PER_SECOND = 1000;
+        final long SECONDS_PER_MINUTE = 60;
+        final long MINUTES_PER_HOUR = 60;
+        final long HOURS_PER_DAY = 24;
+
+        long millisPerUnit = 0;
+        switch (unit) {
+            case "Seconds":
+                millisPerUnit = MILLIS_PER_SECOND;
+                break;
+            case "Minutes":
+                millisPerUnit = SECONDS_PER_MINUTE * MILLIS_PER_SECOND;
+                break;
+            case "Hours":
+                millisPerUnit = MINUTES_PER_HOUR * SECONDS_PER_MINUTE * MILLIS_PER_SECOND;
+                break;
+            case "Days":
+                millisPerUnit = HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE * MILLIS_PER_SECOND;
+                break;
+        }
+
+        return numUnits * millisPerUnit;
     }
 }
