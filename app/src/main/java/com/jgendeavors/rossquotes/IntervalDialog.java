@@ -111,6 +111,11 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
             DialogPreference preference = getPreference();
             if (preference instanceof IntervalDialogPreference) {
                 IntervalDialogPreference intervalDialogPref = (IntervalDialogPreference) preference;
+
+                // TODO validate interval based on pref key
+                //  min interval can't be longer than max interval
+                //  max interval can't be shorter than min interval
+                
                 // The following conditional allows the client to ignore the user value (e.g. if it's the same as the currently-persisted value)
                 if (intervalDialogPref.callChangeListener(intervalString)) {
                     // Save the value
