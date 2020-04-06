@@ -17,6 +17,8 @@ import androidx.preference.PreferenceDialogFragmentCompat;
 
 /**
  * The IntervalDialog class handles the UI interaction aspect of an IntervalDialogPreference.
+ *
+ * Based on the guide here: https://medium.com/@JakobUlbrich/building-a-settings-screen-for-android-part-3-ae9793fd31ec
  */
 public class IntervalDialog extends PreferenceDialogFragmentCompat {
 

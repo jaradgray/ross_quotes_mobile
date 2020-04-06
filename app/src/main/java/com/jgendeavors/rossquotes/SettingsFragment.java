@@ -23,6 +23,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     /**
      * Must be overridden to show custom DialogPreferences' DialogFragments
+     *
+     * Based on the guide here: https://medium.com/@JakobUlbrich/building-a-settings-screen-for-android-part-3-ae9793fd31ec
+     * 
      * @param preference
      */
     @Override

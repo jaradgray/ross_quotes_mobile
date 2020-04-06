@@ -9,6 +9,8 @@ import androidx.preference.DialogPreference;
 
 /**
  * The IntervalDialogPreference class handles the data management (i.e. preference persisting) aspect of an IntervalDialogPreference.
+ *
+ * Based on the guide here: https://medium.com/@JakobUlbrich/building-a-settings-screen-for-android-part-3-ae9793fd31ec
  */
 public class IntervalDialogPreference extends DialogPreference {
     // Instance variables
