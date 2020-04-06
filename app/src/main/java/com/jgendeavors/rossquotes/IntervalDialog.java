@@ -50,11 +50,13 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
     protected void onBindDialogView(View view) {
         super.onBindDialogView(view);
 
-        // Set widget data to match persisted data from SharedPreferences
+        // Set widget state to match persisted data from SharedPreferences
 
+        // get references to widgets
         mValueSpinner = view.findViewById(R.id.pref_dialog_interval_spinner_value);
         mUnitSpinner = view.findViewById(R.id.pref_dialog_interval_spinner_unit);
 
+        // TODO do I need to implement this?
         mValueSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
@@ -76,20 +78,18 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
 
         if (intervalString == null) return;
 
-        // Set spinners based on preference value
-
-        // split the interval String into value and unit
+        // split the String from SharedPrefs into Strings for VALUE and UNIT
         String[] intervalSplit = intervalString.split(",");
         String value = intervalSplit[0];
         String unit = intervalSplit[1];
 
-        // set mValueSpinner's selection to index of its selected entry
+        // set mValueSpinner's selection to index of the persisted VALUE entry
         String[] arrValues = getResources().getStringArray(R.array.pref_interval_values);
         List<String> listValues = new ArrayList<>(Arrays.asList(arrValues));
         int index = listValues.indexOf(value);
         mValueSpinner.setSelection(index);
 
-        // set mUnitSpinner's selection to index of its selected entry
+        // set mUnitSpinner's selection to index of the persisted UNIT entry
         String[] arrUnits = getResources().getStringArray(R.array.pref_entries_interval_units);
         List<String> listUnits = new ArrayList<>(Arrays.asList(arrUnits));
         index = listUnits.indexOf(unit);
