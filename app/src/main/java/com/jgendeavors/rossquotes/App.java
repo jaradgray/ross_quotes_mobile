@@ -87,6 +87,13 @@ public class App extends Application {
         if (!prefs.contains(PREF_KEY_MAX_INTERVAL)) {
             prefs.edit().putString(PREF_KEY_MAX_INTERVAL, PREF_DEFAULT_VALUE_MAX_INTERVAL).apply();
         }
+
+        // Just to be safe, start alarm if app is enabled and the alarm isn't set
+        boolean isEnabled = prefs.getBoolean(PREF_KEY_APP_ENABLED, true);
+        if (isEnabled && !AlarmHelper.isSet(getApplicationContext())) {
+            Log.e("App", "onCreate: App is enabled, but alarm wasn't set. Setting alarm.");
+            AlarmHelper.setAlarmWithinPersistedTimeframe(getApplicationContext());
+        }
     }
 
 
