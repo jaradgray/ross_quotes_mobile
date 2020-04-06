@@ -4,29 +4,29 @@
 
     <PreferenceCategory
         android:key="general_category"
-        android:title="General">
+        android:title="@string/pref_title_general_category">
 
         <!-- Global enable/disable -->
         <SwitchPreferenceCompat
             android:key="PREF_KEY_APP_ENABLED"
-            android:summary="Receive message notifications from Bob and others"
-            android:title="Receive notifications" />
+            android:summary="@string/pref_summary_receive_notifications"
+            android:title="@string/pref_title_receive_notifications" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="schedule_category"
-        android:title="Schedule"
-        android:summary="Set the minimum and maximum times to wait between notifications">
+        android:title="@string/pref_title_schedule_category"
+        android:summary="@string/pref_summary_schedule_category">
 
         <com.jgendeavors.rossquotes.IntervalDialogPreference
             android:key="PREF_KEY_MIN_INTERVAL"
-            android:title="Minimum interval"
+            android:title="@string/pref_title_min_interval"
             android:summary="summary"/>
 
         <com.jgendeavors.rossquotes.IntervalDialogPreference
             android:key="PREF_KEY_MAX_INTERVAL"
-            android:title="Maxxximum interval"
+            android:title="@string/pref_title_max_interval"
             android:summary="summary"/>
 
     </PreferenceCategory>
