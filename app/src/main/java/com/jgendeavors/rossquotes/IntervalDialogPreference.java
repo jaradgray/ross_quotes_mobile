@@ -66,5 +66,6 @@ public class IntervalDialogPreference extends DialogPreference {
     public void setInterval(String value) {
         mInterval = value;
         persistString(value); // update SharedPreferences
+        setSummary(value.replace(',', ' ')); // update summary
     }
 }
