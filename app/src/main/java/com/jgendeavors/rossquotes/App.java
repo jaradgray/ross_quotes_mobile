@@ -63,17 +63,32 @@ public class App extends Application {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String prefKey) {
                 switch (prefKey) {
-                    case App.PREF_KEY_APP_ENABLED:
-                        // TODO set or cancel the alarm
-                        Toast.makeText(getApplicationContext(), "App: " + App.PREF_KEY_APP_ENABLED + " changed.", Toast.LENGTH_SHORT).show();
+                    case PREF_KEY_APP_ENABLED:
+                        // Cancel or set the alarm
+                        boolean isEnabled = sharedPreferences.getBoolean(prefKey, true);
+                        if (!isEnabled && AlarmHelper.isSet(getApplicationContext())) {
+                            AlarmHelper.cancelAlarm(getApplicationContext());
+                        } else if (isEnabled) {
+                            // Set alarm to a random time between the persisted min and max intervals from now
+                            // TODO setting the alarm when it's already set should override the previous set
+                            //  handle this in AlarmHelper
+                            // get the persisted interval values (Strings)
+                            String minIntervalString = sharedPreferences.getString(PREF_KEY_MIN_INTERVAL, null);
+                            String maxIntervalString = sharedPreferences.getString(PREF_KEY_MAX_INTERVAL, null);
+                            // convert persisted Strings to millis
+                            int minInterval = IntervalDialog.getIntervalMillis(minIntervalString);
+                            int maxInterval = IntervalDialog.getIntervalMillis(maxIntervalString);
+                            // set alarm
+                            AlarmHelper.setAlarm(getApplicationContext(), minInterval, maxInterval);
+                        }
                         break;
-                    case App.PREF_KEY_MIN_INTERVAL:
+                    case PREF_KEY_MIN_INTERVAL:
                         // TODO re-set the alarm to the new time frame
-                        Toast.makeText(getApplicationContext(), "App: " + App.PREF_KEY_MIN_INTERVAL + " changed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "App: " + PREF_KEY_MIN_INTERVAL + " changed.", Toast.LENGTH_SHORT).show();
                         break;
-                    case App.PREF_KEY_MAX_INTERVAL:
+                    case PREF_KEY_MAX_INTERVAL:
                         // TODO re-set the alarm to the new time frame
-                        Toast.makeText(getApplicationContext(), "App: " + App.PREF_KEY_MAX_INTERVAL + " changed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "App: " + PREF_KEY_MAX_INTERVAL + " changed.", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

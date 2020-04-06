@@ -154,29 +154,29 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
      * @param interval
      * @return
      */
-    private long getIntervalMillis(String interval) {
+    public static int getIntervalMillis(String interval) {
         String[] split = interval.split(",");
         int numUnits = Integer.parseInt(split[0]);
         String unit = split[1];
 
-        final long MILLIS_PER_SECOND = 1000;
-        final long SECONDS_PER_MINUTE = 60;
-        final long MINUTES_PER_HOUR = 60;
-        final long HOURS_PER_DAY = 24;
+        final int MILLIS_PER_SECOND = 1000;
+        final int MILLIS_PER_MINUTE = MILLIS_PER_SECOND * 60;
+        final int MILLIS_PER_HOUR   = MILLIS_PER_MINUTE * 60;
+        final int MILLIS_PER_DAY    = MILLIS_PER_HOUR * 24;
 
-        long millisPerUnit = 0;
+        int millisPerUnit = 0;
         switch (unit) {
             case "Seconds":
                 millisPerUnit = MILLIS_PER_SECOND;
                 break;
             case "Minutes":
-                millisPerUnit = SECONDS_PER_MINUTE * MILLIS_PER_SECOND;
+                millisPerUnit = MILLIS_PER_MINUTE;
                 break;
             case "Hours":
-                millisPerUnit = MINUTES_PER_HOUR * SECONDS_PER_MINUTE * MILLIS_PER_SECOND;
+                millisPerUnit = MILLIS_PER_HOUR;
                 break;
             case "Days":
-                millisPerUnit = HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE * MILLIS_PER_SECOND;
+                millisPerUnit = MILLIS_PER_DAY;
                 break;
         }
 
