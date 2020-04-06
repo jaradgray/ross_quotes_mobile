@@ -23,16 +23,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.settings_main, rootKey);
-
-        // Set summaries of our custom IntervalDialogPreferences to reflect persisted values
-        // TODO is this necessary? seems to be updating summary without it...
-
-        IntervalDialogPreference minIntervalPref = findPreference("PREF_KEY_MIN_INTERVAL");
-
-        if (minIntervalPref != null) {
-            String summary = minIntervalPref.getInterval().replace(',', ' ');
-            minIntervalPref.setSummary(summary);
-        }
     }
 
     @Override
