@@ -91,7 +91,7 @@ public class App extends Application {
         // Just to be safe, start alarm if app is enabled and the alarm isn't set
         boolean isEnabled = prefs.getBoolean(PREF_KEY_APP_ENABLED, true);
         if (isEnabled && !AlarmHelper.isSet(getApplicationContext())) {
-            Log.e("App", "onCreate: App is enabled, but alarm wasn't set. Setting alarm.");
+            Log.e("App", "onCreate: App is enabled, but alarm isn't set. Setting alarm.");
             AlarmHelper.setAlarmWithinPersistedTimeframe(getApplicationContext());
         }
     }
