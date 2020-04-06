@@ -66,6 +66,7 @@ public class ContactsFragment extends Fragment {
             public void onCheckedChange(Contact contact, boolean isChecked) {
                 // TODO update Contact's isEnabled member
                 Toast.makeText(getContext(), contact.getName() + (isChecked ? " enabled" : " disabled"), Toast.LENGTH_SHORT).show();
+                // TODO notify adapter that the data has changed
             }
         });
 

@@ -34,11 +34,15 @@ public class EditContactFragmentViewModel extends AndroidViewModel {
         if (contactId == EditContactFragment.ARG_VALUE_NO_CONTACT_ID) {
             // Insert new Contact
             // TODO maybe validate by making sure there's a name or picture
-            contact = new Contact(name, imageAbsolutePath);
+            contact = new Contact(name, imageAbsolutePath, true);
             mRepository.insert(contact);
         } else {
             // Update existing Contact
-            contact = new Contact(name, imageAbsolutePath);
+            // get Contact's isEnabled value
+            Contact oldContact = mRepository.getContactSync(contactId);
+            boolean isEnabled = oldContact.getIsEnabled();
+            // update contact
+            contact = new Contact(name, imageAbsolutePath, isEnabled);
             contact.setId(contactId);
             mRepository.update(contact);
         }

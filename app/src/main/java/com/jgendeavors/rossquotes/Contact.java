@@ -20,12 +20,16 @@ public class Contact {
     @ColumnInfo(name = "image_absolute_path")
     private String mImageAbsolutePath;
 
+    @ColumnInfo(name = "is_enabled")
+    private boolean mIsEnabled;
+
 
     // Constructor
 
-    public Contact(String name, String imageAbsolutePath) {
+    public Contact(String name, String imageAbsolutePath, boolean isEnabled) {
         mName = name;
         mImageAbsolutePath = imageAbsolutePath;
+        mIsEnabled = isEnabled;
     }
 
 
@@ -37,4 +41,5 @@ public class Contact {
     public int getId() { return mId; }
     public String getName() { return mName; }
     public String getImageAbsolutePath() { return mImageAbsolutePath; }
+    public boolean getIsEnabled() { return mIsEnabled; }
 }
