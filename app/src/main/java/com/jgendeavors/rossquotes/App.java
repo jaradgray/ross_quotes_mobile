@@ -70,8 +70,6 @@ public class App extends Application {
                             AlarmHelper.cancelAlarm(getApplicationContext());
                         } else if (isEnabled) {
                             // Set alarm to a random time between the persisted min and max intervals from now
-                            // TODO setting the alarm when it's already set should override the previous set
-                            //  handle this in AlarmHelper
                             // get the persisted interval values (Strings)
                             String minIntervalString = sharedPreferences.getString(PREF_KEY_MIN_INTERVAL, null);
                             String maxIntervalString = sharedPreferences.getString(PREF_KEY_MAX_INTERVAL, null);

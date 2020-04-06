@@ -29,7 +29,7 @@ public class AlarmHelper {
                 context,
                 1 /* requestCode, must be unique for each different PendingIntent. We'll have at most one PendingIntent at any time. */,
                 intent,
-                0 /* flags */
+                PendingIntent.FLAG_CANCEL_CURRENT /* flags */
         );
 
         // Set alarm
@@ -72,7 +72,7 @@ public class AlarmHelper {
                 context,
                 1 /* requestCode, must be unique for each different PendingIntent. We'll have at most one PendingIntent at any time. */,
                 intent,
-                0 /* flags */
+                PendingIntent.FLAG_CANCEL_CURRENT /* flags */
         );
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
