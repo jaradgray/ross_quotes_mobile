@@ -51,8 +51,8 @@ public class AlarmHelper {
         String minIntervalString = prefs.getString(App.PREF_KEY_MIN_INTERVAL, App.PREF_DEFAULT_VALUE_MIN_INTERVAL);
         String maxIntervalString = prefs.getString(App.PREF_KEY_MAX_INTERVAL, App.PREF_DEFAULT_VALUE_MAX_INTERVAL);
         // convert persisted Strings to millis
-        int minInterval = IntervalDialog.getIntervalMillis(minIntervalString);
-        int maxInterval = IntervalDialog.getIntervalMillis(maxIntervalString);
+        int minInterval = IntervalDialog.getIntervalMillis(context, minIntervalString);
+        int maxInterval = IntervalDialog.getIntervalMillis(context, maxIntervalString);
         // get a random value between min and max intervals
         Random randy = new Random();
         // we add 1 to the bound to make the max value inclusive, and allow for min and max to be equal

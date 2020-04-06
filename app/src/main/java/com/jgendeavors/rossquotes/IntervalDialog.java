@@ -1,5 +1,6 @@
 package com.jgendeavors.rossquotes;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -120,7 +121,7 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
                     // interval represented by intervalString can't be larger than current max interval
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
                     String maxIntervalString = prefs.getString(App.PREF_KEY_MAX_INTERVAL, null);
-                    if (getIntervalMillis(intervalString) > getIntervalMillis(maxIntervalString)) {
+                    if (getIntervalMillis(getContext(), intervalString) > getIntervalMillis(getContext(), maxIntervalString)) {
                         // TODO use resource String
                         Toast.makeText(getContext(), "Interval too large", Toast.LENGTH_SHORT).show();
                         return;
@@ -129,7 +130,7 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
                     // interval represented by intervalString can't be smaller than current min interval
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
                     String minIntervalString = prefs.getString(App.PREF_KEY_MIN_INTERVAL, null);
-                    if (getIntervalMillis(intervalString) < getIntervalMillis(minIntervalString)) {
+                    if (getIntervalMillis(getContext(), intervalString) < getIntervalMillis(getContext(), minIntervalString)) {
                         // TODO use resource String
                         Toast.makeText(getContext(), "Interval too small", Toast.LENGTH_SHORT).show();
                         return;
@@ -154,32 +155,40 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
      * @param interval
      * @return
      */
-    public static int getIntervalMillis(String interval) {
+    public static int getIntervalMillis(Context context, String interval) {
+        // Split the given interval String into parts for numUnits and unit
         String[] split = interval.split(",");
         int numUnits = Integer.parseInt(split[0]);
         String unit = split[1];
 
+        // Get the index of the given interval's unit in the units array resource
+        String[] arrUnits = context.getResources().getStringArray(R.array.pref_entries_interval_units);
+        List<String> listUnits = new ArrayList<>(Arrays.asList(arrUnits));
+        final int index = listUnits.indexOf(unit);
+
+        // Convert given interval's unit to a millisPerUnit value
         final int MILLIS_PER_SECOND = 1000;
         final int MILLIS_PER_MINUTE = MILLIS_PER_SECOND * 60;
         final int MILLIS_PER_HOUR   = MILLIS_PER_MINUTE * 60;
         final int MILLIS_PER_DAY    = MILLIS_PER_HOUR * 24;
-
         int millisPerUnit = 0;
-        switch (unit) {
-            case "Seconds":
+        switch (index) {
+            // Note: make sure the cases correspond to the indexes of values in the pref_entries_interval_units array resource!
+            case 0 /* "Seconds" */:
                 millisPerUnit = MILLIS_PER_SECOND;
                 break;
-            case "Minutes":
+            case 1/* "Minutes" */:
                 millisPerUnit = MILLIS_PER_MINUTE;
                 break;
-            case "Hours":
+            case 2 /* "Hours" */:
                 millisPerUnit = MILLIS_PER_HOUR;
                 break;
-            case "Days":
+            case 3 /* "Days" */:
                 millisPerUnit = MILLIS_PER_DAY;
                 break;
         }
 
+        // Return number of millis represented by given interval String
         return numUnits * millisPerUnit;
     }
 }
