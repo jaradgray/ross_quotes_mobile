@@ -9,9 +9,9 @@
     <string name="pref_title_schedule_category">Schedule</string>
     <string name="pref_summary_schedule_category">Adjust the time between notifications</string>
 
-    <string name="pref_title_min_interval">Minimum interval</string>
+    <string name="pref_title_min_interval">Minimum time</string>
 
-    <string name="pref_title_max_interval">Maximum interval</string>
+    <string name="pref_title_max_interval">Maximum time</string>
 
     <!-- IntervalDialog -->
     <string name="pref_entry_interval_unit_second">Seconds</string>
