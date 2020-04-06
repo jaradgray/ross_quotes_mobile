@@ -89,7 +89,7 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
         String unit = intervalSplit[1];
 
         // set mValueSpinner's selection to index of the persisted VALUE entry
-        String[] arrValues = getResources().getStringArray(R.array.pref_interval_values);
+        String[] arrValues = getResources().getStringArray(R.array.pref_entries_interval_values);
         List<String> listValues = new ArrayList<>(Arrays.asList(arrValues));
         int index = listValues.indexOf(value);
         mValueSpinner.setSelection(index);

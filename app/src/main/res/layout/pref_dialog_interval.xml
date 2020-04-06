@@ -14,7 +14,7 @@
             android:id="@+id/pref_dialog_interval_spinner_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/pref_interval_values"
+            android:entries="@array/pref_entries_interval_values"
             android:layout_marginEnd="8dp"/>
 
         <Spinner

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Interval unit - ENTRIES -->
+    <!-- IntervalDialog entries for UNIT -->
     <string-array name="pref_entries_interval_units">
         <item>@string/pref_entry_interval_unit_second</item>
         <item>@string/pref_entry_interval_unit_minute</item>
@@ -8,16 +8,8 @@
         <item>@string/pref_entry_interval_unit_day</item>
     </string-array>
 
-    <!-- Interval unit - ENTRY VALUES -->
-    <string-array name="pref_entry_values_interval_units">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <!-- Interval values - ENTRIES and ENTRY VALUES -->
-    <string-array name="pref_interval_values">
+    <!-- IntervalDialog entries for VALUE -->
+    <string-array name="pref_entries_interval_values">
         <item>1</item>
         <item>2</item>
         <item>3</item>
