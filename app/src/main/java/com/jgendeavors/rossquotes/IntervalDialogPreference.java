@@ -26,7 +26,7 @@ public class IntervalDialogPreference extends DialogPreference {
     }
 
     public IntervalDialogPreference(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        this(context, attrs, defStyleAttr, defStyleAttr);
     }
 
     public IntervalDialogPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
