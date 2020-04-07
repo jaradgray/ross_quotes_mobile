@@ -97,13 +97,19 @@ public class DashboardCardView extends CardView {
         mIvIconMain.setImageResource(icMainResId);
         mTvTitle.setText(titleText);
         mTvDetails.setText(detailsText);
-        setAlertMode(alertMode, alertText);
+        setAlert(alertMode, alertText);
     }
 
 
     // API methods
 
-    public void setAlertMode(AlertMode alertMode, String alertText) {
+    /**
+     * Sets state of relevant Views based on the given AlertMode and String.
+     * 
+     * @param alertMode
+     * @param alertText
+     */
+    public void setAlert(AlertMode alertMode, String alertText) {
         // Perform AlertMode-specific logic
         switch (alertMode) {
             case NONE:
