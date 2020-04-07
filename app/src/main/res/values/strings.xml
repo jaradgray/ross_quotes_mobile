@@ -19,6 +19,10 @@
     <string name="pref_entry_interval_unit_hour">Hours</string>
     <string name="pref_entry_interval_unit_day">Days</string>
 
+    <!-- ContactsFragment -->
+    <string name="snackbar_contact_enabled">You will receive notifications from %s.</string>
+    <string name="snackbar_contact_disabled">You won\'t receive notifications from %s.</string>
+
     <!-- ContactDetailsFragment -->
     <!-- options menu -->
     <string name="menu_item_delete_contact_title">Delete contact</string>

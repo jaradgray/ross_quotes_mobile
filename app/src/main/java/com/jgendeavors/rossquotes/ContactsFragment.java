@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class ContactsFragment extends Fragment {
         // put any usages of findViewById() here
 
         // Get references to widgets
-        RecyclerView recyclerView = view.findViewById(R.id.fragment_contacts_recycler_view);
+        final RecyclerView recyclerView = view.findViewById(R.id.fragment_contacts_recycler_view);
         FloatingActionButton fab = view.findViewById(R.id.fragment_contacts_fab);
 
         // Initialize RecyclerView
@@ -69,6 +70,10 @@ public class ContactsFragment extends Fragment {
             public void onCheckedChange(Contact contact, boolean isChecked) {
                 // Update contact's isEnabled value in db via ViewModel
                 viewModel.updateContactIsEnabled(contact, isChecked);
+                // Show a Snackbar
+                int snackbarStringResId = isChecked ? R.string.snackbar_contact_enabled : R.string.snackbar_contact_disabled;
+                String snackbarString = getString(snackbarStringResId, contact.getName());
+                Snackbar.make(recyclerView /* CoordinatorLayout or a child of one */, snackbarString, Snackbar.LENGTH_LONG).show();
             }
         });
 
