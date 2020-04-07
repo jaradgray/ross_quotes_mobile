@@ -46,6 +46,9 @@ public class ContactsFragment extends Fragment {
         final ContactAdapter adapter = new ContactAdapter();
         recyclerView.setAdapter(adapter);
 
+        // Request a ViewModel from the Android system
+        final ContactsFragmentViewModel viewModel = ViewModelProviders.of(this).get(ContactsFragmentViewModel.class);
+
         // Handle interactions on RecyclerView items by implementing ContactAdapter.OnItemInteractionListener interface
         adapter.setOnItemInteractionListener(new ContactAdapter.OnItemInteractionListener() {
             @Override
@@ -64,9 +67,8 @@ public class ContactsFragment extends Fragment {
 
             @Override
             public void onCheckedChange(Contact contact, boolean isChecked) {
-                // TODO update Contact's isEnabled member
-                Toast.makeText(getContext(), contact.getName() + (isChecked ? " enabled" : " disabled"), Toast.LENGTH_SHORT).show();
-                // TODO notify adapter that the data has changed
+                // Update contact's isEnabled value in db via ViewModel
+                viewModel.updateContactIsEnabled(contact, isChecked);
             }
         });
 
@@ -83,9 +85,6 @@ public class ContactsFragment extends Fragment {
                         .navigate(R.id.action_contactsFragment_to_editContactFragment, bundle);
             }
         });
-
-        // Request a ViewModel from the Android system
-        ContactsFragmentViewModel viewModel = ViewModelProviders.of(this).get(ContactsFragmentViewModel.class);
 
         // Observe the ViewModel's LiveData
         viewModel.getContacts().observe(getViewLifecycleOwner(), new Observer<List<Contact>>() {

@@ -35,6 +35,7 @@ public class Contact {
 
     // Setters
     public void setId(int id) { mId = id; }
+    public void setIsEnabled(boolean value) { mIsEnabled = value; }
 
 
     // Getters

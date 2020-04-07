@@ -114,7 +114,13 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         // picture
         Uri imgUri = Uri.parse(contact.getImageAbsolutePath());
         holder.ivPicture.setImageURI(imgUri);
-        // TODO set switch enabled based on Contact enabled
+        // switch
+        holder.switchEnabled.setChecked(contact.getIsEnabled());
+
+        // Set view opacities based on Contact.isEnabled
+        float alpha = contact.getIsEnabled() ? 1.0f : 0.5f;
+        holder.ivPicture.setAlpha(alpha);
+        holder.tvName.setAlpha(alpha);
     }
 
     @Override
