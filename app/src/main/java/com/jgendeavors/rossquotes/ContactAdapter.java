@@ -23,7 +23,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
      */
     public interface OnItemInteractionListener {
         void onItemClick(Contact contact);
-        void onCheckedChange(Contact contact, boolean isChecked);
+        void onSwitchClick(Contact contact, boolean isChecked);
     }
     private OnItemInteractionListener mOnItemInteractionListener;
     public void setOnItemInteractionListener(OnItemInteractionListener listener) { mOnItemInteractionListener = listener; }
@@ -48,14 +48,14 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             switchEnabled = itemView.findViewById(R.id.item_contact_switch);
 
             // Handle switch clicks
-            switchEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            switchEnabled.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                public void onClick(View view) {
                     // notify listener
                     if (mOnItemInteractionListener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            mOnItemInteractionListener.onCheckedChange(mContacts.get(position), isChecked);
+                            mOnItemInteractionListener.onSwitchClick(mContacts.get(position), switchEnabled.isChecked());
                         }
                     }
                 }

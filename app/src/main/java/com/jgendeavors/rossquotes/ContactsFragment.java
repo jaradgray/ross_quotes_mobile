@@ -67,7 +67,7 @@ public class ContactsFragment extends Fragment {
             }
 
             @Override
-            public void onCheckedChange(Contact contact, boolean isChecked) {
+            public void onSwitchClick(Contact contact, boolean isChecked) {
                 // Update contact's isEnabled value in db via ViewModel
                 viewModel.updateContactIsEnabled(contact, isChecked);
                 // Show a Snackbar
