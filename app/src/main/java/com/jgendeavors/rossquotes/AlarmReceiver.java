@@ -73,6 +73,21 @@ public class AlarmReceiver extends BroadcastReceiver {
                 notification
         );
 
+        // Add a ReceivedMessage entry to the database if we just sent a Contact Message notification
+        if (contact != null && message != null) {
+            // create a ReceivedMessage that represents the notification we just sent
+            long timestamp = Calendar.getInstance().getTimeInMillis();
+            ReceivedMessage receivedMessage = new ReceivedMessage(
+                    contact.getName(),
+                    contact.getImageAbsolutePath(),
+                    message.getText(),
+                    timestamp
+            );
+            // insert the ReceivedMessage into database
+            ReceivedMessageRepository receivedMessageRepository = new ReceivedMessageRepository(context);
+            receivedMessageRepository.insert(receivedMessage);
+        }
+
         // Schedule another alarm to be triggered within the persisted timeframe, if the app is enabled
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         boolean isEnabled = prefs.getBoolean(App.PREF_KEY_APP_ENABLED, true);
