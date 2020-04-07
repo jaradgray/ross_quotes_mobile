@@ -4,6 +4,7 @@ import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Insert;
 import androidx.room.Query;
 
 /**
@@ -11,6 +12,9 @@ import androidx.room.Query;
  */
 @Dao
 public interface ReceivedMessageDao {
+    @Insert
+    void insert(ReceivedMessage receivedMessage);
+
     @Query("SELECT * FROM received_message_table ORDER BY timestamp DESC")
     LiveData<List<ReceivedMessage>> getAllByTimestampDesc();
 }
