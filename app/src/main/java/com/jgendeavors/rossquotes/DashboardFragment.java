@@ -46,30 +46,30 @@ public class DashboardFragment extends Fragment {
 
         // put any usages of findViewById() here
 
-        // TODO delete
-        Button buttonRecentMessages = view.findViewById(R.id.fragment_dashboard_b_recent_messages);
-        Button buttonContacts = view.findViewById(R.id.fragment_dashboard_b_contacts);
-        Button buttonSettings = view.findViewById(R.id.fragment_dashboard_b_settings);
+        // Get references to cards
+        DashboardCardView cardMessages = view.findViewById(R.id.fragment_dashboard_card_messages);
+        DashboardCardView cardContacts = view.findViewById(R.id.fragment_dashboard_card_contacts);
+        DashboardCardView cardSettings = view.findViewById(R.id.fragment_dashboard_card_settings);
 
         // Get MainActivity's NavController
         final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
-        // TODO delete
-        buttonRecentMessages.setOnClickListener(new View.OnClickListener() {
+        // Handle clicks on cards
+        cardMessages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Navigate to RecentMessagesFragment
                 navController.navigate(R.id.action_dashboardFragment_to_recentMessagesFragment);
             }
         });
-        buttonContacts.setOnClickListener(new View.OnClickListener() {
+        cardContacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Navigate to ContactsFragment
                 navController.navigate(R.id.action_dashboardFragment_to_contactsFragment);
             }
         });
-        buttonSettings.setOnClickListener(new View.OnClickListener() {
+        cardSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Navigate to SettingsFragment
