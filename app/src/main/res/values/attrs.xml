@@ -10,7 +10,6 @@
             <enum name="CONFIRM" value="1"/>
             <enum name="WARN" value="2"/>
         </attr>
-        <attr name="icAlert" format="integer"/>
         <attr name="alertText" format="string"/>
     </declare-styleable>
 </resources>
