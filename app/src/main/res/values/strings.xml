@@ -27,7 +27,7 @@
         Based on android dev site: https://developer.android.com/guide/topics/resources/string-resource#FormattingAndStyling
         and this SO answer: https://stackoverflow.com/a/7641177
     -->
-    <string name="snackbar_contact_enabled"><![CDATA[You will receive notifications from <b>%s</b>.]]></string>
+    <string name="snackbar_contact_enabled"><![CDATA[You\'ll receive notifications from <b>%s</b>.]]></string>
     <string name="snackbar_contact_disabled"><![CDATA[You won\'t receive notifications from <b>%s</b>.]]></string>
 
     <!-- ContactDetailsFragment -->
