@@ -1,6 +1,9 @@
 package com.jgendeavors.rossquotes;
 
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,8 +75,13 @@ public class ContactsFragment extends Fragment {
                 viewModel.updateContactIsEnabled(contact, isChecked);
                 // Show a Snackbar
                 int snackbarStringResId = isChecked ? R.string.snackbar_contact_enabled : R.string.snackbar_contact_disabled;
-                String snackbarString = getString(snackbarStringResId, contact.getName());
-                Snackbar.make(recyclerView /* CoordinatorLayout or a child of one */, snackbarString, Snackbar.LENGTH_LONG).show();
+                // the string we'll show in the Snackbar contains HTML formatting, so:
+                //  encode Contact's name
+                //  get the styled string with fromHtml()
+                String encodedName = TextUtils.htmlEncode(contact.getName());
+                String text = getString(snackbarStringResId, encodedName); // contains HTML markup
+                Spanned styledText = Html.fromHtml(text); // the string we present to the UI
+                Snackbar.make(recyclerView /* CoordinatorLayout or a child of one */, styledText, Snackbar.LENGTH_LONG).show();
             }
         });
 

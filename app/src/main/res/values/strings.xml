@@ -20,8 +20,15 @@
     <string name="pref_entry_interval_unit_day">Days</string>
 
     <!-- ContactsFragment -->
-    <string name="snackbar_contact_enabled">You will receive notifications from %s.</string>
-    <string name="snackbar_contact_disabled">You won\'t receive notifications from %s.</string>
+    <!--
+        Resources.getString(int, Object...) strips styling from strings
+        The CDATA block makes getString() include the HTML tags as characters in the string
+        Then we can use fromHtml() to render the string with HTML
+        Based on android dev site: https://developer.android.com/guide/topics/resources/string-resource#FormattingAndStyling
+        and this SO answer: https://stackoverflow.com/a/7641177
+    -->
+    <string name="snackbar_contact_enabled"><![CDATA[You will receive notifications from <b>%s</b>.]]></string>
+    <string name="snackbar_contact_disabled"><![CDATA[You won\'t receive notifications from <b>%s</b>.]]></string>
 
     <!-- ContactDetailsFragment -->
     <!-- options menu -->
