@@ -4,7 +4,9 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.List;
@@ -17,13 +19,14 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     private List<Contact> mContacts;
 
     /**
-     * Interface for item clicks
+     * Interface for item interactions
      */
-    public interface OnItemClickListener {
+    public interface OnItemInteractionListener {
         void onItemClick(Contact contact);
+        void onCheckedChange(Contact contact, boolean isChecked);
     }
-    private OnItemClickListener mOnItemClickListener;
-    public void setOnItemClickListener(OnItemClickListener listener) { mOnItemClickListener = listener; }
+    private OnItemInteractionListener mOnItemInteractionListener;
+    public void setOnItemInteractionListener(OnItemInteractionListener listener) { mOnItemInteractionListener = listener; }
 
 
     /**
@@ -33,6 +36,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         // Widgets
         public ImageView ivPicture;
         public TextView tvName;
+        public Switch switchEnabled;
 
         // Constructor
         public ContactViewHolder(View itemView) {
@@ -41,16 +45,31 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             // Get references to widgets
             ivPicture = itemView.findViewById(R.id.item_contact_iv_picture);
             tvName = itemView.findViewById(R.id.item_contact_tv_name);
+            switchEnabled = itemView.findViewById(R.id.item_contact_switch);
+
+            // Handle switch clicks
+            switchEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    // notify listener
+                    if (mOnItemInteractionListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mOnItemInteractionListener.onCheckedChange(mContacts.get(position), isChecked);
+                        }
+                    }
+                }
+            });
 
             // Handle item clicks
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     // notify listener
-                    if (mOnItemClickListener != null) {
+                    if (mOnItemInteractionListener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            mOnItemClickListener.onItemClick(mContacts.get(position));
+                            mOnItemInteractionListener.onItemClick(mContacts.get(position));
                         }
                     }
                 }
@@ -95,6 +114,13 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         // picture
         Uri imgUri = Uri.parse(contact.getImageAbsolutePath());
         holder.ivPicture.setImageURI(imgUri);
+        // switch
+        holder.switchEnabled.setChecked(contact.getIsEnabled());
+
+        // Set view opacities based on Contact.isEnabled
+        float alpha = contact.getIsEnabled() ? 1.0f : 0.5f;
+        holder.ivPicture.setAlpha(alpha);
+        holder.tvName.setAlpha(alpha);
     }
 
     @Override

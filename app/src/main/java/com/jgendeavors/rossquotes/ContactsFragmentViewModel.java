@@ -41,4 +41,15 @@ public class ContactsFragmentViewModel extends AndroidViewModel {
     // Data manipulation methods
     // Our Fragment only has access to the ViewModel and not the Repository, so we create
     // wrapper methods for the Repository API
+
+    /**
+     * Updates the database by setting @contact's isEnabled field to @isEnabled, via the Repository.
+     *
+     * @param contact
+     * @param isEnabled
+     */
+    public void updateContactIsEnabled(Contact contact, boolean isEnabled) {
+        contact.setIsEnabled(isEnabled);
+        mRepository.update(contact);
+    }
 }

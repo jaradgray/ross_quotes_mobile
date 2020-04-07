@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -45,8 +46,11 @@ public class ContactsFragment extends Fragment {
         final ContactAdapter adapter = new ContactAdapter();
         recyclerView.setAdapter(adapter);
 
-        // Handle clicks on RecyclerView items by implementing ContactAdapter.OnItemClickListener interface
-        adapter.setOnItemClickListener(new ContactAdapter.OnItemClickListener() {
+        // Request a ViewModel from the Android system
+        final ContactsFragmentViewModel viewModel = ViewModelProviders.of(this).get(ContactsFragmentViewModel.class);
+
+        // Handle interactions on RecyclerView items by implementing ContactAdapter.OnItemInteractionListener interface
+        adapter.setOnItemInteractionListener(new ContactAdapter.OnItemInteractionListener() {
             @Override
             public void onItemClick(Contact contact) {
                 // Navigate to ContactDetailsFragment
@@ -59,6 +63,12 @@ public class ContactsFragment extends Fragment {
                 // navigate
                 final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
                 navController.navigate(R.id.action_contactsFragment_to_contactDetailsFragment, bundle);
+            }
+
+            @Override
+            public void onCheckedChange(Contact contact, boolean isChecked) {
+                // Update contact's isEnabled value in db via ViewModel
+                viewModel.updateContactIsEnabled(contact, isChecked);
             }
         });
 
@@ -75,9 +85,6 @@ public class ContactsFragment extends Fragment {
                         .navigate(R.id.action_contactsFragment_to_editContactFragment, bundle);
             }
         });
-
-        // Request a ViewModel from the Android system
-        ContactsFragmentViewModel viewModel = ViewModelProviders.of(this).get(ContactsFragmentViewModel.class);
 
         // Observe the ViewModel's LiveData
         viewModel.getContacts().observe(getViewLifecycleOwner(), new Observer<List<Contact>>() {

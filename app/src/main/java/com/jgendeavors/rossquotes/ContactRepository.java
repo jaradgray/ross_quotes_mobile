@@ -50,7 +50,6 @@ public class ContactRepository {
 
     /**
      * Returns the Contact with the given id from the database synchronously.
-     * Simplified and based on MessageRepository.getAllSync()
      *
      * @param id
      * @return
@@ -73,6 +72,33 @@ public class ContactRepository {
             result = executorService.submit(callableTask).get();
         } catch (Exception e) {
             Log.e(TAG, "ContactRepository.getContactSync(): " + e);
+        }
+        return result;
+    }
+
+    /**
+     * Returns a List of all enabled Contacts from the db synchronously.
+     *
+     * @return
+     */
+    public List<Contact> getAllEnabledSync() {
+        // Create ExecutorService
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
+
+        // Create the task the ExecutorService will execute
+        Callable<List<Contact>> callableTask = new Callable<List<Contact>>() {
+            @Override
+            public List<Contact> call() throws Exception {
+                return mContactDao.getAllSync(true);
+            }
+        };
+
+        // Return the result of the task when it completes
+        List<Contact> result = null;
+        try {
+            result = executorService.submit(callableTask).get();
+        } catch (Exception e) {
+            Log.e(TAG, "ContactRepository.getAllEnabledSync(): " + e);
         }
         return result;
     }

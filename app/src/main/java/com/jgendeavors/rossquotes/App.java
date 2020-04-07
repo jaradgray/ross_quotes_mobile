@@ -21,6 +21,7 @@ import java.util.Calendar;
 public class App extends Application {
     // Constants
     public static final String CHANNEL_ID_MESSAGES = "CHANNEL_ID_MESSAGES";
+    public static final String CHANNEL_ID_ALERTS = "CHANNEL_ID_ALERTS";
     // Pref keys
     public static final String PREF_KEY_APP_ENABLED = "PREF_KEY_APP_ENABLED";
     public static final String PREF_KEY_MIN_INTERVAL = "PREF_KEY_MIN_INTERVAL";
@@ -112,11 +113,22 @@ public class App extends Application {
             );
 
             // TODO replace this and previous name string with resource strings
-            messagesChannel.setDescription("This notification channel notifies the user of new messages.");
+            messagesChannel.setDescription("Displays message notifications from contacts in the app.");
+
+            // Set up channel for displaying alert notifications
+            NotificationChannel alertsChannel = new NotificationChannel(
+                    CHANNEL_ID_ALERTS,
+                    "Alerts" /* channel name, visible to user */,
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+
+            // TODO replace this and previous name string with resource strings
+            alertsChannel.setDescription("Alerts the user when the app is in a state that could lead to undesired behavior.");
 
             // Register the channels so we can send notifications through them
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(messagesChannel);
+            manager.createNotificationChannel(alertsChannel);
         }
     }
 }

@@ -37,4 +37,7 @@ public interface MessageDao {
 
     @Query("DELETE FROM message_table WHERE contact_id = :contactId")
     void deleteByContactId(int contactId);
+
+    @Query("SELECT * FROM message_table WHERE contact_id = :contactId")
+    List<Message> getMessagesForContactSync(int contactId);
 }
