@@ -13,20 +13,24 @@ public class ReceivedMessage {
     @ColumnInfo(name = "id")
     private int mId;
 
-    @ColumnInfo(name = "message_id")
-    private int mMessageId;
+    @ColumnInfo(name = "contact_name")
+    private String mContactName;
 
-    @ColumnInfo(name = "contact_id")
-    private int mContactId;
+    @ColumnInfo(name = "contact_image_absolute_path")
+    private String mContactImageAbsolutePath;
+
+    @ColumnInfo(name = "message_text")
+    private String mMessageText;
 
     @ColumnInfo(name = "timestamp")
     private long mTimestamp;
 
 
     // Constructor
-    public ReceivedMessage(int messageId, int contactId, long timestamp) {
-        mMessageId = messageId;
-        mContactId = contactId;
+    public ReceivedMessage(String contactName, String contactImageAbsolutePath, String messageText, long timestamp) {
+        mContactName = contactName;
+        mContactImageAbsolutePath = contactImageAbsolutePath;
+        mMessageText = messageText;
         mTimestamp = timestamp;
     }
 
@@ -37,7 +41,8 @@ public class ReceivedMessage {
 
     // Getters
     public int getId() { return mId; }
-    public int getMessageId() { return mMessageId; }
-    public int getContactId() { return mContactId; }
+    public String getContactName() { return mContactName; }
+    public String getContactImageAbsolutePath() { return mContactImageAbsolutePath; }
+    public String getMessageText() { return mMessageText; }
     public long getTimestamp() { return mTimestamp; }
 }
