@@ -40,4 +40,7 @@ public interface ContactDao {
 
     @Query("SELECT * FROM contact_table WHERE id = :id")
     Contact getContactSync(int id);
+
+    @Query("SELECT * FROM contact_table WHERE is_enabled = :isEnabled")
+    List<Contact> getAllSync(boolean isEnabled);
 }
