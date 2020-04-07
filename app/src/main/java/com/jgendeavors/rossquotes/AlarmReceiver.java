@@ -160,6 +160,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setSmallIcon(R.drawable.ic_add)
                 .setContentTitle("No enabled contacts")
                 .setContentText("Ross Quotes is scheduling messages, but you don't have any enabled contacts.")
+                .setStyle(new NotificationCompat.BigTextStyle())
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
@@ -182,6 +183,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setSmallIcon(R.drawable.ic_add)
                 .setContentTitle("No messages found")
                 .setContentText("You should be seeing a message from " + contact.getName() + ", but we couldn't find any.")
+                .setStyle(new NotificationCompat.BigTextStyle())
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
@@ -213,6 +215,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentTitle(contact.getName())
                 .setContentText(message.getText())
                 .setLargeIcon(largeIcon)
+                .setStyle(new NotificationCompat.BigTextStyle())
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
