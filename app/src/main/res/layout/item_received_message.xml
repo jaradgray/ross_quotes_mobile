@@ -29,6 +29,7 @@
                 android:id="@+id/item_received_message_tv_contact_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/Text.CardView.Title"
                 android:text="tv_contact_name"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@id/item_received_message_iv_avatar"/>
@@ -37,6 +38,7 @@
                 android:id="@+id/item_received_message_tv_message_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/Text.CardView.Body"
                 android:text="tv_message_text"
                 android:layout_below="@id/item_received_message_tv_contact_name"
                 android:layout_toEndOf="@id/item_received_message_iv_avatar"/>
@@ -48,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textAppearance="@style/Text.CardView.Info"
             android:text="tv_contact_name"/>
 
     </LinearLayout>
