@@ -1,6 +1,20 @@
 <resources>
     <string name="app_name">Ross Quotes</string>
 
+    <!-- DashboardFragment -->
+    <string name="version_format">Version %s</string>
+
+    <string name="dashboard_card_received_messages_title">Received Messages</string>
+    <string name="dashboard_card_received_messages_details">%d messages</string>
+
+    <string name="dashboard_card_contacts_title">Contacts</string>
+    <string name="dashboard_card_contacts_details">%d contacts\n%d enabled</string>
+    <string name="dashboard_card_contacts_alert_warn">No contacts enabled</string>
+
+    <string name="dashboard_card_settings_title">Settings</string>
+    <string name="dashboard_card_settings_alert_confirm">Messages are being scheduled</string>
+    <string name="dashboard_card_settings_alert_warn">Not scheduling messages</string>
+
     <!-- SettingsFragment (and settings_main.xml) -->
     <string name="pref_title_general_category">General</string>
     <string name="pref_title_receive_notifications">Receive notifications</string>

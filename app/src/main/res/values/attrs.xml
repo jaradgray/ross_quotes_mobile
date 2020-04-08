@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- DashboardCardView -->
+    <declare-styleable name="DashboardCardView">
+        <attr name="icMain" format="integer"/>
+        <attr name="titleText" format="string"/>
+        <attr name="detailsText" format="string"/>
+        <attr name="alertMode" format="enum">
+            <enum name="NONE" value="0"/>
+            <enum name="CONFIRM" value="1"/>
+            <enum name="WARN" value="2"/>
+        </attr>
+        <attr name="alertText" format="string"/>
+    </declare-styleable>
+</resources>
