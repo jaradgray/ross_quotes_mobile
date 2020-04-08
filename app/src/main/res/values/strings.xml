@@ -56,6 +56,7 @@
     <string name="menu_item_delete_contact_title">Delete contact</string>
 
     <string name="fragment_contact_details_section_quotes_heading">Quotes</string>
+    <string name="fragment_contact_details_alert_no_quotes">This contact doesn\'t have any quotes</string>
 
     <!-- EditContactFragment -->
     <string name="fragment_edit_contact_title">Edit Contact</string>

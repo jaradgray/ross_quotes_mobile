@@ -60,6 +60,7 @@ public class ContactDetailsFragment extends Fragment {
         final ImageView ivProfile = view.findViewById(R.id.fragment_contact_details_iv_profile);
         final TextView tvName = view.findViewById(R.id.fragment_contact_details_tv_name);
         View contactContainer = view.findViewById(R.id.fragment_contact_details_contact_container);
+        final View alertContainer = view.findViewById(R.id.fragment_contact_details_alert_container);
         RecyclerView recyclerView = view.findViewById(R.id.fragment_contact_details_rv_quotes);
         FloatingActionButton fab = view.findViewById(R.id.fragment_contact_details_fab);
 
@@ -141,6 +142,9 @@ public class ContactDetailsFragment extends Fragment {
             public void onChanged(List<Message> messages) {
                 // update adapter's data
                 adapter.setMessages(messages);
+                // show/hide "no quotes" alert based on if Contact has messages in the db
+                int visibility = messages.isEmpty() ? View.VISIBLE : View.GONE;
+                alertContainer.setVisibility(visibility);
             }
         });
     }

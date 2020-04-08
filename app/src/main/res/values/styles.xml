@@ -41,6 +41,11 @@
         <item name="android:textColor">@color/onSurface_disabled</item>
     </style>
 
+    <style name="Text.Alert">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="Text.CardView" />
 
     <style name="Text.CardView.Title">
