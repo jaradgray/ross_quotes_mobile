@@ -2,6 +2,11 @@
     <string name="app_name">Ross Quotes</string>
 
     <!-- Notifications -->
+    <string name="notification_channel_name_messages">Messages</string>
+    <string name="notification_channel_name_alerts">Alerts</string>
+    <string name="notification_channel_description_messages">Message notifications from contacts in the app.</string>
+    <string name="notification_channel_description_alerts">Alerts when the app is in a state that could lead to undesired behavior.</string>
+
     <string name="notification_title_no_enabled_contacts">No enabled contacts</string>
     <string name="notification_text_no_enabled_contacts">Ross Quotes is scheduling messages, but you don\'t have any enabled contacts.</string>
 

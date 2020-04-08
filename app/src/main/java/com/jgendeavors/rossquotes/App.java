@@ -105,25 +105,27 @@ public class App extends Application {
      */
     private void createNotificationChannels() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Get resource strings we'll use
+            String channelNameMessages = getString(R.string.notification_channel_name_messages);
+            String channelNameAlerts = getString(R.string.notification_channel_name_alerts);
+            String channelDescriptionMessages = getString(R.string.notification_channel_description_messages);
+            String channelDescriptionAlerts = getString(R.string.notification_channel_description_alerts);
+
             // Set up channel for displaying message/quote notifications
             NotificationChannel messagesChannel = new NotificationChannel(
                     CHANNEL_ID_MESSAGES,
-                    "Messages" /* channel name, visible to user */,
+                    channelNameMessages /* channel name, visible to user */,
                     NotificationManager.IMPORTANCE_HIGH
             );
-
-            // TODO replace this and previous name string with resource strings
-            messagesChannel.setDescription("Displays message notifications from contacts in the app.");
+            messagesChannel.setDescription(channelDescriptionMessages);
 
             // Set up channel for displaying alert notifications
             NotificationChannel alertsChannel = new NotificationChannel(
                     CHANNEL_ID_ALERTS,
-                    "Alerts" /* channel name, visible to user */,
+                    channelNameAlerts /* channel name, visible to user */,
                     NotificationManager.IMPORTANCE_HIGH
             );
-
-            // TODO replace this and previous name string with resource strings
-            alertsChannel.setDescription("Alerts the user when the app is in a state that could lead to undesired behavior.");
+            alertsChannel.setDescription(channelDescriptionAlerts);
 
             // Register the channels so we can send notifications through them
             NotificationManager manager = getSystemService(NotificationManager.class);
