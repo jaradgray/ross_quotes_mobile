@@ -21,16 +21,31 @@
             android:text="@string/app_name"
             android:layout_centerHorizontal="true"/>
 
-        <TextView
-            android:id="@+id/fragment_dashboard_tv_premium"
+        <!-- Premium indicator -->
+        <LinearLayout
+            android:id="@+id/fragment_dashboard_premium_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
-            android:textAlignment="center"
-            android:text="tv_premium"
-            android:visibility="gone"
+            android:gravity="center_vertical"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/fragment_dashboard_tv_app_name"/>
+            android:layout_below="@id/fragment_dashboard_tv_app_name"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:src="@drawable/ic_crown"
+                android:tint="@color/gold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Text.Display.Small"
+                android:text="@string/dashboard_fragment_tv_premium"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/fragment_dashboard_tv_version"
@@ -41,7 +56,7 @@
             android:textAlignment="center"
             android:text="tv_version"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/fragment_dashboard_tv_premium"/>
+            android:layout_below="@id/fragment_dashboard_premium_container"/>
 
     </RelativeLayout>
 

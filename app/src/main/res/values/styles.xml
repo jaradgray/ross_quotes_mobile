@@ -23,6 +23,10 @@
         <item name="android:textSize">48sp</item>
     </style>
 
+    <style name="Text.Display.Small">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="Text.Heading"/>
 
     <style name="Text.Heading.Section">

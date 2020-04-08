@@ -18,6 +18,8 @@
 
     <string name="version_format">Version %s</string>
 
+    <string name="dashboard_fragment_tv_premium">Premium</string>
+
     <string name="dashboard_card_received_messages_title">Received Messages</string>
     <string name="dashboard_card_received_messages_details">%d messages</string>
 
