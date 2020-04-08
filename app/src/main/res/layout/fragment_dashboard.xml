@@ -16,7 +16,7 @@
             android:id="@+id/fragment_dashboard_tv_app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/Text.Heading.Title"
+            android:textAppearance="@style/Text.Display.Large"
             android:textAlignment="center"
             android:text="@string/app_name"
             android:layout_centerHorizontal="true"/>
