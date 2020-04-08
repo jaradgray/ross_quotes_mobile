@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="8dp"
-    android:background="@android:color/holo_blue_light">
+    android:padding="8dp">
 
     <!-- Header area -->
     <TextView
