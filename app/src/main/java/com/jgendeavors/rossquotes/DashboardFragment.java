@@ -61,7 +61,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Navigate to RecentMessagesFragment
-                navController.navigate(R.id.action_dashboardFragment_to_recentMessagesFragment);
+                navController.navigate(R.id.action_dashboardFragment_to_receivedMessagesFragment);
             }
         });
         cardContacts.setOnClickListener(new View.OnClickListener() {

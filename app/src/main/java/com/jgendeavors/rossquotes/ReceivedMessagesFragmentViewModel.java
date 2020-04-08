@@ -8,14 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-public class RecentMessagesFragmentViewModel extends AndroidViewModel {
+public class ReceivedMessagesFragmentViewModel extends AndroidViewModel {
     // Instance variables
     private ReceivedMessageRepository mRepository;
     private LiveData<List<ReceivedMessage>> mAllReceivedMessages;
 
 
     // Constructor
-    public RecentMessagesFragmentViewModel(@NonNull Application application) {
+    public ReceivedMessagesFragmentViewModel(@NonNull Application application) {
         super(application);
 
         mRepository = new ReceivedMessageRepository(application);

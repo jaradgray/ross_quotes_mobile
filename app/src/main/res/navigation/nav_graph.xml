@@ -10,8 +10,8 @@
         android:name="com.jgendeavors.rossquotes.DashboardFragment"
         android:label="DashboardFragment" >
         <action
-            android:id="@+id/action_dashboardFragment_to_recentMessagesFragment"
-            app:destination="@id/recentMessagesFragment" />
+            android:id="@+id/action_dashboardFragment_to_receivedMessagesFragment"
+            app:destination="@id/receivedMessagesFragment" />
         <action
             android:id="@+id/action_dashboardFragment_to_contactsFragment"
             app:destination="@id/contactsFragment" />
@@ -45,9 +45,9 @@
     </fragment>
 
     <fragment
-        android:id="@+id/recentMessagesFragment"
-        android:name="com.jgendeavors.rossquotes.RecentMessagesFragment"
-        android:label="RecentMessagesFragment" />
+        android:id="@+id/receivedMessagesFragment"
+        android:name="com.jgendeavors.rossquotes.ReceivedMessagesFragment"
+        android:label="ReceivedMessagesFragment" />
 
     <fragment
         android:id="@+id/settingsFragment"

@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecentMessagesFragment extends Fragment {
+public class ReceivedMessagesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class RecentMessagesFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         // Request a ViewModel from the Android system
-        RecentMessagesFragmentViewModel viewModel = ViewModelProviders.of(this).get(RecentMessagesFragmentViewModel.class);
+        ReceivedMessagesFragmentViewModel viewModel = ViewModelProviders.of(this).get(ReceivedMessagesFragmentViewModel.class);
 
         // Observe the ViewModel's LiveData
         viewModel.getAllReceivedMessages().observe(getViewLifecycleOwner(), new Observer<List<ReceivedMessage>>() {
