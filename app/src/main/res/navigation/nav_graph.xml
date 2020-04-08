@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.jgendeavors.rossquotes.DashboardFragment"
-        android:label="DashboardFragment" >
+        android:label="@string/fragment_dashboard_title" >
         <action
             android:id="@+id/action_dashboardFragment_to_receivedMessagesFragment"
             app:destination="@id/receivedMessagesFragment" />
@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.jgendeavors.rossquotes.ContactsFragment"
-        android:label="ContactsFragment" >
+        android:label="@string/fragment_contacts_title" >
         <action
             android:id="@+id/action_contactsFragment_to_contactDetailsFragment"
             app:destination="@id/contactDetailsFragment" />
@@ -35,7 +35,7 @@
     <fragment
         android:id="@+id/contactDetailsFragment"
         android:name="com.jgendeavors.rossquotes.ContactDetailsFragment"
-        android:label="ContactDetailsFragment" >
+        android:label="@string/fragment_contact_details_title" >
         <action
             android:id="@+id/action_contactDetailsFragment_to_editMessageFragment"
             app:destination="@id/editMessageFragment" />
@@ -47,22 +47,22 @@
     <fragment
         android:id="@+id/receivedMessagesFragment"
         android:name="com.jgendeavors.rossquotes.ReceivedMessagesFragment"
-        android:label="ReceivedMessagesFragment" />
+        android:label="@string/fragment_received_messages_title" />
 
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.jgendeavors.rossquotes.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="@string/fragment_settings_title" />
 
     <fragment
         android:id="@+id/editMessageFragment"
         android:name="com.jgendeavors.rossquotes.EditMessageFragment"
-        android:label="EditMessageFragment"
+        android:label="@string/fragment_edit_message_title"
         tools:layout="@layout/fragment_edit_message" />
 
     <fragment
         android:id="@+id/editContactFragment"
         android:name="com.jgendeavors.rossquotes.EditContactFragment"
-        android:label="EditContactFragment" />
+        android:label="@string/fragment_edit_contact_title" />
 
 </navigation>
