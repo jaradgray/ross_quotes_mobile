@@ -31,6 +31,9 @@
 
     <!-- ReceivedMessagesFragment -->
     <string name="fragment_received_messages_title">Received Messages</string>
+    <!-- options menu-->
+    <string name="menu_item_clear_received_messages_title">Clear messages</string>
+    <string name="toast_received_messages_cleared">Messages cleared</string>
 
     <!-- ContactsFragment -->
     <string name="fragment_contacts_title">Contacts</string>
