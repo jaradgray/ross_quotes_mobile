@@ -169,12 +169,11 @@ public class AlarmReceiver extends BroadcastReceiver {
     private Notification getNoEnabledContactsNotification(Context context) {
         // create and return the notification
         // TODO update small icon
-        //  use resource Strings
         //  notification click -> ContactsFragment
         return new NotificationCompat.Builder(context, App.CHANNEL_ID_ALERTS)
                 .setSmallIcon(R.drawable.ic_add)
-                .setContentTitle("No enabled contacts")
-                .setContentText("Ross Quotes is scheduling messages, but you don't have any enabled contacts.")
+                .setContentTitle(context.getString(R.string.notification_title_no_enabled_contacts))
+                .setContentText(context.getString(R.string.notification_text_no_enabled_contacts))
                 .setStyle(new NotificationCompat.BigTextStyle())
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -192,12 +191,11 @@ public class AlarmReceiver extends BroadcastReceiver {
     private Notification getNoMessagesForContactNotification(Context context, Contact contact) {
         // create and return the notification
         // TODO update small icon
-        //  use resource Strings
         //  notification click -> ContactDetailsFragment
         return new NotificationCompat.Builder(context, App.CHANNEL_ID_ALERTS)
                 .setSmallIcon(R.drawable.ic_add)
-                .setContentTitle("No messages found")
-                .setContentText("You should be seeing a message from " + contact.getName() + ", but we couldn't find any.")
+                .setContentTitle(context.getString(R.string.notification_title_no_messages_for_contact))
+                .setContentText(context.getString(R.string.notification_text_no_messages_for_contact, contact.getName()))
                 .setStyle(new NotificationCompat.BigTextStyle())
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
                 .setPriority(NotificationCompat.PRIORITY_HIGH)

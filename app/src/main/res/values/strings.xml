@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Ross Quotes</string>
 
+    <!-- Notifications -->
+    <string name="notification_title_no_enabled_contacts">No enabled contacts</string>
+    <string name="notification_text_no_enabled_contacts">Ross Quotes is scheduling messages, but you don\'t have any enabled contacts.</string>
+
+    <string name="notification_title_no_messages_for_contact">No messages found</string>
+    <string name="notification_text_no_messages_for_contact">You should be seeing a message from %s, but we couldn\'t find any.</string>
+
     <!-- DashboardFragment -->
     <string name="version_format">Version %s</string>
 
