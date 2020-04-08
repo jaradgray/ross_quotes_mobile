@@ -121,6 +121,9 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         float alpha = contact.getIsEnabled() ? 1.0f : 0.5f;
         holder.ivPicture.setAlpha(alpha);
         holder.tvName.setAlpha(alpha);
+
+        // TODO could show/hide an alert indicating Contact has no Messages in db ???
+        //  would need to use a MessageRepository.getMessagesForContactSync() method
     }
 
     @Override
