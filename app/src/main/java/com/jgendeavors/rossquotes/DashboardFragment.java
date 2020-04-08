@@ -124,7 +124,7 @@ public class DashboardFragment extends Fragment {
             public void onChanged(Boolean isEnabled) {
                 // update settings card's alert
                 DashboardCardView.AlertMode alertMode = isEnabled ? DashboardCardView.AlertMode.CONFIRM : DashboardCardView.AlertMode.WARN;
-                String alertText = isEnabled ? getString(R.string.dashboard_card_settings_alert_text_confirm) : getString(R.string.dashboard_card_settings_alert_text_warn);
+                String alertText = isEnabled ? getString(R.string.dashboard_card_settings_alert_confirm) : getString(R.string.dashboard_card_settings_alert_warn);
                 cardSettings.setAlert(alertMode, alertText);
             }
         });
