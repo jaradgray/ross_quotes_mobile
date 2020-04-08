@@ -29,14 +29,6 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/fragment_contact_details_iv_profile"/>
 
-        <ImageView
-            android:id="@+id/fragment_contact_details_iv_edit_contact"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_edit"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@id/fragment_contact_details_tv_name"/>
-
     </RelativeLayout>
 
 
