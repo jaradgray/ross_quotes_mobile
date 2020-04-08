@@ -3,14 +3,17 @@
 
     <!-- DashboardFragment -->
     <string name="dashboard_card_received_messages_title">Received Messages</string>
-    <string name="dashboard_card_received_messages_details">%s messages</string>
+    <string name="dashboard_card_received_messages_details">%d messages</string>
 
     <string name="dashboard_card_contacts_title">Contacts</string>
-    <string name="dashboard_card_contacts_details">%s contacts</string>
+    <string name="dashboard_card_contacts_details">%d contacts</string>
 
     <string name="dashboard_card_settings_title">Settings</string>
     <string name="dashboard_card_settings_alert_confirm">CONFIRM</string>
     <string name="dashboard_card_settings_alert_warn">WARN</string>
+
+    <string name="dashboard_card_settings_alert_text_confirm">Messages are being scheduled</string>
+    <string name="dashboard_card_settings_alert_text_warn">Not scheduling messages</string>
 
     <!-- SettingsFragment (and settings_main.xml) -->
     <string name="pref_title_general_category">General</string>

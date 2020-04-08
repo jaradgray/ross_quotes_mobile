@@ -12,10 +12,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -47,9 +50,9 @@ public class DashboardFragment extends Fragment {
         // put any usages of findViewById() here
 
         // Get references to cards
-        DashboardCardView cardMessages = view.findViewById(R.id.fragment_dashboard_card_messages);
-        DashboardCardView cardContacts = view.findViewById(R.id.fragment_dashboard_card_contacts);
-        DashboardCardView cardSettings = view.findViewById(R.id.fragment_dashboard_card_settings);
+        final DashboardCardView cardMessages = view.findViewById(R.id.fragment_dashboard_card_messages);
+        final DashboardCardView cardContacts = view.findViewById(R.id.fragment_dashboard_card_contacts);
+        final DashboardCardView cardSettings = view.findViewById(R.id.fragment_dashboard_card_settings);
 
         // Get MainActivity's NavController
         final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
@@ -74,6 +77,44 @@ public class DashboardFragment extends Fragment {
             public void onClick(View view) {
                 // Navigate to SettingsFragment
                 navController.navigate(R.id.action_dashboardFragment_to_settingsFragment);
+            }
+        });
+
+        // Bind UI to the ViewModel
+
+        // request a ViewModel from the Android system
+        DashboardFragmentViewModel viewModel = ViewModelProviders.of(this).get(DashboardFragmentViewModel.class);
+        // observe the ViewModel's LiveData
+        // received messages
+        viewModel.getAllReceivedMessages().observe(getViewLifecycleOwner(), new Observer<List<ReceivedMessage>>() {
+            @Override
+            public void onChanged(List<ReceivedMessage> receivedMessages) {
+                // update messages card's details text
+                String detailsText = getString(
+                        R.string.dashboard_card_received_messages_details,
+                        receivedMessages.size());
+                cardMessages.setDetailText(detailsText);
+            }
+        });
+        // contacts
+        viewModel.getAllContacts().observe(getViewLifecycleOwner(), new Observer<List<Contact>>() {
+            @Override
+            public void onChanged(List<Contact> contacts) {
+                // update contacts card's details text
+                String detailsText = getString(
+                        R.string.dashboard_card_contacts_details,
+                        contacts.size());
+                cardContacts.setDetailText(detailsText);
+            }
+        });
+        // app enabled/disabled
+        viewModel.getIsAppEnabled().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isEnabled) {
+                // update settings card's alert
+                DashboardCardView.AlertMode alertMode = isEnabled ? DashboardCardView.AlertMode.CONFIRM : DashboardCardView.AlertMode.WARN;
+                String alertText = isEnabled ? getString(R.string.dashboard_card_settings_alert_text_confirm) : getString(R.string.dashboard_card_settings_alert_text_warn);
+                cardSettings.setAlert(alertMode, alertText);
             }
         });
     }

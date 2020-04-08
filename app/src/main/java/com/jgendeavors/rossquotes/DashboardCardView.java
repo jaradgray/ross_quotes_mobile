@@ -135,4 +135,15 @@ public class DashboardCardView extends CardView {
         invalidate();
         requestLayout();
     }
+
+    /**
+     * Sets the details TextView's text to @text, and updates layout.
+     *
+     * @param text
+     */
+    public void setDetailText(String text) {
+        mTvDetails.setText(text);
+        invalidate();
+        requestLayout();
+    }
 }
