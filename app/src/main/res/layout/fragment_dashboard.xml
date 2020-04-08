@@ -18,7 +18,8 @@
         android:id="@+id/fragment_dashboard_tv_premium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tv_premium"/>
+        android:text="tv_premium"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/fragment_dashboard_tv_version"
