@@ -15,6 +15,7 @@
             android:id="@+id/item_message_tv_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/Text.CardView.Body"
             android:maxLines="4"
             android:ellipsize="end"
             android:text="tv_message"/>

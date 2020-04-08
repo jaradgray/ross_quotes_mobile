@@ -61,7 +61,7 @@ public class EditContactFragment extends Fragment {
             // New Contact
             // Set ImageView's image and tag to default values
             final String resPath = "android.resource://com.jgendeavors.rossquotes/";
-            String imgPath = resPath + R.drawable.ic_person;
+            String imgPath = resPath + R.drawable.ic_default_avatar;
             Uri imgUri = Uri.parse(imgPath);
             mIvContactPhoto.setImageURI(imgUri);
             mIvContactPhoto.setTag(imgPath);

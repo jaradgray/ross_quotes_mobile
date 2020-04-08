@@ -18,6 +18,8 @@
 
     <string name="version_format">Version %s</string>
 
+    <string name="dashboard_fragment_tv_premium">Premium</string>
+
     <string name="dashboard_card_received_messages_title">Received Messages</string>
     <string name="dashboard_card_received_messages_details">%d messages</string>
 
@@ -52,6 +54,8 @@
     <string name="fragment_contact_details_title">Details</string>
     <!-- options menu -->
     <string name="menu_item_delete_contact_title">Delete contact</string>
+
+    <string name="fragment_contact_details_section_quotes_heading">Quotes</string>
 
     <!-- EditContactFragment -->
     <string name="fragment_edit_contact_title">Edit Contact</string>
