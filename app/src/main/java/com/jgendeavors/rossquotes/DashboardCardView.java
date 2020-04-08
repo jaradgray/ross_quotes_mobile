@@ -2,7 +2,6 @@ package com.jgendeavors.rossquotes;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,7 +92,7 @@ public class DashboardCardView extends CardView {
         mIvIconAlert = v.findViewById(R.id.view_dashboard_card_iv_icon_alert);
         mTvAlert = v.findViewById(R.id.view_dashboard_card_tv_alert);
 
-        // TODO set widget data based on attributes
+        // Set widget data based on attributes
         mIvIconMain.setImageResource(icMainResId);
         mTvTitle.setText(titleText);
         mTvDetails.setText(detailsText);
