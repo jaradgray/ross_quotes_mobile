@@ -8,4 +8,35 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Text" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/onSurface_mediumEmphasis</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Text.CardView" />
+
+    <style name="Text.CardView.Title">
+        <item name="android:textColor">@color/onSurface_highEmphasis</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Text.CardView.Body">
+
+    </style>
+
+    <style name="Text.CardView.Info">
+        <item name="android:textColor">@color/onSurface_disabled</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Text.CardView.Info.Alert">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="Text.CardView.Info.Alert.Confirm">
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+
+
 </resources>
