@@ -47,4 +47,21 @@ public class ReceivedMessageRepository {
     }
 
     public LiveData<List<ReceivedMessage>> getAllReceivedMessages() { return mAllReceivedMessages; }
+
+    /** Wraps ReceivedMessageDao.deleteAll() */
+    public void deleteAll() {
+        // Get an ExecutorService
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
+
+        // Create the task the ExecutorService will execute (the task won't return a result, so we can use Runnable)
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                mReceivedMessageDao.deleteAll();
+            }
+        };
+
+        // Execute the task at some time in the future, via ExecutorService
+        executorService.execute(task);
+    }
 }

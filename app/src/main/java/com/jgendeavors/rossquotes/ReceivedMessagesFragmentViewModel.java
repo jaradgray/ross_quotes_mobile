@@ -26,4 +26,5 @@ public class ReceivedMessagesFragmentViewModel extends AndroidViewModel {
     // API methods
 
     public LiveData<List<ReceivedMessage>> getAllReceivedMessages() { return mAllReceivedMessages; }
+    public void deleteAllReceivedMessages() { mRepository.deleteAll(); }
 }

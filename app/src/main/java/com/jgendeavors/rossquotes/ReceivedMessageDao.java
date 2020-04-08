@@ -17,4 +17,7 @@ public interface ReceivedMessageDao {
 
     @Query("SELECT * FROM received_message_table ORDER BY timestamp DESC")
     LiveData<List<ReceivedMessage>> getAllByTimestampDesc();
+
+    @Query("DELETE FROM received_message_table")
+    void deleteAll();
 }
