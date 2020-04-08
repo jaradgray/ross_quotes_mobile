@@ -99,11 +99,23 @@ public class DashboardFragment extends Fragment {
         viewModel.getAllContacts().observe(getViewLifecycleOwner(), new Observer<List<Contact>>() {
             @Override
             public void onChanged(List<Contact> contacts) {
+                // calculate number of enabled Contacts
+                int numEnabled = 0;
+                for (Contact contact : contacts) {
+                    numEnabled += (contact.getIsEnabled()) ? 1 : 0;
+                }
+
                 // update contacts card's details text
                 String detailsText = getString(
                         R.string.dashboard_card_contacts_details,
-                        contacts.size());
+                        contacts.size(),
+                        numEnabled);
                 cardContacts.setDetailText(detailsText);
+
+                // set contacts card's alert based on numEnabled
+                DashboardCardView.AlertMode alertMode = (numEnabled > 0) ? DashboardCardView.AlertMode.NONE : DashboardCardView.AlertMode.WARN;
+                String alertText = (numEnabled > 0) ? null : getString(R.string.dashboard_card_contacts_alert_warn);
+                cardContacts.setAlert(alertMode, alertText);
             }
         });
         // app enabled/disabled
