@@ -1,17 +1,11 @@
 package com.jgendeavors.rossquotes;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import java.util.Calendar;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -50,9 +44,14 @@ public class DashboardFragment extends Fragment {
         // put any usages of findViewById() here
 
         // Get references to cards
+        TextView tvVersion = view.findViewById(R.id.fragment_dashboard_tv_version);
         final DashboardCardView cardMessages = view.findViewById(R.id.fragment_dashboard_card_messages);
         final DashboardCardView cardContacts = view.findViewById(R.id.fragment_dashboard_card_contacts);
         final DashboardCardView cardSettings = view.findViewById(R.id.fragment_dashboard_card_settings);
+
+        // Set version TextView's text to version string
+        String versionString = getString(R.string.version_format, BuildConfig.VERSION_NAME);
+        tvVersion.setText(versionString);
 
         // Get MainActivity's NavController
         final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
