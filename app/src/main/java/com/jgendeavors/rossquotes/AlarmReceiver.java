@@ -171,7 +171,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         // TODO update small icon
         //  notification click -> ContactsFragment
         return new NotificationCompat.Builder(context, App.CHANNEL_ID_ALERTS)
-                .setSmallIcon(R.drawable.ic_add)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(context.getString(R.string.notification_title_no_enabled_contacts))
                 .setContentText(context.getString(R.string.notification_text_no_enabled_contacts))
                 .setStyle(new NotificationCompat.BigTextStyle())
@@ -193,7 +193,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         // TODO update small icon
         //  notification click -> ContactDetailsFragment
         return new NotificationCompat.Builder(context, App.CHANNEL_ID_ALERTS)
-                .setSmallIcon(R.drawable.ic_add)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(context.getString(R.string.notification_title_no_messages_for_contact))
                 .setContentText(context.getString(R.string.notification_text_no_messages_for_contact, contact.getName()))
                 .setStyle(new NotificationCompat.BigTextStyle())
@@ -224,7 +224,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         // create and return the notification
         return new NotificationCompat.Builder(context, App.CHANNEL_ID_MESSAGES)
-                .setSmallIcon(R.drawable.ic_add)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(contact.getName())
                 .setContentText(message.getText())
                 .setLargeIcon(largeIcon)
