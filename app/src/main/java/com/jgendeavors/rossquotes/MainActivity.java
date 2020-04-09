@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements
             // launch payment flow
             mBillingProcessor.purchase(this, productId);
         }
+        // Note: onProductPurchased() is called on successful product purchase
     }
 
     /**
