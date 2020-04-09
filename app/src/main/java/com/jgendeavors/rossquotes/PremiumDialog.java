@@ -15,7 +15,7 @@ import androidx.fragment.app.DialogFragment;
 public class PremiumDialog extends DialogFragment {
 
     // Instance variables
-    private IPurchaseActionListener mPurchaseActionListener;
+    private IBillingActionListener mPurchaseActionListener;
 
     @NonNull
     @Override
@@ -50,7 +50,7 @@ public class PremiumDialog extends DialogFragment {
     }
 
     /**
-     * We use this method to enforce this Fragment's host Activity must implement the IPurchaseActionListener interface.
+     * We use this method to enforce this Fragment's host Activity must implement the IBillingActionListener interface.
      *
      * @param context
      */
@@ -58,11 +58,11 @@ public class PremiumDialog extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        // Enforce host Activity implements IPurchaseActionListener interface
+        // Enforce host Activity implements IBillingActionListener interface
         try {
-            mPurchaseActionListener = (IPurchaseActionListener) context;
+            mPurchaseActionListener = (IBillingActionListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement " + IPurchaseActionListener.class.toString());
+            throw new ClassCastException(context.toString() + " must implement " + IBillingActionListener.class.toString());
         }
     }
 }

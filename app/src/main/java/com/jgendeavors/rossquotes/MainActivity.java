@@ -18,7 +18,7 @@ import com.anjlab.android.iab.v3.TransactionDetails;
 
 public class MainActivity extends AppCompatActivity implements
         BillingProcessor.IBillingHandler,
-        IPurchaseActionListener {
+        IBillingActionListener {
 
     // Constants
     private static final String TAG = "MainActivity";
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-    // IPurchaseActionListener implementation
+    // IBillingActionListener implementation
 
     @Override
     public void onPurchaseAction(String productId) {
