@@ -37,6 +37,10 @@
 
     <style name="Text.Body"/>
 
+    <style name="Text.Body.Large">
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="Text.Body.LowEmphasis">
         <item name="android:textColor">@color/onSurface_disabled</item>
     </style>
