@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.PurchaseState;
 import com.anjlab.android.iab.v3.TransactionDetails;
 
 public class MainActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler {
@@ -109,5 +110,34 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
 
         // refresh BillingProcessor's list of cached products
         mBillingProcessor.loadOwnedPurchasesFromGoogle();
+    }
+
+
+    // API methods
+
+    /**
+     * Returns true iff the BillingProcessor is not null, is initialized, and the given @productId
+     * has a TransactionDetails object associated with it whose purchaseState is either
+     * PurchasedSuccessfully or Refunded. Otherwise returns false.
+     *
+     * @param productId
+     * @return
+     */
+    public boolean isProductPurchased(String productId) {
+        if (mBillingProcessor == null || !mBillingProcessor.isInitialized()) return false;
+
+        // get TransactionDetails for the product
+        TransactionDetails transactionDetails = mBillingProcessor.getPurchaseTransactionDetails(productId);
+        if (transactionDetails == null) return false;
+
+        // return result based on purchase state
+        PurchaseState purchaseState = transactionDetails.purchaseInfo.purchaseData.purchaseState;
+        switch (purchaseState) {
+            case PurchasedSuccessfully:
+            case Refunded:
+                return true; // grant access for successful and refunded purchases
+            default:
+                return false; // deny access for everything else
+        }
     }
 }
