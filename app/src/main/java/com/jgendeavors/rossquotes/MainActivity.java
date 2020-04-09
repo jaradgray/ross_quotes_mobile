@@ -48,16 +48,6 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        // update BillingProcessor's cached purchases
-        if (mBillingProcessor != null && mBillingProcessor.isInitialized()) {
-            mBillingProcessor.loadOwnedPurchasesFromGoogle();
-        }
-    }
-
-    @Override
     protected void onDestroy() {
         // release BillingProcessor
         if (mBillingProcessor != null) {
@@ -116,5 +106,8 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
     @Override
     public void onBillingInitialized() {
         Log.d(TAG, "onBillingInitialized: started");
+
+        // refresh BillingProcessor's list of cached products
+        mBillingProcessor.loadOwnedPurchasesFromGoogle();
     }
 }
