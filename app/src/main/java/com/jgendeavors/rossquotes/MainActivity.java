@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements
     // TODO replace with actual license key from Gooble Play account
     public static final String LICENSE_KEY = null;
     // TODO replace with actual product id
-    public static final String PRODUCT_ID_PREMIUM = null;
+    public static final String PRODUCT_ID_PREMIUM = "android.test.purchased";
 
 
     // Instance variables
@@ -122,8 +122,13 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onPurchaseAction(String productId) {
-        // TODO attempt purchase
-        Toast.makeText(this, "MainActivity: detected purchase action", Toast.LENGTH_SHORT).show();
+        // Attempt purchase
+        // TODO report errors ?
+        if (mBillingProcessor == null) return;
+        if (mBillingProcessor.isOneTimePurchaseSupported()) {
+            // launch payment flow
+            mBillingProcessor.purchase(this, productId);
+        }
     }
 
 
