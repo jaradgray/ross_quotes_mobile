@@ -16,6 +16,8 @@ import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.PurchaseState;
 import com.anjlab.android.iab.v3.TransactionDetails;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements
         BillingProcessor.IBillingHandler,
         IBillingActionListener {
@@ -115,6 +117,9 @@ public class MainActivity extends AppCompatActivity implements
 
         // refresh BillingProcessor's list of cached products
         mBillingProcessor.loadOwnedPurchasesFromGoogle();
+
+        // TODO remove, just for testing
+        listPurchases();
     }
 
 
@@ -131,6 +136,18 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    /**
+     * TODO just for testing
+     *
+     * @param productId
+     */
+    @Override
+    public void onConsumePurchaseAction(String productId) {
+        if (mBillingProcessor == null) return;
+        mBillingProcessor.consumePurchase(productId);
+
+        listPurchases();
+    }
 
     // API methods
 
@@ -163,5 +180,35 @@ public class MainActivity extends AppCompatActivity implements
     public void showPremiumDialog() {
         PremiumDialog dialog = new PremiumDialog();
         dialog.show(getSupportFragmentManager(), "premium dialog");
+    }
+
+
+    // Private methods
+
+    /**
+     * Shows IDs of owned products in a Toast, logs each owned product's TransactionDetails as well.
+     * Used for testing
+     */
+    public void listPurchases() {
+        List<String> ownedProductIds = mBillingProcessor.listOwnedProducts();
+        // show toast
+        String message = "Owned product IDs:\n";
+        for (int i = 0; i < ownedProductIds.size(); i++) {
+            message += ownedProductIds.get(i);
+            if (i < ownedProductIds.size() - 1) {
+                message += "\n";
+            }
+        }
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
+        // log it too, with additional info
+        Log.d(TAG, "Start owned products:");
+        for (String id : ownedProductIds) {
+            TransactionDetails transactionDetails = mBillingProcessor.getPurchaseTransactionDetails(id);
+            Log.d(TAG, "id: " + id);
+            Log.d(TAG, "TransactionDetails: " + transactionDetails.toString());
+            Log.d(TAG, "\nPurchase state: " + transactionDetails.purchaseInfo.purchaseData.purchaseState.toString());
+        }
+        Log.d(TAG, "End owned products");
     }
 }

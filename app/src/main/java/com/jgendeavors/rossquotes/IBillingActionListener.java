@@ -7,4 +7,5 @@ package com.jgendeavors.rossquotes;
 public interface IBillingActionListener {
     /** Notify that the user intends to purchase the product with the given @productId */
     void onPurchaseAction(String productId);
+    void onConsumePurchaseAction(String productId);
 }

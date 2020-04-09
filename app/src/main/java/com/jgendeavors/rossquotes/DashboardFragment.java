@@ -128,5 +128,14 @@ public class DashboardFragment extends Fragment {
                 cardSettings.setAlert(alertMode, alertText);
             }
         });
+
+        // TODO just for testing
+        //  handle clicks on consume purchase button
+        view.findViewById(R.id.fragment_dashboard_b_consume_purchase).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((IBillingActionListener)getActivity()).onConsumePurchaseAction(MainActivity.PRODUCT_ID_PREMIUM);
+            }
+        });
     }
 }

@@ -103,6 +103,16 @@
                 app:titleText="@string/dashboard_card_settings_title"
                 app:alertMode="NONE"/>
 
+            <!-- TODO remove or set visibility to gone for release versions -->
+            <!-- Consume purchase button -->
+            <Button
+                android:id="@+id/fragment_dashboard_b_consume_purchase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="Consume purchase"
+                android:background="@android:color/holo_orange_light"/>
+
         </LinearLayout>
 
     </ScrollView>
