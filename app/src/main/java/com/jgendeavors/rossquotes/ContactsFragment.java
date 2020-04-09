@@ -89,13 +89,24 @@ public class ContactsFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Navigate to EditContactFragment
-                // build the Bundle to pass data
-                Bundle bundle = new Bundle();
-                bundle.putInt(EditContactFragment.ARG_KEY_CONTACT_ID, EditContactFragment.ARG_VALUE_NO_CONTACT_ID);
-                // navigate
-                Navigation.findNavController(getActivity(), R.id.nav_host_fragment)
-                        .navigate(R.id.action_contactsFragment_to_editContactFragment, bundle);
+                // Adding Contacts is a premium feature
+                //  check if user has purchased the premium product
+                boolean isPremiumPurchased = ((MainActivity)getActivity()).isProductPurchased(MainActivity.PRODUCT_ID_PREMIUM);
+
+                // if user has purchased the premium product...
+                if (isPremiumPurchased) {
+                    // Navigate to EditContactFragment
+                    // build the Bundle to pass data
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(EditContactFragment.ARG_KEY_CONTACT_ID, EditContactFragment.ARG_VALUE_NO_CONTACT_ID);
+                    // navigate
+                    Navigation.findNavController(getActivity(), R.id.nav_host_fragment)
+                            .navigate(R.id.action_contactsFragment_to_editContactFragment, bundle);
+                }
+                // otherwise show the premium dialog
+                else {
+                    Snackbar.make(view, "TODO show premium dialog", Snackbar.LENGTH_SHORT).show();
+                }
             }
         });
 

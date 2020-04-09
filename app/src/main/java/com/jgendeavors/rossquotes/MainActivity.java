@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
 
     // TODO replace with actual license key from Gooble Play account
     public static final String LICENSE_KEY = null;
+    // TODO replace with actual product id
+    public static final String PRODUCT_ID_PREMIUM = null;
 
 
     // Instance variables
