@@ -76,7 +76,7 @@ public class ContactsFragment extends Fragment {
                 }
                 // otherwise show the premium dialog
                 else {
-                    Snackbar.make(recyclerView, "TODO show premium dialog", Snackbar.LENGTH_SHORT).show();
+                    ((MainActivity)getActivity()).showPremiumDialog();
                 }
             }
 
@@ -116,7 +116,7 @@ public class ContactsFragment extends Fragment {
                 }
                 // otherwise show the premium dialog
                 else {
-                    Snackbar.make(view, "TODO show premium dialog", Snackbar.LENGTH_SHORT).show();
+                    ((MainActivity)getActivity()).showPremiumDialog();
                 }
             }
         });

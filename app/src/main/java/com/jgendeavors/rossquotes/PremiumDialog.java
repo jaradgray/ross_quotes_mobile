@@ -20,7 +20,7 @@ public class PremiumDialog extends DialogFragment {
         //  we'll make a custom AlertDialog
 
         // inflate the custom layout
-        LayoutInflater inflater = getLayoutInflater();
+        LayoutInflater inflater = getActivity().getLayoutInflater();
         View v = inflater.inflate(R.layout.dialog_premium, null);
 
         // build Dialog with Builder

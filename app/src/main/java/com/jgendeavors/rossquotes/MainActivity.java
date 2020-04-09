@@ -142,4 +142,9 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
                 return false; // deny access for everything else
         }
     }
+
+    public void showPremiumDialog() {
+        PremiumDialog dialog = new PremiumDialog();
+        dialog.show(getSupportFragmentManager(), "premium dialog");
+    }
 }
