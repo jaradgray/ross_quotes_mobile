@@ -48,6 +48,16 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        // update BillingProcessor's cached purchases
+        if (mBillingProcessor != null && mBillingProcessor.isInitialized()) {
+            mBillingProcessor.loadOwnedPurchasesFromGoogle();
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         // release BillingProcessor
         if (mBillingProcessor != null) {
