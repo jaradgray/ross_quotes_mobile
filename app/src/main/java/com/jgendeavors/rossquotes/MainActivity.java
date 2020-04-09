@@ -10,12 +10,15 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.PurchaseState;
 import com.anjlab.android.iab.v3.TransactionDetails;
 
-public class MainActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler {
+public class MainActivity extends AppCompatActivity implements
+        BillingProcessor.IBillingHandler,
+        IPurchaseActionListener {
 
     // Constants
     private static final String TAG = "MainActivity";
@@ -112,6 +115,15 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
 
         // refresh BillingProcessor's list of cached products
         mBillingProcessor.loadOwnedPurchasesFromGoogle();
+    }
+
+
+    // IPurchaseActionListener implementation
+
+    @Override
+    public void onPurchaseAction(String productId) {
+        // TODO attempt purchase
+        Toast.makeText(this, "MainActivity: detected purchase action", Toast.LENGTH_SHORT).show();
     }
 
 

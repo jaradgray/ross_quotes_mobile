@@ -1,6 +1,7 @@
 package com.jgendeavors.rossquotes;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +13,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 public class PremiumDialog extends DialogFragment {
+
+    // Instance variables
+    private IPurchaseActionListener mPurchaseActionListener;
 
     @NonNull
     @Override
@@ -37,10 +41,28 @@ public class PremiumDialog extends DialogFragment {
                 .setPositiveButton(R.string.dialog_premium_button_positive, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        // TODO notify listener of positive button click
+                        // Notify listener of positive button click (i.e. purchase action taken)
+                        mPurchaseActionListener.onPurchaseAction(MainActivity.PRODUCT_ID_PREMIUM);
                     }
                 });
 
         return builder.create();
+    }
+
+    /**
+     * We use this method to enforce this Fragment's host Activity must implement the IPurchaseActionListener interface.
+     *
+     * @param context
+     */
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        // Enforce host Activity implements IPurchaseActionListener interface
+        try {
+            mPurchaseActionListener = (IPurchaseActionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement " + IPurchaseActionListener.class.toString());
+        }
     }
 }
