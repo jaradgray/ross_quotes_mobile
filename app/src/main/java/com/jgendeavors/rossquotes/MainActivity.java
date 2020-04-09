@@ -25,10 +25,8 @@ public class MainActivity extends AppCompatActivity implements
     // Constants
     private static final String TAG = "MainActivity";
 
-    // TODO replace with actual license key from Gooble Play account
-    public static final String LICENSE_KEY = null;
-    // TODO replace with actual product id
-    public static final String PRODUCT_ID_PREMIUM = "android.test.purchased";
+    public static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiVlnFxNmF5kqw6wGnujrnEMVpYdAYKZjqg6JDy9a1XeLX7PO3hB1tsQaCtSNNnAI9PXELGmnuWVAVoOSIdqHx0uioocr2ZLN8fmF76vQsWePlBezc+zT9LmWJhGM8Axw1JPQi46q8kHQTdjLjx8MbNy13D9+epODrddB8dxE3V/avljibDPrlBEZGvC78obWalhgRJ6IFp3lvpllpNsvT82ut+S/TTgZGO2GX1aN+822CFhxZ/lhz6t2BoAaUotF8LMXnREtYde8LTRG5/QmK5BFqdqhclGrpEsjjcqZcXqKI9ujZcUbFYLtmFwSHk4VjclL7IIFKCgZDxPZCWs8fQIDAQAB";
+    public static final String PRODUCT_ID_PREMIUM = "com.jgendeavors.rossquotes.premium";
 
 
     // Instance variables
