@@ -57,16 +57,27 @@ public class ContactsFragment extends Fragment {
         adapter.setOnItemInteractionListener(new ContactAdapter.OnItemInteractionListener() {
             @Override
             public void onItemClick(Contact contact) {
-                // Navigate to ContactDetailsFragment
-                // Note: we pass data to the destination with a simple Bundle instead of with SafeArgs because it's simpler.
-                // See documentation here: https://developer.android.com/guide/navigation/navigation-pass-data#bundle
+                // Adding Contacts is a premium feature
+                //  check if user has purchased the premium product
+                boolean isPremiumPurchased = ((MainActivity)getActivity()).isProductPurchased(MainActivity.PRODUCT_ID_PREMIUM);
 
-                // build the Bundle that will hold the clicked Contact's id
-                Bundle bundle = new Bundle();
-                bundle.putInt(ContactDetailsFragment.ARG_KEY_CONTACT_ID, contact.getId());
-                // navigate
-                final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-                navController.navigate(R.id.action_contactsFragment_to_contactDetailsFragment, bundle);
+                // if user has purchased the premium product...
+                if (isPremiumPurchased) {
+                    // Navigate to ContactDetailsFragment
+                    // Note: we pass data to the destination with a simple Bundle instead of with SafeArgs because it's simpler.
+                    // See documentation here: https://developer.android.com/guide/navigation/navigation-pass-data#bundle
+
+                    // build the Bundle that will hold the clicked Contact's id
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(ContactDetailsFragment.ARG_KEY_CONTACT_ID, contact.getId());
+                    // navigate
+                    final NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                    navController.navigate(R.id.action_contactsFragment_to_contactDetailsFragment, bundle);
+                }
+                // otherwise show the premium dialog
+                else {
+                    Snackbar.make(recyclerView, "TODO show premium dialog", Snackbar.LENGTH_SHORT).show();
+                }
             }
 
             @Override
