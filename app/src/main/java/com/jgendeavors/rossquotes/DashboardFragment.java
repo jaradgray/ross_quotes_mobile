@@ -44,10 +44,16 @@ public class DashboardFragment extends Fragment {
         // put any usages of findViewById() here
 
         // Get references to cards
+        View premiumContainer = view.findViewById(R.id.fragment_dashboard_premium_container);
         TextView tvVersion = view.findViewById(R.id.fragment_dashboard_tv_version);
         final DashboardCardView cardMessages = view.findViewById(R.id.fragment_dashboard_card_messages);
         final DashboardCardView cardContacts = view.findViewById(R.id.fragment_dashboard_card_contacts);
         final DashboardCardView cardSettings = view.findViewById(R.id.fragment_dashboard_card_settings);
+
+        // Set standard/premium container visibilities based on if premium product is purchased
+        boolean isPremiumPurchased = ((MainActivity)getActivity()).isProductPurchased(MainActivity.PRODUCT_ID_PREMIUM);
+        int visibility = isPremiumPurchased ? View.VISIBLE : View.GONE;
+        premiumContainer.setVisibility(visibility);
 
         // Set version TextView's text to version string
         String versionString = getString(R.string.version_format, BuildConfig.VERSION_NAME);
