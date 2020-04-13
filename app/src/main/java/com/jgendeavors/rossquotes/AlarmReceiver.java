@@ -1,12 +1,14 @@
 package com.jgendeavors.rossquotes;
 
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -17,6 +19,7 @@ import java.util.Random;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.navigation.NavDeepLinkBuilder;
 
 /**
  * The AlarmReceiver class handles the broadcast from AlarmManager to display a
@@ -164,14 +167,20 @@ public class AlarmReceiver extends BroadcastReceiver {
      * @return
      */
     private Notification getNoEnabledContactsNotification(Context context) {
+        // Build the PendingIntent that will navigate us to the ContactsFragment on notification click (deep link)
+        PendingIntent contentIntent = new NavDeepLinkBuilder(context)
+                .setGraph(R.navigation.nav_graph)
+                .setDestination(R.id.contactsFragment)
+                .createPendingIntent();
+
         // create and return the notification
-        // TODO update small icon
-        //  notification click -> ContactsFragment
         return new NotificationCompat.Builder(context, App.CHANNEL_ID_ALERTS)
                 .setSmallIcon(R.drawable.ic_bob)
                 .setContentTitle(context.getString(R.string.notification_title_no_enabled_contacts))
                 .setContentText(context.getString(R.string.notification_text_no_enabled_contacts))
                 .setStyle(new NotificationCompat.BigTextStyle())
+                // set the intent that fires on notification click
+                .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
@@ -186,14 +195,26 @@ public class AlarmReceiver extends BroadcastReceiver {
      * @return
      */
     private Notification getNoMessagesForContactNotification(Context context, Contact contact) {
+        // Build the PendingIntent that will navigate us to the ContactDetailsFragment for the given Contact on notification click
+        //  this is called an "explicit deep link", used this guide: https://developer.android.com/guide/navigation/navigation-deep-link
+        // first we create a Bundle for destination arguments and add the Contact's id
+        Bundle args = new Bundle();
+        args.putInt(ContactDetailsFragment.ARG_KEY_CONTACT_ID, contact.getId());
+        // build the PendingIntent for the deep link
+        PendingIntent contentIntent = new NavDeepLinkBuilder(context)
+                .setGraph(R.navigation.nav_graph)
+                .setDestination(R.id.contactDetailsFragment)
+                .setArguments(args)
+                .createPendingIntent();
+
         // create and return the notification
-        // TODO update small icon
-        //  notification click -> ContactDetailsFragment
         return new NotificationCompat.Builder(context, App.CHANNEL_ID_ALERTS)
                 .setSmallIcon(R.drawable.ic_bob)
                 .setContentTitle(context.getString(R.string.notification_title_no_messages_for_contact))
                 .setContentText(context.getString(R.string.notification_text_no_messages_for_contact, contact.getName()))
                 .setStyle(new NotificationCompat.BigTextStyle())
+                // set the intent that fires on notification click
+                .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
@@ -209,6 +230,12 @@ public class AlarmReceiver extends BroadcastReceiver {
      * @return
      */
     private Notification getContactMessageNotification(Context context, Contact contact, Message message) {
+        // Build the PendingIntent that will navigate us to ReceivedMessagesFragment on notification click (deep link)
+        PendingIntent contentIntent = new NavDeepLinkBuilder(context)
+                .setGraph(R.navigation.nav_graph)
+                .setDestination(R.id.receivedMessagesFragment)
+                .createPendingIntent();
+
         // Get Bitmap from Contact's image Uri to be used for notification's large icon
         //  based on this SO answer: https://stackoverflow.com/a/4717740
         Uri imgUri = Uri.parse(contact.getImageAbsolutePath());
@@ -226,6 +253,8 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentText(message.getText())
                 .setLargeIcon(largeIcon)
                 .setStyle(new NotificationCompat.BigTextStyle())
+                // set the intent that fires on notification click
+                .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
