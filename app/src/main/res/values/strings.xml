@@ -13,6 +13,12 @@
     <string name="notification_title_no_messages_for_contact">No messages found</string>
     <string name="notification_text_no_messages_for_contact">You should be seeing a message from %s, but we couldn\'t find any.</string>
 
+    <!-- PremiumDialog -->
+    <string name="dialog_premium_title">Go Premium</string>
+    <string name="dialog_premium_content">Upgrade for lifetime access to ALL (current and future) premium features, including:\n\t\u2022 adding new contacts\n\t\u2022 editing existing contacts\n\t\u2022 deleting contacts</string>
+    <string name="dialog_premium_button_positive">Upgrade</string>
+    <string name="dialog_premium_button_negative">Not now</string>
+
     <!-- DashboardFragment -->
     <string name="fragment_dashboard_title">Dashboard</string>
 
