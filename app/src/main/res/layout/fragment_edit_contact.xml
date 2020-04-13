@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:textAppearance="@style/Text.Display"
+            android:hint="@string/fragment_edit_contact_et_name_hint"
             android:layout_below="@id/fragment_edit_contact_iv_contact_photo"/>
 
     </RelativeLayout>
