@@ -131,8 +131,8 @@ public class MainActivity extends AppCompatActivity implements
         boolean isPremiumPurchased = isProductPurchased(PRODUCT_ID_PREMIUM);
         mViewModel.setIsPremiumPurchased(isPremiumPurchased);
 
-        // TODO remove, just for testing
-        listPurchases();
+        // TODO just for testing; display purchase info
+//        listPurchases();
     }
 
 
@@ -166,7 +166,8 @@ public class MainActivity extends AppCompatActivity implements
             mViewModel.setIsPremiumPurchased(isPremiumPurchased);
         }
 
-        listPurchases();
+        // TODO just for testing; display purchase info
+//        listPurchases();
     }
 
     // API methods
@@ -207,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements
 
     /**
      * Shows IDs of owned products in a Toast, logs each owned product's TransactionDetails as well.
-     * Used for testing
+     * TODO just for testing
      */
     public void listPurchases() {
         List<String> ownedProductIds = mBillingProcessor.listOwnedProducts();
