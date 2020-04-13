@@ -3,6 +3,7 @@ package com.jgendeavors.rossquotes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
     // Instance variables
+    private MainActivityViewModel mViewModel;
     private BillingProcessor mBillingProcessor;
 
 
@@ -47,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements
         // Connect toolbar to NavController
         final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(toolbar, navController);
+
+        // Request a ViewModel from the Android system
+        mViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 
         // Initialize BillingProcessor
         mBillingProcessor = BillingProcessor.newBillingProcessor(this, LICENSE_KEY, this);
@@ -81,6 +86,12 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onProductPurchased(String productId, TransactionDetails details) {
         Log.d(TAG, "onProductPurchased: started");
+
+        // Update ViewModel's isPremiumPurchased member
+        if (productId.equals(PRODUCT_ID_PREMIUM)) {
+            boolean isPremiumPurchased = isProductPurchased(PRODUCT_ID_PREMIUM);
+            mViewModel.setIsPremiumPurchased(isPremiumPurchased);
+        }
     }
 
     /**
@@ -116,6 +127,10 @@ public class MainActivity extends AppCompatActivity implements
         // refresh BillingProcessor's list of cached products
         mBillingProcessor.loadOwnedPurchasesFromGoogle();
 
+        // Initialize ViewModel's isPremiumPurchased member
+        boolean isPremiumPurchased = isProductPurchased(PRODUCT_ID_PREMIUM);
+        mViewModel.setIsPremiumPurchased(isPremiumPurchased);
+
         // TODO remove, just for testing
         listPurchases();
     }
@@ -144,6 +159,12 @@ public class MainActivity extends AppCompatActivity implements
     public void onConsumePurchaseAction(String productId) {
         if (mBillingProcessor == null) return;
         mBillingProcessor.consumePurchase(productId);
+
+        // Update ViewModel's isPremiumPurchased member
+        if (productId.equals(PRODUCT_ID_PREMIUM)) {
+            boolean isPremiumPurchased = isProductPurchased(PRODUCT_ID_PREMIUM);
+            mViewModel.setIsPremiumPurchased(isPremiumPurchased);
+        }
 
         listPurchases();
     }
