@@ -230,6 +230,12 @@ public class AlarmReceiver extends BroadcastReceiver {
      * @return
      */
     private Notification getContactMessageNotification(Context context, Contact contact, Message message) {
+        // Build the PendingIntent that will navigate us to ReceivedMessagesFragment on notification click (deep link)
+        PendingIntent contentIntent = new NavDeepLinkBuilder(context)
+                .setGraph(R.navigation.nav_graph)
+                .setDestination(R.id.receivedMessagesFragment)
+                .createPendingIntent();
+
         // Get Bitmap from Contact's image Uri to be used for notification's large icon
         //  based on this SO answer: https://stackoverflow.com/a/4717740
         Uri imgUri = Uri.parse(contact.getImageAbsolutePath());
@@ -247,6 +253,8 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentText(message.getText())
                 .setLargeIcon(largeIcon)
                 .setStyle(new NotificationCompat.BigTextStyle())
+                // set the intent that fires on notification click
+                .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
