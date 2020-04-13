@@ -15,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/pref_entries_interval_values"
+            android:dropDownWidth="75dp"
             android:layout_marginEnd="8dp"/>
 
         <Spinner
