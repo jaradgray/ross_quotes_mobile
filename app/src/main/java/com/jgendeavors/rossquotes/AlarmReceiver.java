@@ -167,14 +167,20 @@ public class AlarmReceiver extends BroadcastReceiver {
      * @return
      */
     private Notification getNoEnabledContactsNotification(Context context) {
+        // Build the PendingIntent that will navigate us to the ContactsFragment on notification click (deep link)
+        PendingIntent contentIntent = new NavDeepLinkBuilder(context)
+                .setGraph(R.navigation.nav_graph)
+                .setDestination(R.id.contactsFragment)
+                .createPendingIntent();
+
         // create and return the notification
-        // TODO update small icon
-        //  notification click -> ContactsFragment
         return new NotificationCompat.Builder(context, App.CHANNEL_ID_ALERTS)
                 .setSmallIcon(R.drawable.ic_bob)
                 .setContentTitle(context.getString(R.string.notification_title_no_enabled_contacts))
                 .setContentText(context.getString(R.string.notification_text_no_enabled_contacts))
                 .setStyle(new NotificationCompat.BigTextStyle())
+                // set the intent that fires on notification click
+                .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
@@ -202,7 +208,6 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .createPendingIntent();
 
         // create and return the notification
-        // TODO update small icon
         return new NotificationCompat.Builder(context, App.CHANNEL_ID_ALERTS)
                 .setSmallIcon(R.drawable.ic_bob)
                 .setContentTitle(context.getString(R.string.notification_title_no_messages_for_contact))
