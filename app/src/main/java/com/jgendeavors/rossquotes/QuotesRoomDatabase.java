@@ -65,8 +65,8 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
                     String resPath = "android.resource://com.jgendeavors.rossquotes/";
 
                     List<Contact> contacts = new ArrayList<>();
-                    contacts.add(new Contact("Bob Ross", resPath + R.drawable.profile_ross, true));
-                    contacts.add(new Contact("Rick Steves", resPath + R.drawable.profile_steves, true));
+                    contacts.add(new Contact(1, "Bob Ross", resPath + R.drawable.profile_ross, true));
+                    contacts.add(new Contact(2, "Rick Steves", resPath + R.drawable.profile_steves, true));
 
                     // insert Contacts into db and keep a reference to their Ids
                     List<Long> contactIds = contactDao.insert(contacts);

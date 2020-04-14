@@ -153,8 +153,14 @@ public class ContactDetailsFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        // Inflate the Fragment's options menu
-        inflater.inflate(R.menu.fragment_contact_details_options_menu, menu);
+        // The only item in the options menu is the "delete contact" option.
+        //  Only Contacts with non-reserved IDs can be deleted, so we only
+        //  inflate the options menu if the id of the Contact we're dealing with isn't reserved
+        int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
+        if (contactId >= Contact.FIRST_FREE_CONTACT_ID) {
+            // Inflate the Fragment's options menu
+            inflater.inflate(R.menu.fragment_contact_details_options_menu, menu);
+        }
         super.onCreateOptionsMenu(menu, inflater);
     }
 

@@ -3,6 +3,7 @@ package com.jgendeavors.rossquotes;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -10,7 +11,14 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = "contact_table")
 public class Contact {
-    @PrimaryKey(autoGenerate = true)
+    // Constants
+    @Ignore
+    public static final int FIRST_FREE_CONTACT_ID = 100; // ids <100 are reserved for factory-installed Contacts
+
+
+    // Instance variables
+
+    @PrimaryKey
     @ColumnInfo(name = "id")
     private int mId;
 
@@ -26,7 +34,8 @@ public class Contact {
 
     // Constructor
 
-    public Contact(String name, String imageAbsolutePath, boolean isEnabled) {
+    public Contact(int id, String name, String imageAbsolutePath, boolean isEnabled) {
+        mId = id;
         mName = name;
         mImageAbsolutePath = imageAbsolutePath;
         mIsEnabled = isEnabled;
@@ -34,7 +43,6 @@ public class Contact {
 
 
     // Setters
-    public void setId(int id) { mId = id; }
     public void setIsEnabled(boolean value) { mIsEnabled = value; }
 
 
