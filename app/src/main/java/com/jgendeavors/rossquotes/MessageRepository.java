@@ -99,7 +99,7 @@ public class MessageRepository {
      * @param contactId
      * @return
      */
-    public List<Message> getMessagesForContactSync(final int contactId) {
+    public List<Message> getAllMessagesForContactSync(final int contactId) {
         // Decided to use ExecutorService instead of AsyncTask since AsyncTask is stupid and deprecated.
         //  based on this example: https://howtodoinjava.com/java/multi-threading/executor-service-example/
 
@@ -120,6 +120,32 @@ public class MessageRepository {
             result = executorService.submit(callableTask).get();
         } catch (Exception e) {
             Log.e(TAG, "MessageRepository.getMessagesForContactSync(): " + e);
+        }
+        return result;
+    }
+
+    /**
+     * Wraps MessageDao.getMessagesForContactSync(int, boolean)
+     * Returns all Messages in the database with the given @contactId and whose isRecentlyUsed member is false, synchronously.
+     */
+    public List<Message> getUnusedMessagesForContactSync(final int contactId) {
+        // Create ExecutorService
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
+
+        // Create the task the ExecutorService will execute
+        Callable<List<Message>> callableTask = new Callable<List<Message>>() {
+            @Override
+            public List<Message> call() throws Exception {
+                return mMessageDao.getMessagesForContactSync(contactId, false);
+            }
+        };
+
+        // Return the result of the task when it completes
+        List<Message> result = null;
+        try {
+            result = executorService.submit(callableTask).get();
+        } catch (Exception e) {
+            Log.e(TAG, "MessageRepository.getUnusedMessagesForContactSync(): " + e);
         }
         return result;
     }

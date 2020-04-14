@@ -132,33 +132,54 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     /**
      * Returns a randomly chosen Message with the given @contactId from the database, or null if none were found.
+     * Over multiple calls, this method's algorithm will return all Messages for a Contact before repeating any.
      *
      * @param context
      * @param contactId
      * @return
      */
     private Message getRandomMessageForContact(Context context, int contactId) {
-        // Get all Messages with the given contactId
+        // Get all unused Messages with the given contactId
         MessageRepository messageRepository = new MessageRepository(context);
-        List<Message> messages = messageRepository.getMessagesForContactSync(contactId);
+        List<Message> messages = messageRepository.getUnusedMessagesForContactSync(contactId);
 
         // First accesses return empty workaround
         int numRetries = 0;
         while (messages.isEmpty() && numRetries < MAX_DB_RETRIES) {
-            messages = messageRepository.getMessagesForContactSync(contactId);
+            messages = messageRepository.getUnusedMessagesForContactSync(contactId);
             numRetries++;
         }
 
-        // Detect no Messages found with given contactId
+        // If no unused Messages were found...
         if (messages.isEmpty()) {
-            Log.e(TAG, "getRandomMessageForContact: no Messages with contactId " + contactId + " found in database after " + MAX_DB_RETRIES + " queries. Returning null.");
-            return null;
+            // get all Messages with the given contactId
+            messages = messageRepository.getAllMessagesForContactSync(contactId);
+
+            // detect no Messages found with given contactId
+            if (messages.isEmpty()) {
+                Log.e(TAG, "getRandomMessageForContact: no Messages with contactId " + contactId + " found in database. Returning null.");
+                return null;
+            }
+
+            // clear each Message's isRecentlyUsed flag, and update it in the db
+            for (Message message : messages) {
+                message.setIsRecentlyUsed(false);
+                messageRepository.update(message);
+            }
         }
 
-        // Return a random Message from the list of Messages
+        // (If execution reaches here, we have a List of unused Messages for the Contact with the given contactId)
+        // Pick a random Message from the list to be returned
         Random randy = new Random();
         int index = randy.nextInt(messages.size());
-        return messages.get(index);
+        Message result = messages.get(index);
+
+        // Set its isRecentlyUsed flag and update it in the db
+        result.setIsRecentlyUsed(true);
+        messageRepository.update(result);
+
+        // Return the selected Message
+        return result;
     }
 
     /**

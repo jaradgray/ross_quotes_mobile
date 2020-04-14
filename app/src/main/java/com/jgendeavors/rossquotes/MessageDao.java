@@ -40,4 +40,7 @@ public interface MessageDao {
 
     @Query("SELECT * FROM message_table WHERE contact_id = :contactId")
     List<Message> getMessagesForContactSync(int contactId);
+
+    @Query("SELECT * FROM message_table WHERE contact_id = :contactId AND is_recently_used = :isRecentlyUsed")
+    List<Message> getMessagesForContactSync(int contactId, boolean isRecentlyUsed);
 }
