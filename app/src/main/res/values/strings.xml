@@ -15,7 +15,7 @@
 
     <!-- PremiumDialog -->
     <string name="dialog_premium_title">Premium Feature</string>
-    <string name="dialog_premium_content">You found a premium feature! Upgrade for lifetime access to ALL (current and future) premium features, including:\n\t\u2022 adding new contacts\n\t\u2022 editing existing contacts\n\t\u2022 deleting contacts</string>
+    <string name="dialog_premium_content">You found a premium feature! Upgrade for lifetime access to ALL (current and future) premium features, including:\n\t\u2022 adding new contacts\n\t\u2022 editing contacts\n\t\u2022 adding and editing quotes</string>
     <string name="dialog_premium_button_positive">Upgrade</string>
     <string name="dialog_premium_button_negative">Not now</string>
 
