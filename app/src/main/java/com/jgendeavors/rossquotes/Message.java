@@ -19,20 +19,26 @@ public class Message {
     @ColumnInfo(name = "text")
     private String mText;
 
+    @ColumnInfo(name = "is_recently_used")
+    private boolean mIsRecentlyUsed;
+
 
     // Constructor
-    public Message(int contactId, String text) {
+    public Message(int contactId, String text, boolean isRecentlyUsed) {
         mContactId = contactId;
         mText = text;
+        mIsRecentlyUsed = isRecentlyUsed;
     }
 
 
     // Setters
     public void setId(int id) { mId = id; }
+    public void setIsRecentlyUsed(boolean value) { mIsRecentlyUsed = value; }
 
 
     // Getters
     public int getId() { return mId; }
     public int getContactId() { return mContactId; }
     public String getText() { return mText; }
+    public boolean getIsRecentlyUsed() { return mIsRecentlyUsed; }
 }
