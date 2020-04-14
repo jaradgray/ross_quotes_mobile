@@ -2,7 +2,11 @@
 <resources>
     <color name="colorPrimary">#303030</color> <!-- Theme.AppCompat bg color -->
     <color name="colorPrimaryDark">#292929</color>
-    <color name="colorAccent">#8C9EFF</color>
+
+<!--    good orange (Material Yellow 900) -->
+<!--    <color name="colorAccent">#F57F17</color>-->
+<!--    purple-->
+    <color name="colorAccent">#968bd9</color>
 
     <color name="onSurface_highEmphasis">#DEFFFFFF</color>
     <color name="onSurface_mediumEmphasis">#99FFFFFF</color>
