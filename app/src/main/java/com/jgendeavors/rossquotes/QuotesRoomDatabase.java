@@ -80,17 +80,17 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
                     // Bob Ross Messages
                     // TODO add the real ones
                     contactId = contactIds.get(0).intValue();
-                    messages.add(new Message(contactId, "Happy little wolves!"));
-                    messages.add(new Message(contactId, "Lovely day we're having!"));
-                    messages.add(new Message(contactId, "Top o' the mornin' to ya!"));
+                    messages.add(new Message(contactId, "Happy little wolves!", false));
+                    messages.add(new Message(contactId, "Lovely day we're having!", false));
+                    messages.add(new Message(contactId, "Top o' the mornin' to ya!", false));
 
                     // Rick Steves Messages
                     // TODO add the real ones
                     contactId = contactIds.get(1).intValue();
-                    messages.add(new Message(contactId, "Heep on shufflin'!"));
-                    messages.add(new Message(contactId, "I have drunk many Scotches."));
-                    messages.add(new Message(contactId, "Only us, only tonight."));
-                    messages.add(new Message(contactId, "Welcome!"));
+                    messages.add(new Message(contactId, "Heep on shufflin'!", false));
+                    messages.add(new Message(contactId, "I have drunk many Scotches.", false));
+                    messages.add(new Message(contactId, "Only us, only tonight.", false));
+                    messages.add(new Message(contactId, "Welcome!", false));
 
                     // insert Messages into db
                     messageDao.insert(messages);

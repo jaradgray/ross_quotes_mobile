@@ -35,13 +35,13 @@ public class EditMessageFragmentViewModel extends AndroidViewModel {
         Message message;
         if (mMessage.getValue() == null) {
             // Save new Message
-            message = new Message(contactId, text);
+            message = new Message(contactId, text, false);
             int id = (int)mRepository.insert(message);
             message.setId(id);
         } else {
             // Update existing Message
             Message oldMessage = mMessage.getValue();
-            message = new Message(oldMessage.getContactId(), text);
+            message = new Message(oldMessage.getContactId(), text, oldMessage.getIsRecentlyUsed());
             message.setId(oldMessage.getId());
             mRepository.update(message);
         }
