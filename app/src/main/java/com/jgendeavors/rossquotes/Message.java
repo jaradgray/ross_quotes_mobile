@@ -33,6 +33,7 @@ public class Message {
 
     // Setters
     public void setId(int id) { mId = id; }
+    public void setIsRecentlyUsed(boolean value) { mIsRecentlyUsed = value; }
 
 
     // Getters
