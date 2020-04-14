@@ -19,6 +19,7 @@ import java.util.Random;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavDeepLinkBuilder;
 
 /**
@@ -179,6 +180,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentTitle(context.getString(R.string.notification_title_no_enabled_contacts))
                 .setContentText(context.getString(R.string.notification_text_no_enabled_contacts))
                 .setStyle(new NotificationCompat.BigTextStyle())
+                .setColor(ContextCompat.getColor(context, R.color.colorAccent))
                 // set the intent that fires on notification click
                 .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
@@ -213,6 +215,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentTitle(context.getString(R.string.notification_title_no_messages_for_contact))
                 .setContentText(context.getString(R.string.notification_text_no_messages_for_contact, contact.getName()))
                 .setStyle(new NotificationCompat.BigTextStyle())
+                .setColor(ContextCompat.getColor(context, R.color.colorAccent))
                 // set the intent that fires on notification click
                 .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
@@ -248,11 +251,12 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         // create and return the notification
         return new NotificationCompat.Builder(context, App.CHANNEL_ID_MESSAGES)
-                .setSmallIcon(R.drawable.ic_bob)
+                .setSmallIcon(R.drawable.ic_app_launcher)
                 .setContentTitle(contact.getName())
                 .setContentText(message.getText())
                 .setLargeIcon(largeIcon)
                 .setStyle(new NotificationCompat.BigTextStyle())
+                .setColor(ContextCompat.getColor(context, R.color.colorAccent))
                 // set the intent that fires on notification click
                 .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
