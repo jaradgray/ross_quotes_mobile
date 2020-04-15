@@ -30,7 +30,7 @@
     <string name="dashboard_card_received_messages_details">%d messages</string>
 
     <string name="dashboard_card_contacts_title">Contacts</string>
-    <string name="dashboard_card_contacts_details">%d contacts\n%d enabled</string>
+    <string name="dashboard_card_contacts_details">%d total\n%d enabled</string>
     <string name="dashboard_card_contacts_alert_warn">No contacts enabled</string>
 
     <string name="dashboard_card_settings_title">Settings</string>
