@@ -22,7 +22,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
  *
  * Singleton pattern
  */
-@Database(entities = {Contact.class, Message.class, ReceivedMessage.class}, version = 1, exportSchema = false)
+@Database(entities = {Contact.class, Message.class, ReceivedMessage.class}, version = 1, exportSchema = true)
 public abstract class QuotesRoomDatabase extends RoomDatabase {
     private static final String TAG = "QuotesRoomDatabase";
 
