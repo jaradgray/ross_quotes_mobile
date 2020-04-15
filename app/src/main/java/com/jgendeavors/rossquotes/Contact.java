@@ -14,6 +14,10 @@ public class Contact {
     // Constants
     @Ignore
     public static final int FIRST_FREE_CONTACT_ID = 100; // ids <100 are reserved for factory-installed Contacts
+    @Ignore
+    public static final int ID_BOB_ROSS = 1;
+    @Ignore
+    public static final int ID_RICK_STEVES = 2;
 
 
     // Instance variables

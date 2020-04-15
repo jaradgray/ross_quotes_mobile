@@ -66,8 +66,7 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
                     String resPath = "android.resource://com.jgendeavors.rossquotes/";
 
                     // Create Bob Ross as a Contact and add him to the db
-                    final int CONTACT_ID_BOB_ROSS = 1;
-                    Contact bob = new Contact(CONTACT_ID_BOB_ROSS, "Bob Ross", resPath + R.drawable.profile_ross, true);
+                    Contact bob = new Contact(Contact.ID_BOB_ROSS, "Bob Ross", resPath + R.drawable.profile_ross, true);
                     contactDao.insert(bob);
 
                     // Messages
@@ -76,9 +75,9 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
                     // Bob Ross Messages
                     // TODO add the real ones
                     List<Message> messages = new ArrayList<>();
-                    messages.add(new Message(CONTACT_ID_BOB_ROSS, "Happy little wolves!", false));
-                    messages.add(new Message(CONTACT_ID_BOB_ROSS, "Lovely day we're having!", false));
-                    messages.add(new Message(CONTACT_ID_BOB_ROSS, "Top o' the mornin' to ya!", false));
+                    messages.add(new Message(Contact.ID_BOB_ROSS, "Happy little wolves!", false));
+                    messages.add(new Message(Contact.ID_BOB_ROSS, "Lovely day we're having!", false));
+                    messages.add(new Message(Contact.ID_BOB_ROSS, "Top o' the mornin' to ya!", false));
 
                     // insert Messages into db
                     messageDao.insert(messages);
@@ -109,14 +108,14 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             // add Rick Steves to the contact_table
             database.execSQL("INSERT INTO contact_table (id, name, image_absolute_path, is_enabled) "
-                    + " VALUES (2, 'Rick Steves', 'android.resource://com.jgendeavors.rossquotes/drawable/profile_steves', 1)");
+                    + " VALUES (" + Contact.ID_RICK_STEVES + ", 'Rick Steves', 'android.resource://com.jgendeavors.rossquotes/drawable/profile_steves', 1)");
             // add Rick Steves' quotes to the message_table
             database.execSQL("INSERT INTO message_table (contact_id, text, is_recently_used) "
                     + " VALUES "
-                    + " (2, 'Welcome!', 0), "
-                    + " (2, 'Keep on traveling!', 0), "
-                    + " (2, 'Dublin', 0), "
-                    + " (2, 'Ciao!', 0)");
+                    + " (" + Contact.ID_RICK_STEVES + ", 'Welcome!', 0), "
+                    + " (" + Contact.ID_RICK_STEVES + ", 'Keep on traveling!', 0), "
+                    + " (" + Contact.ID_RICK_STEVES + ", 'Dublin', 0), "
+                    + " (" + Contact.ID_RICK_STEVES + ", 'Ciao!', 0)");
         }
     };
 
@@ -127,10 +126,10 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
             // add quotes to the message_table
             database.execSQL("INSERT INTO message_table (contact_id, text, is_recently_used) "
                     + " VALUES "
-                    + " (1, 'Hi, this is Bob!', 0), "
-                    + " (1, 'You can do anything.', 0), "
-                    + " (1, 'Here in your world', 0), "
-                    + " (1, 'Happy painting.', 0)");
+                    + " (" + Contact.ID_BOB_ROSS + ", 'Hi, this is Bob!', 0), "
+                    + " (" + Contact.ID_BOB_ROSS + ", 'You can do anything.', 0), "
+                    + " (" + Contact.ID_BOB_ROSS + ", 'Here in your world', 0), "
+                    + " (" + Contact.ID_BOB_ROSS + ", 'Happy painting.', 0)");
         }
     };
 }
