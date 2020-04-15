@@ -1,6 +1,10 @@
 package com.jgendeavors.rossquotes;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -136,6 +140,24 @@ public class DashboardFragment extends Fragment {
         viewModel.getIsAppEnabled().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean isEnabled) {
+                // update settings card's details text
+                if (isEnabled) {
+                    // get persisted interval values from SharedPreferences
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    String minInterval = prefs.getString(App.PREF_KEY_MIN_INTERVAL, App.PREF_DEFAULT_VALUE_MIN_INTERVAL);
+                    String maxInterval = prefs.getString(App.PREF_KEY_MAX_INTERVAL, App.PREF_DEFAULT_VALUE_MAX_INTERVAL);
+                    // convert interval values to user-presentable strings
+                    minInterval = minInterval.replace(',', ' ');
+                    maxInterval = maxInterval.replace(',', ' ');
+                    // get the settings card's details string from resources
+                    String detailsText = getString(R.string.dashboard_card_settings_details, minInterval, maxInterval);
+                    // set settings card's details text
+                    cardSettings.setDetailText(detailsText);
+                } else {
+                    // notifications disabled, clear details string
+                    cardSettings.setDetailText("");
+                }
+
                 // update settings card's alert
                 DashboardCardView.AlertMode alertMode = isEnabled ? DashboardCardView.AlertMode.CONFIRM : DashboardCardView.AlertMode.WARN;
                 String alertText = isEnabled ? getString(R.string.dashboard_card_settings_alert_confirm) : getString(R.string.dashboard_card_settings_alert_warn);

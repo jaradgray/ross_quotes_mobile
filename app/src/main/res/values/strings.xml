@@ -34,6 +34,7 @@
     <string name="dashboard_card_contacts_alert_warn">No contacts enabled</string>
 
     <string name="dashboard_card_settings_title">Settings</string>
+    <string name="dashboard_card_settings_details">"You're receiving a message every:\n%s to\n%s"</string>
     <string name="dashboard_card_settings_alert_confirm">Messages are being scheduled</string>
     <string name="dashboard_card_settings_alert_warn">Not scheduling messages</string>
 
