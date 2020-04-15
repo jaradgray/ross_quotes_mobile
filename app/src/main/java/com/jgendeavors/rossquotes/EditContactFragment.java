@@ -59,6 +59,19 @@ public class EditContactFragment extends Fragment {
         mEtName = view.findViewById(R.id.fragment_edit_contact_et_name);
         Button bSave = view.findViewById(R.id.fragment_edit_contact_b_save);
 
+        // Give the EditText an OnFocusChangeListener
+        //  we'll use this to show/hide the soft keyboard
+        mEtName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    Util.showKeyboardTo(getContext(), view);
+                } else {
+                    Util.hideKeyboardFrom(getContext(), view);
+                }
+            }
+        });
+
         // Request a ViewModel from the Android system
         mViewModel = ViewModelProviders.of(this).get(EditContactFragmentViewModel.class);
 
