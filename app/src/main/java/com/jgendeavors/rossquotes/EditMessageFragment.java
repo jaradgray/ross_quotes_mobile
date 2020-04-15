@@ -7,6 +7,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,22 @@ public class EditMessageFragment extends Fragment {
 
         // Get references to widgets
         mEtMessage = view.findViewById(R.id.fragment_edit_message_et_message);
+
+        // Give the EditText an OnFocusChangeListener
+        //  we'll use this to show/hide the soft keyboard
+        mEtMessage.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    Util.showKeyboardTo(getContext(), view);
+                } else {
+                    Util.hideKeyboardFrom(getContext(), view);
+                }
+            }
+        });
+
+        // Show the soft keyboard by requesting focus on the EditText
+        mEtMessage.requestFocus();
 
         // Get the Message's id from args
         // Note: this will be ARG_VALUE_NO_MESSAGE_ID when we're creating a new Message, i.e. editing a Message that isn't stored in the database yet
