@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 /**
@@ -64,36 +65,26 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
                     // Used to set bundled Contacts' profile photos
                     String resPath = "android.resource://com.jgendeavors.rossquotes/";
 
-                    List<Contact> contacts = new ArrayList<>();
-                    contacts.add(new Contact(1, "Bob Ross", resPath + R.drawable.profile_ross, true));
-                    contacts.add(new Contact(2, "Rick Steves", resPath + R.drawable.profile_steves, true));
-
-                    // insert Contacts into db and keep a reference to their Ids
-                    List<Long> contactIds = contactDao.insert(contacts);
+                    // Create Bob Ross as a Contact and add him to the db
+                    final int CONTACT_ID_BOB_ROSS = 1;
+                    Contact bob = new Contact(CONTACT_ID_BOB_ROSS, "Bob Ross", resPath + R.drawable.profile_ross, true);
+                    contactDao.insert(bob);
 
                     // Messages
                     MessageDao messageDao = INSTANCE.messageDao();
 
-                    List<Message> messages = new ArrayList<>();
-                    int contactId;
-
                     // Bob Ross Messages
                     // TODO add the real ones
-                    contactId = contactIds.get(0).intValue();
-                    messages.add(new Message(contactId, "Happy little wolves!", false));
-                    messages.add(new Message(contactId, "Lovely day we're having!", false));
-                    messages.add(new Message(contactId, "Top o' the mornin' to ya!", false));
-
-                    // Rick Steves Messages
-                    // TODO add the real ones
-                    contactId = contactIds.get(1).intValue();
-                    messages.add(new Message(contactId, "Heep on shufflin'!", false));
-                    messages.add(new Message(contactId, "I have drunk many Scotches.", false));
-                    messages.add(new Message(contactId, "Only us, only tonight.", false));
-                    messages.add(new Message(contactId, "Welcome!", false));
+                    List<Message> messages = new ArrayList<>();
+                    messages.add(new Message(CONTACT_ID_BOB_ROSS, "Happy little wolves!", false));
+                    messages.add(new Message(CONTACT_ID_BOB_ROSS, "Lovely day we're having!", false));
+                    messages.add(new Message(CONTACT_ID_BOB_ROSS, "Top o' the mornin' to ya!", false));
 
                     // insert Messages into db
                     messageDao.insert(messages);
+
+                    // TODO remember to initialize db here in onCreate as per the latest db version for fresh installs.
+                    //  Then add Migrations from previous versions to the latest version, for current users
                 }
             });
         }
@@ -108,6 +99,38 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
         public void onDestructiveMigration(@NonNull SupportSQLiteDatabase db) {
             Log.d(TAG, "RoomDatabase.Callback onDestructiveMigration: started.");
             super.onDestructiveMigration(db);
+        }
+    };
+
+
+    /** Example Migration for adding a new Contact and Messages */
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            // add Rick Steves to the contact_table
+            database.execSQL("INSERT INTO contact_table (id, name, image_absolute_path, is_enabled) "
+                    + " VALUES (2, 'Rick Steves', 'android.resource://com.jgendeavors.rossquotes/drawable/profile_steves', 1)");
+            // add Rick Steves' quotes to the message_table
+            database.execSQL("INSERT INTO message_table (contact_id, text, is_recently_used) "
+                    + " VALUES "
+                    + " (2, 'Welcome!', 0), "
+                    + " (2, 'Keep on traveling!', 0), "
+                    + " (2, 'Dublin', 0), "
+                    + " (2, 'Ciao!', 0)");
+        }
+    };
+
+    /** Example Migration for adding Messages for a Contact */
+    static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            // add quotes to the message_table
+            database.execSQL("INSERT INTO message_table (contact_id, text, is_recently_used) "
+                    + " VALUES "
+                    + " (1, 'Hi, this is Bob!', 0), "
+                    + " (1, 'You can do anything.', 0), "
+                    + " (1, 'Here in your world', 0), "
+                    + " (1, 'Happy painting.', 0)");
         }
     };
 }
