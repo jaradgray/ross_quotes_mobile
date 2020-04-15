@@ -34,6 +34,7 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
     public abstract ReceivedMessageDao receivedMessageDao();
 
     private static volatile QuotesRoomDatabase INSTANCE;
+    private static volatile Context mContext;
     public static final int NUM_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUM_THREADS);
 
@@ -43,6 +44,7 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
                 INSTANCE = Room.databaseBuilder(context, QuotesRoomDatabase.class, DB_NAME)
                         .addCallback(sRoomDatabaseCallback)
                         .build();
+                mContext = context;
             }
         }
         return INSTANCE;
@@ -73,11 +75,12 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
                     MessageDao messageDao = INSTANCE.messageDao();
 
                     // Bob Ross Messages
-                    // TODO add the real ones
                     List<Message> messages = new ArrayList<>();
-                    messages.add(new Message(Contact.ID_BOB_ROSS, "Happy little wolves!", false));
-                    messages.add(new Message(Contact.ID_BOB_ROSS, "Lovely day we're having!", false));
-                    messages.add(new Message(Contact.ID_BOB_ROSS, "Top o' the mornin' to ya!", false));
+                    // add a Message object for each element in the resource array containing Bob's quotes
+                    String[] quotesRoss = mContext.getResources().getStringArray(R.array.quotes_ross);
+                    for (String quote : quotesRoss) {
+                        messages.add(new Message(Contact.ID_BOB_ROSS, quote, false));
+                    }
 
                     // insert Messages into db
                     messageDao.insert(messages);

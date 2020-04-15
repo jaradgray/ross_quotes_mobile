@@ -70,4 +70,64 @@
         <item>58</item>
         <item>59</item>
     </string-array>
+
+
+    <!-- array containing Bob's quotes -->
+    <string-array name="quotes_ross">
+        <item>@string/quote_ross_000</item>
+        <item>@string/quote_ross_001</item>
+        <item>@string/quote_ross_002</item>
+        <item>@string/quote_ross_003</item>
+        <item>@string/quote_ross_004</item>
+        <item>@string/quote_ross_005</item>
+        <item>@string/quote_ross_006</item>
+        <item>@string/quote_ross_007</item>
+        <item>@string/quote_ross_008</item>
+        <item>@string/quote_ross_009</item>
+        <item>@string/quote_ross_010</item>
+        <item>@string/quote_ross_011</item>
+        <item>@string/quote_ross_012</item>
+        <item>@string/quote_ross_013</item>
+        <item>@string/quote_ross_014</item>
+        <item>@string/quote_ross_015</item>
+        <item>@string/quote_ross_016</item>
+        <item>@string/quote_ross_017</item>
+        <item>@string/quote_ross_018</item>
+        <item>@string/quote_ross_019</item>
+        <item>@string/quote_ross_020</item>
+        <item>@string/quote_ross_021</item>
+        <item>@string/quote_ross_022</item>
+        <item>@string/quote_ross_023</item>
+        <item>@string/quote_ross_024</item>
+        <item>@string/quote_ross_025</item>
+        <item>@string/quote_ross_026</item>
+        <item>@string/quote_ross_027</item>
+        <item>@string/quote_ross_028</item>
+        <item>@string/quote_ross_029</item>
+        <item>@string/quote_ross_030</item>
+        <item>@string/quote_ross_031</item>
+        <item>@string/quote_ross_032</item>
+        <item>@string/quote_ross_033</item>
+        <item>@string/quote_ross_034</item>
+        <item>@string/quote_ross_035</item>
+        <item>@string/quote_ross_036</item>
+        <item>@string/quote_ross_037</item>
+        <item>@string/quote_ross_038</item>
+        <item>@string/quote_ross_039</item>
+        <item>@string/quote_ross_040</item>
+        <item>@string/quote_ross_041</item>
+        <item>@string/quote_ross_042</item>
+        <item>@string/quote_ross_043</item>
+        <item>@string/quote_ross_044</item>
+        <item>@string/quote_ross_045</item>
+        <item>@string/quote_ross_046</item>
+        <item>@string/quote_ross_047</item>
+        <item>@string/quote_ross_048</item>
+        <item>@string/quote_ross_049</item>
+        <item>@string/quote_ross_050</item>
+        <item>@string/quote_ross_051</item>
+        <item>@string/quote_ross_052</item>
+        <item>@string/quote_ross_053</item>
+        <item>@string/quote_ross_054</item>
+    </string-array>
 </resources>

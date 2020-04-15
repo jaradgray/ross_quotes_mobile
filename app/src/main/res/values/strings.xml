@@ -98,5 +98,62 @@
     <string name="pref_entry_interval_unit_hour">Hours</string>
     <string name="pref_entry_interval_unit_day">Days</string>
 
+    <!-- Bob Ross quotes -->
+    <!-- TODO remember: if I add any quotes here, be sure to add references to them in the corresponding array -->
+    <string name="quote_ross_000">"We don't make mistakes; we have happy accidents."</string>
+    <string name="quote_ross_001">"If you've never lived with a squirrel, you haven't lived."</string>
+    <string name="quote_ross_002">"Let's get crazy."</string>
+    <string name="quote_ross_003">"Just beat the devil out of it."</string>
+    <string name="quote_ross_004">"I like to beat the brush."</string>
+    <string name="quote_ross_005">"I really believe that if you practice enough you could paint the 'Mona Lisa' with a two-inch brush."</string>
+    <string name="quote_ross_006">"Just go out and talk to a tree. Make friends with it."</string>
+    <string name="quote_ross_007">"In painting, you have unlimited power. You have the ability to move mountains. You can bend rivers."</string>
+    <string name="quote_ross_008">"You need the dark in order to show the light."</string>
+    <string name="quote_ross_009">"Look around. Look at what we have. Beauty is everywhere - you only have to look to see it."</string>
+    <string name="quote_ross_010">"The secret to doing anything is believing that you can do it."</string>
+    <string name="quote_ross_011">"Anything that you believe you can do strong enough, you can do. Anything. As long as you believe."</string>
+    <string name="quote_ross_012">"You have unlimited power on this canvas."</string>
+    <string name="quote_ross_013">"I guess I'm a little weird. I like to talk to trees and animals. That's okay though; I have more fun than most people."</string>
+    <string name="quote_ross_014">"There's nothing wrong with having a tree as a friend."</string>
+    <string name="quote_ross_015">"Even a tree needs a friend."</string>
+    <string name="quote_ross_016">"I've started with a thin, even coat of liquid white."</string>
+    <string name="quote_ross_017">"It's wet, slick, and ready to go."</string>
+    <string name="quote_ross_018">"This is your world."</string>
+    <string name="quote_ross_019">"You can do anything in your world."</string>
+    <string name="quote_ross_020">"This is your world, and you have to design it the way you want it."</string>
+    <string name="quote_ross_021">"I still have not cleaned the brush. I'm lazy."</string>
+    <string name="quote_ross_022">"Let's have some fun."</string>
+    <string name="quote_ross_023">"Just before the show I went to the bathroom. Needless to say, with a wireless mic, when I came back everybody knew where I'd been."</string>
+    <string name="quote_ross_024">"Three hairs and some air."</string>
+    <string name="quote_ross_025">"When you pull it, wiggle it."</string>
+    <string name="quote_ross_026">"It's a good day to be alive. Come to think of it, every day's a good day to be alive."</string>
+    <string name="quote_ross_027">"Big ol' tree."</string>
+    <string name="quote_ross_028">"I'm sure there's a proper name for these clouds. I just call 'em little stringy clouds."</string>
+    <string name="quote_ross_029">"I know there's an old coyote sitting out there. I can just sort of feel it."</string>
+    <string name="quote_ross_030">"I know you're saying already, \"Bob, you've messed this one up.\" You may be right."</string>
+    <string name="quote_ross_031">"Painting offers you freedom."</string>
+    <string name="quote_ross_032">"You can make these clouds with a one-inch brush, two-inch brush, fan brush. Shoot, you could make 'em with your shoe."</string>
+    <string name="quote_ross_033">"This year, I raised seven little birds."</string>
+    <string name="quote_ross_034">"Caress the canvas; make love to it."</string>
+    <string name="quote_ross_035">"From all of us here: Happy painting, and God bless."</string>
+    <string name="quote_ross_036">"Talent is a pursued interest. Anything that you're willing to practice, you can do."</string>
+    <string name="quote_ross_037">"I can't think of anything more rewarding than being able to express yourself to others through painting."</string>
+    <string name="quote_ross_038">"Exercising the imagination, experimenting with talents, being creative; these things, to me, are truly the windows to your soul."</string>
+    <string name="quote_ross_039">"I started painting as a hobby when I was little. I didn't know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do."</string>
+    <string name="quote_ross_040">"Lets build a happy little cloud. Lets build some happy little trees."</string>
+    <string name="quote_ross_041">"Let your imagination take you anywhere you want to go."</string>
+    <string name="quote_ross_042">"Anybody can put a masterpiece on canvas with just a little practice."</string>
+    <string name="quote_ross_043">"Very gently, lift upward."</string>
+    <string name="quote_ross_044">"Trees cover up a multitude of sins."</string>
+    <string name="quote_ross_045">"Tell you what, let's do put a little cloud in there."</string>
+    <string name="quote_ross_046">"I like to do trees."</string>
+    <string name="quote_ross_047">"The selling of the work is not important; what's important is the fact that someone is willing to pay you for something you created."</string>
+    <string name="quote_ross_048">"You can do anything here, absolutely anything."</string>
+    <string name="quote_ross_049">"The only thing worse than yellow snow, is green snow."</string>
+    <string name="quote_ross_050">"Just like any muscle in your body, your imagination increases proportionately to the amount of practice you give it."</string>
+    <string name="quote_ross_051">"If there's any secret to anything that you're ever good at, it's just practice."</string>
+    <string name="quote_ross_052">"Grab it, lift it, fluff it."</string>
+    <string name="quote_ross_053">"There are no limits here."</string>
+    <string name="quote_ross_054">"I believe every day's a good day when you paint."</string>
 
 </resources>
