@@ -62,19 +62,6 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
         mValueSpinner = view.findViewById(R.id.pref_dialog_interval_spinner_value);
         mUnitSpinner = view.findViewById(R.id.pref_dialog_interval_spinner_unit);
 
-        // TODO do I need to implement this?
-        mValueSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
         // get the value from the related preference
         String intervalString = null;
         DialogPreference preference = getPreference();
