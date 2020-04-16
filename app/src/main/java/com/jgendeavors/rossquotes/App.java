@@ -4,6 +4,7 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -118,7 +119,11 @@ public class App extends Application {
                     channelNameMessages /* channel name, visible to user */,
                     NotificationManager.IMPORTANCE_HIGH
             );
+            // TODO remember: once a channel is created, I can't change it on subsequent launches if I use the same channel ID.
+            //  For a change made here to take effect, the user must uninstall and reinstall the app
             messagesChannel.setDescription(channelDescriptionMessages);
+            messagesChannel.enableLights(true);
+            messagesChannel.setLightColor(getColor(R.color.colorAccent));
 
             // Set up channel for displaying alert notifications
             NotificationChannel alertsChannel = new NotificationChannel(
@@ -126,7 +131,10 @@ public class App extends Application {
                     channelNameAlerts /* channel name, visible to user */,
                     NotificationManager.IMPORTANCE_HIGH
             );
+            // TODO see above reminder
             alertsChannel.setDescription(channelDescriptionAlerts);
+            alertsChannel.enableLights(true);
+            alertsChannel.setLightColor(getColor(R.color.colorAccent));
 
             // Register the channels so we can send notifications through them
             NotificationManager manager = getSystemService(NotificationManager.class);
