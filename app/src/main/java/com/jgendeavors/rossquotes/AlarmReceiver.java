@@ -203,7 +203,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setStyle(new NotificationCompat.BigTextStyle())
                 .setColor(ContextCompat.getColor(context, R.color.colorAccent))
                 .setAutoCancel(true)
-                .setLights(context.getResources().getColor(R.color.colorAccent), 1000, 2000)
+                .setLights(context.getResources().getColor(R.color.colorAccent), 500, 2000)
                 // set the intent that fires on notification click
                 .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
@@ -240,7 +240,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setStyle(new NotificationCompat.BigTextStyle())
                 .setColor(ContextCompat.getColor(context, R.color.colorAccent))
                 .setAutoCancel(true)
-                .setLights(context.getResources().getColor(R.color.colorAccent), 1000, 2000)
+                .setLights(context.getResources().getColor(R.color.colorAccent), 500, 2000)
                 // set the intent that fires on notification click
                 .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
@@ -283,7 +283,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setStyle(new NotificationCompat.BigTextStyle())
                 .setColor(ContextCompat.getColor(context, R.color.colorAccent))
                 .setAutoCancel(true)
-                .setLights(context.getResources().getColor(R.color.colorAccent), 1000, 2000)
+                .setLights(context.getResources().getColor(R.color.colorAccent), 500, 2000)
                 // set the intent that fires on notification click
                 .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
