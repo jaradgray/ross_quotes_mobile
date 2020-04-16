@@ -118,13 +118,11 @@ public class DashboardCardView extends CardView {
             case CONFIRM:
                 mIvIconAlert.setImageResource(R.drawable.ic_alert_confirm);
                 mTvAlert.setTextColor(getResources().getColor(R.color.green));
-                // TODO set color of alert iv ???
                 break;
 
             case WARN:
                 mIvIconAlert.setImageResource(R.drawable.ic_alert_warn);
                 mTvAlert.setTextColor(getResources().getColor(R.color.red));
-                // TODO set color of alert iv ???
                 break;
         }
 

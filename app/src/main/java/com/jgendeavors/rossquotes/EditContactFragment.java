@@ -133,7 +133,6 @@ public class EditContactFragment extends Fragment {
             public void onClick(View view) {
                 // Insert/update Contact
                 mViewModel.insertOrUpdateContact(contactId, mEtName.getText().toString(), mIvContactPhoto.getTag().toString());
-                // TODO hide soft keyboard
                 // Navigate up/back
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();
             }

@@ -103,7 +103,6 @@ public class EditMessageFragment extends Fragment {
                 // Save message
                 int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID); // get Contact id from args
                 mViewModel.saveMessage(contactId, mEtMessage.getText().toString());
-                // TODO hide soft keyboard
                 // Navigate back/up
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();
                 return true;
@@ -111,7 +110,6 @@ public class EditMessageFragment extends Fragment {
                 // Delete message
                 mViewModel.deleteMessage();
                 Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT).show();
-                // TODO hide soft keyboard
                 // Navigate back/up
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();
                 return true;

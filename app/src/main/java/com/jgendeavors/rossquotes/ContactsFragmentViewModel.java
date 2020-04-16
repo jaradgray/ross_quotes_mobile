@@ -37,7 +37,6 @@ public class ContactsFragmentViewModel extends AndroidViewModel {
     public LiveData<List<Contact>> getContacts() { return mContacts; }
 
 
-    // TODO add data manipulation methods
     // Data manipulation methods
     // Our Fragment only has access to the ViewModel and not the Repository, so we create
     // wrapper methods for the Repository API
