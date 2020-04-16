@@ -101,7 +101,7 @@
 
     <!-- Bob Ross quotes -->
     <!-- TODO remember: if I add any quotes here, be sure to add references to them in the corresponding array -->
-    <string name="quote_ross_000">"We don't make mistakes; we have happy accidents."</string>
+    <string name="quote_ross_000">"We don't make mistakes. We just have happy accidents."</string>
     <string name="quote_ross_001">"If you've never lived with a squirrel, you haven't lived."</string>
     <string name="quote_ross_002">"Let's get crazy."</string>
     <string name="quote_ross_003">"Just beat the devil out of it."</string>
