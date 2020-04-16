@@ -124,6 +124,7 @@ public class App extends Application {
             messagesChannel.setDescription(channelDescriptionMessages);
             messagesChannel.enableLights(true);
             messagesChannel.setLightColor(getColor(R.color.colorAccent));
+            messagesChannel.enableVibration(true);
 
             // Set up channel for displaying alert notifications
             NotificationChannel alertsChannel = new NotificationChannel(
@@ -135,6 +136,7 @@ public class App extends Application {
             alertsChannel.setDescription(channelDescriptionAlerts);
             alertsChannel.enableLights(true);
             alertsChannel.setLightColor(getColor(R.color.colorAccent));
+            alertsChannel.enableVibration(true);
 
             // Register the channels so we can send notifications through them
             NotificationManager manager = getSystemService(NotificationManager.class);
