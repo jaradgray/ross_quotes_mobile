@@ -44,7 +44,8 @@ public class App extends Application {
         // Put code that should be performed once on app launch here
 
         // TODO delete this; just for testing
-        deleteDatabase(QuotesRoomDatabase.DB_NAME);
+        //  recreates database each time app is launched
+//        deleteDatabase(QuotesRoomDatabase.DB_NAME);
 
         createNotificationChannels();
 
