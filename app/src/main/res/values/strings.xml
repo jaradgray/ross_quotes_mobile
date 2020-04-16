@@ -99,6 +99,9 @@
     <string name="pref_entry_interval_unit_hour">Hours</string>
     <string name="pref_entry_interval_unit_day">Days</string>
 
+    <string name="toast_interval_too_large">Interval too large</string>
+    <string name="toast_interval_too_small">Interval too small</string>
+
     <!-- Bob Ross quotes -->
     <!-- TODO remember: if I add any quotes here, be sure to add references to them in the corresponding array -->
     <string name="quote_ross_000">"We don't make mistakes. We just have happy accidents."</string>

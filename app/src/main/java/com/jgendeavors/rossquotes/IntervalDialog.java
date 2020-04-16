@@ -109,8 +109,7 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
                     String maxIntervalString = prefs.getString(App.PREF_KEY_MAX_INTERVAL, null);
                     if (getIntervalMillis(getContext(), intervalString) > getIntervalMillis(getContext(), maxIntervalString)) {
-                        // TODO use resource String
-                        Toast.makeText(getContext(), "Interval too large", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.toast_interval_too_large), Toast.LENGTH_SHORT).show();
                         return;
                     }
                 } else if (intervalDialogPref.getKey().equals(App.PREF_KEY_MAX_INTERVAL)) {
@@ -118,8 +117,7 @@ public class IntervalDialog extends PreferenceDialogFragmentCompat {
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
                     String minIntervalString = prefs.getString(App.PREF_KEY_MIN_INTERVAL, null);
                     if (getIntervalMillis(getContext(), intervalString) < getIntervalMillis(getContext(), minIntervalString)) {
-                        // TODO use resource String
-                        Toast.makeText(getContext(), "Interval too small", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.toast_interval_too_large), Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
