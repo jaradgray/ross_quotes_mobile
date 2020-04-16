@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                app:icMain="@drawable/ic_message"
+                app:icMain="@drawable/ic_dashboard_messages"
                 app:titleText="@string/dashboard_card_received_messages_title"
                 app:detailsText="@string/dashboard_card_received_messages_details"
                 app:alertMode="NONE"/>
@@ -88,7 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                app:icMain="@drawable/ic_person"
+                app:icMain="@drawable/ic_dashboard_contacts"
                 app:titleText="@string/dashboard_card_contacts_title"
                 app:detailsText="@string/dashboard_card_contacts_details"
                 app:alertMode="NONE"/>
@@ -99,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                app:icMain="@drawable/ic_settings"
+                app:icMain="@drawable/ic_dashboard_settings"
                 app:titleText="@string/dashboard_card_settings_title"
                 app:alertMode="NONE"/>
 
