@@ -13,7 +13,6 @@
             android:id="@+id/fragment_edit_contact_iv_contact_photo"
             android:layout_width="@dimen/avatar_size_large"
             android:layout_height="@dimen/avatar_size_large"
-            android:src="@drawable/ic_default_avatar"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"/>
 
