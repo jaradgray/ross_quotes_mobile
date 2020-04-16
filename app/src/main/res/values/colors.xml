@@ -17,7 +17,7 @@
     <color name="green">#9ac899</color>
     <color name="gold">#D2AF24</color>
 
-    <!-- colors used for DashboardCard and settings icons, like Samsung settings screen -->
+    <!-- pool of colors to use for DashboardCard and settings icons, like Samsung settings screen -->
     <color name="orange">#FFa746</color>
     <color name="blue">#44a4fe</color>
     <color name="lightBlue">#8bb0fc</color>
