@@ -202,6 +202,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentText(context.getString(R.string.notification_text_no_enabled_contacts))
                 .setStyle(new NotificationCompat.BigTextStyle())
                 .setColor(ContextCompat.getColor(context, R.color.colorAccent))
+                .setAutoCancel(true)
                 // set the intent that fires on notification click
                 .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
@@ -237,6 +238,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentText(context.getString(R.string.notification_text_no_messages_for_contact, contact.getName()))
                 .setStyle(new NotificationCompat.BigTextStyle())
                 .setColor(ContextCompat.getColor(context, R.color.colorAccent))
+                .setAutoCancel(true)
                 // set the intent that fires on notification click
                 .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
@@ -278,6 +280,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setLargeIcon(largeIcon)
                 .setStyle(new NotificationCompat.BigTextStyle())
                 .setColor(ContextCompat.getColor(context, R.color.colorAccent))
+                .setAutoCancel(true)
                 // set the intent that fires on notification click
                 .setContentIntent(contentIntent)
                 // set stuff here similar to our notification channel in App.java, to support APIs lower than O
