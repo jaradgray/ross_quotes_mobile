@@ -127,6 +127,9 @@ public class ContactDetailsFragment extends Fragment {
         mViewModel.getContact(contactId).observe(getViewLifecycleOwner(), new Observer<Contact>() {
             @Override
             public void onChanged(Contact contact) {
+                // contact will be null if we just deleted it
+                if (contact == null) return;
+
                 // update profile pic
                 Uri imgUri = Uri.parse(contact.getImageAbsolutePath());
                 ivProfile.setImageURI(imgUri);
