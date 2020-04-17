@@ -104,7 +104,7 @@
 
     <!-- Bob Ross quotes -->
     <!-- TODO remember: if I add any quotes here, be sure to add references to them in the corresponding array -->
-    <string name="quote_ross_000">"We don't make mistakes. We just have happy accidents."</string>
+    <string name="quote_ross_000">"We don't make mistakes; we just have happy accidents."</string>
     <string name="quote_ross_001">"If you've never lived with a squirrel, you haven't lived."</string>
     <string name="quote_ross_002">"Let's get crazy."</string>
     <string name="quote_ross_003">"Just beat the devil out of it."</string>
@@ -142,8 +142,8 @@
     <string name="quote_ross_035">"From all of us here: Happy painting, and God bless."</string>
     <string name="quote_ross_036">"Talent is a pursued interest. Anything that you're willing to practice, you can do."</string>
     <string name="quote_ross_037">"I can't think of anything more rewarding than being able to express yourself to others through painting."</string>
-    <string name="quote_ross_038">"Exercising the imagination, experimenting with talents, being creative; these things, to me, are truly the windows to your soul."</string>
-    <string name="quote_ross_039">"I started painting as a hobby when I was little. I didn't know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do."</string>
+    <string name="quote_ross_038">"Exercising the imagination, experimenting with talents, being creative - these things, to me, are truly the windows to your soul."</string>
+    <string name="quote_ross_039">"I started painting as a hobby when I was little; I didn't know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do."</string>
     <string name="quote_ross_040">"Lets build a happy little cloud. Lets build some happy little trees."</string>
     <string name="quote_ross_041">"Let your imagination take you anywhere you want to go."</string>
     <string name="quote_ross_042">"Anybody can put a masterpiece on canvas with just a little practice."</string>
