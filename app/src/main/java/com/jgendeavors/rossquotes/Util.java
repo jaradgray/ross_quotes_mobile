@@ -80,6 +80,14 @@ public class Util {
         } catch (IOException e) {
             // Unable to create File
             Log.e(TAG, "saveToExternalStorage: Error writing " + bitmapFile, e);
+
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException ex) {
+                    Log.e(TAG, "saveToExternalStorage: Error closing " + out, ex);
+                }
+            }
         }
 
         // Return written File's path
