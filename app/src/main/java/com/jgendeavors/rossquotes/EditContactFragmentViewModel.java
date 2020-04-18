@@ -72,16 +72,36 @@ public class EditContactFragmentViewModel extends AndroidViewModel {
     }
 
     /**
-     * Creates an in-memory Bitmap of the image at @uri.
+     * Creates an in-memory Bitmap of the image at @uri, scaled to fit within a maximum size.
      * Call this when the user selects an image in the EditContactFragment.
      *
      * @param uri
      */
     public void setSelectedImage(Uri uri) {
-        // TODO create a Bitmap from uri
+        // Convert Uri to Bitmap
         try {
             mSelectedImage = MediaStore.Images.Media.getBitmap(getApplication().getContentResolver(), uri);
-//            mSelectedImage = Bitmap.createScaledBitmap(mSelectedImage, 512, 512, true);
+            // scale the bitmap so it's no larger than 512x512, preserving aspect ratio
+            int imageWidth = mSelectedImage.getWidth();
+            int imageHeight = mSelectedImage.getHeight();
+            final int MAX_SIZE = 512;
+            int scaledWidth;
+            int scaledHeight;
+            float ratio;
+            if (imageWidth >= imageHeight) {
+                // square or wider image
+                //  set width to max size, scale height
+                scaledWidth = MAX_SIZE;
+                ratio = (float) imageHeight / imageWidth;
+                scaledHeight = (int) (MAX_SIZE * ratio);
+            } else {
+                // taller image
+                //  set height to max size, scale width
+                scaledHeight = MAX_SIZE;
+                ratio = (float) imageWidth / imageHeight;
+                scaledWidth = (int) (MAX_SIZE * ratio);
+            }
+            mSelectedImage = Bitmap.createScaledBitmap(mSelectedImage, scaledWidth, scaledHeight, true);
         } catch (Exception e) {
             Log.e("EditContactFragmentVM", "setSelectedImage: Error: ", e);
         }
