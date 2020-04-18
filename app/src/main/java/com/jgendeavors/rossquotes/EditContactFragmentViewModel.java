@@ -48,7 +48,7 @@ public class EditContactFragmentViewModel extends AndroidViewModel {
             String imageAbsolutePath = null;
             if (mSelectedImage != null) {
                 // save image to app-specific external storage, get its path
-                imageAbsolutePath = Util.saveToExternalStorage(getApplication(), mSelectedImage, "" + id);
+                imageAbsolutePath = Util.saveToExternalStorage(getApplication(), mSelectedImage, id + ".jpg");
             }
             contact = new Contact(id, name, imageAbsolutePath, true);
             mRepository.insert(contact);
@@ -60,7 +60,7 @@ public class EditContactFragmentViewModel extends AndroidViewModel {
             // if the in-memory image has been set, we need to save it to our app's storage and use the saved image's path
             if (mSelectedImage != null) {
                 // save image to app-specific external storage, get its path
-                imageAbsolutePath = Util.saveToExternalStorage(getApplication(), mSelectedImage, "" + contactId);
+                imageAbsolutePath = Util.saveToExternalStorage(getApplication(), mSelectedImage, contactId + ".jpg");
             }
             // get Contact's isEnabled value
             boolean isEnabled = oldContact.getIsEnabled();
