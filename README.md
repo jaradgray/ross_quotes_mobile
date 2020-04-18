@@ -16,4 +16,5 @@ Relevant files:
 
 Notes:
  - Doesn't display contact image in notification
+    - using BitmapFactory.decodeFile() fixed this, but then it wouldn't show images for bundled Contacts, whose images are in /drawable
  - Doesn't delete saved image files on Contact deleted
