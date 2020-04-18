@@ -43,6 +43,7 @@ public abstract class QuotesRoomDatabase extends RoomDatabase {
             synchronized (QuotesRoomDatabase.class) {
                 INSTANCE = Room.databaseBuilder(context, QuotesRoomDatabase.class, DB_NAME)
                         .addCallback(sRoomDatabaseCallback)
+                        .fallbackToDestructiveMigration()
                         .build();
                 mContext = context;
             }
