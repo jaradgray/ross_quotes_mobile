@@ -5,7 +5,8 @@ Prior state:
  - app can crash if it tries to set a ImageView's source with a "content://*" Uri when Storage permission is denied
 
 Current branch state:
- - save a scaled Bitmap to a File in app-specific external storage
+ - create an in-memory, scaled Bitmap from the Uri selected in EditContactFragment.onActivityResult()
+ - save the in-memory Bitmap to a File in app-specific external storage on EditContactFragment save button click
 
 ---
 
