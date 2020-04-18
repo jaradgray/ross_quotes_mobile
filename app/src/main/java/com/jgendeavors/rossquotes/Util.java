@@ -48,7 +48,8 @@ public class Util {
     }
 
     /**
-     * TODO description
+     * Writes @bitmap's data to a File named @fileName in the pictures directory in app-specific external storage,
+     * and returns the written File's absolute path.
      *
      * @param context
      * @param bitmap
@@ -65,8 +66,10 @@ public class Util {
         // Get the app-specific primary external storage directory for pictures
         File externalPicutresDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
+        // Create the File we'll write the Bitmap data to
         File bitmapFile = new File(externalPicutresDir, fileName);
 
+        // Write Bitmap data to File
         FileOutputStream out = null;
         try {
             out = new FileOutputStream(bitmapFile);
@@ -79,6 +82,7 @@ public class Util {
             Log.e(TAG, "saveToExternalStorage: Error writing " + bitmapFile, e);
         }
 
+        // Return written File's path
         return bitmapFile.getAbsolutePath();
     }
 }

@@ -44,11 +44,10 @@ public class EditContactFragmentViewModel extends AndroidViewModel {
             // Insert new Contact
             // TODO maybe validate by making sure there's a name or picture
             int id = getNextContactId();
-            // TODO save contact's image to internal/external storage here
             // get a path for the contact's image, if it's been set
             String imageAbsolutePath = null;
             if (mSelectedImage != null) {
-                // TODO save image, get its path
+                // save image to app-specific external storage, get its path
                 imageAbsolutePath = Util.saveToExternalStorage(getApplication(), mSelectedImage, "" + id);
             }
             contact = new Contact(id, name, imageAbsolutePath, true);
@@ -60,7 +59,7 @@ public class EditContactFragmentViewModel extends AndroidViewModel {
             String imageAbsolutePath = oldContact.getImageAbsolutePath();
             // if the in-memory image has been set, we need to save it to our app's storage and use the saved image's path
             if (mSelectedImage != null) {
-                // TODO save image, get its path
+                // save image to app-specific external storage, get its path
                 imageAbsolutePath = Util.saveToExternalStorage(getApplication(), mSelectedImage, "" + contactId);
             }
             // get Contact's isEnabled value
