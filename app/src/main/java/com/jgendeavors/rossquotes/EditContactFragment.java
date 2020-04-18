@@ -79,12 +79,11 @@ public class EditContactFragment extends Fragment {
         final int contactId = getArguments().getInt(ARG_KEY_CONTACT_ID);
         if (contactId == ARG_VALUE_NO_CONTACT_ID) {
             // New Contact
-            // Set ImageView's image and tag to default values
+            // Set ImageView's image to default values
             final String resPath = "android.resource://com.jgendeavors.rossquotes/";
             String imgPath = resPath + R.drawable.ic_default_avatar;
             Uri imgUri = Uri.parse(imgPath);
             mIvContactPhoto.setImageURI(imgUri);
-            mIvContactPhoto.setTag(imgPath);
         } else {
             // Existing Contact
             // Observe ViewModel's LiveData
@@ -96,7 +95,6 @@ public class EditContactFragment extends Fragment {
                     String imgPath = contact.getImageAbsolutePath();
                     Uri imgUri = Uri.parse(imgPath);
                     mIvContactPhoto.setImageURI(imgUri);
-                    mIvContactPhoto.setTag(imgPath); // store image's path in iv's tag
                     // name
                     mEtName.setText(contact.getName());
                 }
@@ -132,7 +130,7 @@ public class EditContactFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Insert/update Contact
-                mViewModel.insertOrUpdateContact(contactId, mEtName.getText().toString(), mIvContactPhoto.getTag().toString());
+                mViewModel.insertOrUpdateContact(contactId, mEtName.getText().toString());
                 // Navigate up/back
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).popBackStack();
             }
@@ -145,9 +143,16 @@ public class EditContactFragment extends Fragment {
 
         // User selected a contact image
         if (requestCode == REQUEST_CODE_CHOOSE_IMAGE && resultCode == Activity.RESULT_OK) {
-            // Update ImageView's image and tag based on selected image
+            // set ViewModel's selectedImageUri member
+            mViewModel.setSelectedImage(data.getData());
+
+            // update ImageView
             mIvContactPhoto.setImageURI(data.getData());
-            mIvContactPhoto.setTag(data.getDataString());
+
+            // TODO delete
+            // Update ImageView's image and tag based on selected image
+//            mIvContactPhoto.setImageURI(data.getData());
+//            mIvContactPhoto.setTag(data.getDataString());
         }
     }
 
