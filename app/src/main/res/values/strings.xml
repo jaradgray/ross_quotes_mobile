@@ -1,3 +1,202 @@
 <resources>
     <string name="app_name">Ross Quotes</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name_messages">Messages</string>
+    <string name="notification_channel_name_alerts">Alerts</string>
+    <string name="notification_channel_description_messages">Message notifications from contacts in the app.</string>
+    <string name="notification_channel_description_alerts">Alerts when the app is in a state that could lead to undesired behavior.</string>
+
+    <string name="notification_title_no_enabled_contacts">No enabled contacts</string>
+    <string name="notification_text_no_enabled_contacts">Ross Quotes is scheduling messages, but you don\'t have any enabled contacts.</string>
+
+    <string name="notification_title_no_messages_for_contact">No messages found</string>
+    <string name="notification_text_no_messages_for_contact">You should be seeing a message from %s, but we couldn\'t find any.</string>
+
+    <!-- PremiumDialog -->
+    <string name="dialog_premium_title">Premium Feature</string>
+    <string name="dialog_premium_content">You found a premium feature! Upgrade for lifetime access to ALL (current and future) premium features, including:\n\t\u2022 adding new contacts\n\t\u2022 editing contacts\n\t\u2022 adding and editing quotes</string>
+    <string name="dialog_premium_button_positive">Upgrade</string>
+    <string name="dialog_premium_button_negative">Not now</string>
+
+    <!-- DashboardFragment -->
+    <string name="fragment_dashboard_title">Dashboard</string>
+
+    <string name="version_format">Version %s</string>
+
+    <string name="dashboard_fragment_tv_premium">Premium</string>
+
+    <string name="dashboard_card_received_messages_title">Received Messages</string>
+    <string name="dashboard_card_received_messages_details">%d Total</string>
+
+    <string name="dashboard_card_contacts_title">Contacts</string>
+    <string name="dashboard_card_contacts_details">%d Total\n%d Enabled</string>
+    <string name="dashboard_card_contacts_alert_warn">No contacts enabled</string>
+
+    <string name="dashboard_card_settings_title">Settings</string>
+    <string name="dashboard_card_settings_details">"You're receiving a message every:\n%s to\n%s"</string>
+    <string name="dashboard_card_settings_alert_confirm">Messages are being scheduled</string>
+    <string name="dashboard_card_settings_alert_warn">Not scheduling messages</string>
+
+    <!-- ReceivedMessagesFragment -->
+    <string name="fragment_received_messages_title">Received Messages</string>
+    <!-- options menu-->
+    <string name="menu_item_clear_received_messages_title">Clear messages</string>
+    <string name="toast_received_messages_cleared">Messages cleared</string>
+
+    <!-- ContactsFragment -->
+    <string name="fragment_contacts_title">Contacts</string>
+
+    <!--
+        Resources.getString(int, Object...) strips styling from strings
+        The CDATA block makes getString() include the HTML tags as characters in the string
+        Then we can use fromHtml() to render the string with HTML
+        Based on android dev site: https://developer.android.com/guide/topics/resources/string-resource#FormattingAndStyling
+        and this SO answer: https://stackoverflow.com/a/7641177
+    -->
+    <string name="snackbar_contact_enabled"><![CDATA[You\'ll receive notifications from <b>%s</b>.]]></string>
+    <string name="snackbar_contact_disabled"><![CDATA[You won\'t receive notifications from <b>%s</b>.]]></string>
+
+    <!-- ContactDetailsFragment -->
+    <string name="fragment_contact_details_title">Details</string>
+    <!-- options menu -->
+    <string name="menu_item_delete_contact_title">Delete contact</string>
+
+    <string name="fragment_contact_details_section_quotes_heading">Quotes</string>
+    <string name="fragment_contact_details_alert_no_quotes">This contact doesn\'t have any quotes</string>
+
+    <!-- EditContactFragment -->
+    <string name="fragment_edit_contact_title">Edit Contact</string>
+    <!-- widgets -->
+    <string name="fragment_edit_contact_et_name_hint">Name</string>
+    <string name="fragment_edit_contact_b_save_text">Save</string>
+
+    <!-- EditMessageFragment -->
+    <string name="fragment_edit_message_title">Edit Message</string>
+    <!-- options menu -->
+    <string name="menu_item_save_message_title">Save</string>
+    <string name="menu_item_delete_message_title">Delete</string>
+    <!-- widgets -->
+    <string name="fragment_edit_message_et_message_hint">Enter a remarkable quote</string>
+
+    <!-- SettingsFragment (and settings_main.xml) -->
+    <string name="fragment_settings_title">Settings</string>
+
+    <string name="pref_title_general_category">General</string>
+    <string name="pref_title_receive_notifications">Receive notifications</string>
+    <string name="pref_summary_receive_notifications">Receive message notifications from Bob and others</string>
+
+    <string name="pref_title_schedule_category">Schedule</string>
+    <string name="pref_summary_schedule_category">Adjust the time between notifications</string>
+
+    <string name="pref_title_min_interval">Minimum time</string>
+
+    <string name="pref_title_max_interval">Maximum time</string>
+
+    <!-- IntervalDialog -->
+    <string name="pref_entry_interval_unit_second">Seconds</string>
+    <string name="pref_entry_interval_unit_minute">Minutes</string>
+    <string name="pref_entry_interval_unit_hour">Hours</string>
+    <string name="pref_entry_interval_unit_day">Days</string>
+
+    <string name="toast_interval_too_large">Interval too large</string>
+    <string name="toast_interval_too_small">Interval too small</string>
+
+    <!-- Bob Ross quotes -->
+    <!-- TODO remember: if I add any quotes here, be sure to add references to them in the corresponding array -->
+    <string name="quote_ross_000">"We don't make mistakes; we just have happy accidents."</string>
+    <string name="quote_ross_001">"If you've never lived with a squirrel, you haven't lived."</string>
+    <string name="quote_ross_002">"Let's get crazy."</string>
+    <string name="quote_ross_003">"Just beat the devil out of it."</string>
+    <string name="quote_ross_004">"I like to beat the brush."</string>
+    <string name="quote_ross_005">"I really believe that if you practice enough you could paint the 'Mona Lisa' with a two-inch brush."</string>
+    <string name="quote_ross_006">"Just go out and talk to a tree. Make friends with it."</string>
+    <string name="quote_ross_007">"In painting, you have unlimited power. You have the ability to move mountains. You can bend rivers."</string>
+    <string name="quote_ross_008">"You need the dark in order to show the light."</string>
+    <string name="quote_ross_009">"Look around. Look at what we have. Beauty is everywhere - you only have to look to see it."</string>
+    <string name="quote_ross_010">"The secret to doing anything is believing that you can do it."</string>
+    <string name="quote_ross_011">"Anything that you believe you can do strong enough, you can do. Anything. As long as you believe."</string>
+    <string name="quote_ross_012">"You have unlimited power on this canvas."</string>
+    <string name="quote_ross_013">"I guess I'm a little weird. I like to talk to trees and animals. That's okay though; I have more fun than most people."</string>
+    <string name="quote_ross_014">"There's nothing wrong with having a tree as a friend."</string>
+    <string name="quote_ross_015">"Even a tree needs a friend."</string>
+    <string name="quote_ross_016">"I've already covered the canvas with a thin, even coat of liquid white."</string>
+    <string name="quote_ross_017">"It's wet, slick, and ready to go."</string>
+    <string name="quote_ross_018">"You can do anything you want to do. This is your world."</string>
+    <string name="quote_ross_019">"Here's your bravery test!"</string>
+    <string name="quote_ross_020">"This is your world, and you have to design it the way you want it."</string>
+    <string name="quote_ross_021">"I still have not cleaned the brush. I'm lazy."</string>
+    <string name="quote_ross_022">"Let's have some fun."</string>
+    <string name="quote_ross_023">"Just before the show I went to the bathroom. Needless to say, with a wireless mic, when I came back everybody knew where I'd been."</string>
+    <string name="quote_ross_024">"Three hairs and some air."</string>
+    <string name="quote_ross_025">"When you pull it, wiggle it."</string>
+    <string name="quote_ross_026">"It's a good day to be alive. Come to think of it, every day's a good day to be alive."</string>
+    <string name="quote_ross_027">"Big ol' tree."</string>
+    <string name="quote_ross_028">"I'm sure there's a proper name for these clouds. I just call 'em little stringy clouds."</string>
+    <string name="quote_ross_029">"I know there's an ol' coyote sitting out there. I can just sort of feel it."</string>
+    <string name="quote_ross_030">"I know you're saying already, \"Bob, you've messed this one up.\" You may be right."</string>
+    <string name="quote_ross_031">"Painting offers you freedom."</string>
+    <string name="quote_ross_032">"You can make these clouds with a one-inch brush, two-inch brush, fan brush. Shoot, you could make 'em with your shoe."</string>
+    <string name="quote_ross_033">"This year, I raised seven little birds."</string>
+    <string name="quote_ross_034">"Caress the canvas; make love to it."</string>
+    <string name="quote_ross_035">"From all of us here: Happy painting, and God bless."</string>
+    <string name="quote_ross_036">"Talent is a pursued interest. Anything that you're willing to practice, you can do."</string>
+    <string name="quote_ross_037">"I can't think of anything more rewarding than being able to express yourself to others through painting."</string>
+    <string name="quote_ross_038">"Exercising the imagination, experimenting with talents, being creative - these things, to me, are truly the windows to your soul."</string>
+    <string name="quote_ross_039">"I started painting as a hobby when I was little; I didn't know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do."</string>
+    <string name="quote_ross_040">"Lets build a happy little cloud. Lets build some happy little trees."</string>
+    <string name="quote_ross_041">"Let your imagination take you anywhere you want to go."</string>
+    <string name="quote_ross_042">"Anybody can put a masterpiece on canvas with just a little practice."</string>
+    <string name="quote_ross_043">"Now very gently, lift upward."</string>
+    <string name="quote_ross_044">"Trees cover up a multitude of sins."</string>
+    <string name="quote_ross_045">"Tell you what, let's do put a little cloud in there."</string>
+    <string name="quote_ross_046">"I like to do trees."</string>
+    <string name="quote_ross_047">"The selling of the work is not important; what's important is the fact that someone is willing to pay you for something you created."</string>
+    <string name="quote_ross_048">"You can do anything here, absolutely anything."</string>
+    <string name="quote_ross_049">"The only thing worse than yellow snow, is green snow."</string>
+    <string name="quote_ross_050">"Just like any muscle in your body, your imagination increases proportionately to the amount of practice you give it."</string>
+    <string name="quote_ross_051">"If there's any secret to anything that you're ever good at, it's just practice."</string>
+    <string name="quote_ross_052">"Grab it, lift it, fluff it."</string>
+    <string name="quote_ross_053">"There are no limits here."</string>
+    <string name="quote_ross_054">"I believe every day's a good day when you paint."</string>
+    <string name="quote_ross_055">"Gotta give him a friend. Like I always say: 'Everyone needs a friend.'"</string>
+    <string name="quote_ross_056">"Heh. Isn't that sneaky?"</string>
+    <string name="quote_ross_057">"Just pretend you're a whisper, floating across the mountain."</string>
+    <string name="quote_ross_058">"The trees are oh so soft&#8230; oh so soft I freakin' love it."</string>
+    <string name="quote_ross_059">"We want happy paintings. Happy paintings. If you want sad things, watch the news."</string>
+    <string name="quote_ross_060">"And we don't care if some of these little hangy-downs off the brush get down here - we'll just turn those into reflections. We'll use them rascals."</string>
+    <string name="quote_ross_061">"We're gonna make some big decisions in our little world."</string>
+    <string name="quote_ross_062">"I can't go over 30 minutes, because we have a mean ol' director with no sense of humor."</string>
+    <string name="quote_ross_063">"And just go straight in like you're gonna stab it. And barely touch it&#8230; barely touch it."</string>
+    <string name="quote_ross_064">"Proportionately, I'm using much more crimson than blue."</string>
+    <string name="quote_ross_065">"Let's just blend this little rascal here&#8230; Ha! Happy as we can be."</string>
+    <string name="quote_ross_066">"Clouds are very, very free."</string>
+    <string name="quote_ross_067">"Just sparkle that where you want the sun to really zing through and shine. Just sparkle."</string>
+    <string name="quote_ross_068">"Just put a few do-ers in there."</string>
+    <string name="quote_ross_069">"That's a one-way ticket to Agony City."</string>
+    <string name="quote_ross_070">"Just scrape in a few indications of sticks and twigs and other little things in there. People will think you spent hours doing this."</string>
+    <string name="quote_ross_071">"Decide where your little footy hills live."</string>
+    <string name="quote_ross_072">"If you did this with yellow, and you went over it with blue, you would end up with a&#8230; with a translucent&#8230; green. And it's gorgeous. It is GORGEOUS."</string>
+    <string name="quote_ross_073">"All you're doing is just tap, tap, tap. Just like the ol' tap dancers did, that's all you have to do. Tap out a happy little tune here, and let it go."</string>
+    <string name="quote_ross_074">"It's so important to do something every day that will make you happy."</string>
+    <string name="quote_ross_075">"Yep, you're right - there's a tree. Tell you what, let's have another one."</string>
+    <string name="quote_ross_076">"Sometimes your tongue gets over your eye teeth and you can't see what you're saying."</string>
+    <string name="quote_ross_077">"Maybe over here lives&#8230; yep. Some big ol', big ol', big ol', big ol' tree limb."</string>
+    <string name="quote_ross_078">"We were tearing down an old house, and we threw out a box, and son of a gun - two little baby squirrels rolled out."</string>
+    <string name="quote_ross_079">"This is a lazy man's way of painting. That's why I like it so much - I'm basically a very lazy person."</string>
+    <string name="quote_ross_080">"Don't wanna over-blend this, I want to leave it sort of rough&#8230; and ragged. That's what my dog says, \"ruff!\""</string>
+    <string name="quote_ross_081">"And just that easy, we've got a fantastic little sky."</string>
+    <string name="quote_ross_082">"I want to create the illusion of mist."</string>
+    <string name="quote_ross_083">"Remember our Golden Rule: a thin paint will stick to a thick paint."</string>
+    <string name="quote_ross_084">"These two trees are good buddies; they live next door to each other. And maybe here and there there's a happy little bush or so that grows right down by his foots."</string>
+    <string name="quote_ross_085">"Don't want it to look like it's floating around and just having a good time - push that rascal down in there."</string>
+    <string name="quote_ross_086">"Today, let's have a&#8230; let's have a happy little painting."</string>
+    <string name="quote_ross_087">"See, already that makes a dynamite sky. Beautiful little sky."</string>
+    <string name="quote_ross_088">"And all we're doing, once again, is just tapping. Just tap, tap."</string>
+    <string name="quote_ross_089">"Someone sent me a letter here a while back and said that I use the word \"happy\" too much, that everything was happy in my world&#8230; And that's true - in my world, everything is happy."</string>
+    <string name="quote_ross_090">"You can turn the brush sidewards, and make different little effects if you want 'em."</string>
+    <string name="quote_ross_091">"That misty area is most, most important - it's your friend."</string>
+    <string name="quote_ross_092">"I get crazy sometimes and like to do&#8230; wild things."</string>
+    <string name="quote_ross_093">"You want a dry brush for this. If your brush is wet, you'll become a mud mixer."</string>
+
 </resources>

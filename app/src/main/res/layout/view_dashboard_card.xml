@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_small">
+
+        <!-- Main area -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/view_dashboard_card_iv_icon_main"
+                android:layout_width="@dimen/ic_dashboard_card_large"
+                android:layout_height="@dimen/ic_dashboard_card_large"
+                android:layout_marginEnd="@dimen/margin_large"
+                android:src="@drawable/ic_edit"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/view_dashboard_card_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:textAppearance="@style/Text.CardView.Title"
+                android:text="tv_title"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@id/view_dashboard_card_iv_icon_main"/>
+
+            <TextView
+                android:id="@+id/view_dashboard_card_tv_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Text.CardView.Body"
+                android:text="tv_details"
+                android:layout_below="@id/view_dashboard_card_tv_title"
+                android:layout_toEndOf="@id/view_dashboard_card_iv_icon_main"/>
+
+        </RelativeLayout>
+
+        <!-- Alert area -->
+        <RelativeLayout
+            android:id="@+id/view_dashboard_card_alert_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small">
+
+            <ImageView
+                android:id="@+id/view_dashboard_card_iv_icon_alert"
+                android:layout_width="@dimen/ic_dashboard_card_small"
+                android:layout_height="@dimen/ic_dashboard_card_small"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:src="@drawable/ic_edit"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/view_dashboard_card_tv_alert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Text.CardView.Info"
+                android:text="tv_alert"
+                android:layout_toEndOf="@id/view_dashboard_card_iv_icon_alert"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

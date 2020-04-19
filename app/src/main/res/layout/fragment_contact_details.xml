@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Contact section -->
+    <RelativeLayout
+        android:id="@+id/fragment_contact_details_contact_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_small">
+
+        <ImageView
+            android:id="@+id/fragment_contact_details_iv_profile"
+            android:layout_width="@dimen/avatar_size_medium"
+            android:layout_height="@dimen/avatar_size_medium"
+            android:layout_marginEnd="8dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/fragment_contact_details_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:textAppearance="@style/Text.Display"
+            android:textAlignment="center"
+            android:text="tv_name"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/fragment_contact_details_iv_profile"/>
+
+    </RelativeLayout>
+
+
+    <!-- Quotes section -->
+
+    <TextView
+        android:id="@+id/fragment_contact_details_tv_quotes_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/margin_small"
+        android:textAppearance="@style/Text.Heading.Section"
+        android:text="@string/fragment_contact_details_section_quotes_heading"
+        android:layout_below="@id/fragment_contact_details_contact_container"/>
+
+    <!-- Container for "no quotes" alert -->
+    <LinearLayout
+        android:id="@+id/fragment_contact_details_alert_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_small"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_below="@id/fragment_contact_details_tv_quotes_header"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/ic_dashboard_card_small"
+            android:layout_height="@dimen/ic_dashboard_card_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:src="@drawable/ic_alert_warn"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text.Alert"
+            android:text="@string/fragment_contact_details_alert_no_quotes"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_contact_details_rv_quotes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_below="@id/fragment_contact_details_alert_container"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:listitem="@layout/item_message"/>
+    
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fragment_contact_details_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>

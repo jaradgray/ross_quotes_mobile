@@ -1,11 +1,87 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Base set of styles that is applied to all versions -->
+    <style name="BaseAppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <!-- The theme the manifest actually references -->
+    <style name="AppTheme" parent="BaseAppTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Text" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/onSurface_mediumEmphasis</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Text.Display">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="Text.Display.Large">
+        <item name="android:textSize">48sp</item>
+    </style>
+
+    <style name="Text.Display.Small">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Text.Heading"/>
+
+    <style name="Text.Heading.Section">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Body"/>
+
+    <style name="Text.Body.Large">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Text.Body.LowEmphasis">
+        <item name="android:textColor">@color/onSurface_disabled</item>
+    </style>
+
+    <style name="Text.Alert">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Text.CardView" />
+
+    <style name="Text.CardView.Title">
+        <item name="android:textColor">@color/onSurface_highEmphasis</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Text.CardView.Body">
+
+    </style>
+
+    <style name="Text.CardView.Info">
+        <item name="android:textColor">@color/onSurface_disabled</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Text.CardView.Info.Alert">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="Text.CardView.Info.Alert.Confirm">
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+
 
 </resources>
